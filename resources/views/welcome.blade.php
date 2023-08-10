@@ -7,6 +7,7 @@
       <title>e-form</title>
       <meta name="description" content="">
       <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="csrf-token" content="{{ csrf_token() }}">
       <!-- Place favicon.ico in the root directory -->
       <link rel="shortcut icon" type="image/x-icon" href="{{ asset('img') }}/favicon.png">
       <!-- CSS here -->
@@ -110,7 +111,7 @@
                          <div class="card-body">
                            <div class="form-group mb-3">
                              <label for="photo">Photo</label>
-                             <input type="file" class="form-control" name="img" onchange="previewImg()" id="image">
+                             <input type="file" class="form-control" name="img" onchange="previewImg()" accept=".png, .jpg, .jpeg" id="image">
                          </div>
                          <div class="form-group">
                              <label for="name">Nama Lengkap</label>
