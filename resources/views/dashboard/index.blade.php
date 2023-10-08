@@ -63,10 +63,7 @@
                 <h4>PENERBITAN TIDAK PERNAH DIHUKUM DISIPLIN</h4>
             </div>
             <div class="card-body">
-              @if (session('msg_izin_belajar'))
-              <div class="alert alert-success">{{ session('msg_izin_belajar') }}</div>
-              @endif
-                <h6>Persyaratan Penerbiatan Izin Belajar</h6>
+                <h6>Persyaratan Penerbitan Izin Belajar</h6>
                 <table class="table">
                     <tbody>
                       <tr>
@@ -87,8 +84,8 @@
                       </tr>
                     </tbody>
                 </table>
-                <a href="/user/permohonan_izin_belajar" class="btn btn-primary">Ajukan Permohonan</a>
-                <a href="/user/permohonan_izin_belajar/show" class="btn btn-info">Status Permohonan</a>
+                <a href="/user/permohonan_izin_belajar/create" class="btn btn-primary">Ajukan Permohonan</a>
+                <a href="/user/permohonan_izin_belajar" class="btn btn-info">Status Permohonan</a>
             </div>
             <hr>
             <div class="card-body">

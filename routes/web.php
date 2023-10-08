@@ -25,6 +25,7 @@ Route::middleware('auth')->prefix('user')->group(function () {
 
     //router for izin belajar
     Route::get('/permohonan_izin_belajar', [IzinBelajarController::class, 'index']);
+    Route::get('/permohonan_izin_belajar/create', [IzinBelajarController::class, 'create']);
     Route::post('/permohonan_izin_belajar/store', [IzinBelajarController::class, 'store']);
-    Route::get('/permohonan_izin_belajar/show', [IzinBelajarController::class, 'show']);
+    Route::get('/permohonan_izin_belajar/show/{id}', [IzinBelajarController::class, 'show']);
 });

@@ -4,6 +4,8 @@ namespace App\Services;
 
 use App\Models\Izinbelajar;
 
+use function PHPUnit\Framework\returnSelf;
+
 class IzinbelajarService
 {
     protected $izinbelajar;
@@ -15,6 +17,12 @@ class IzinbelajarService
     public function store($data)
     {
         return $this->izinbelajar->create($data);
+    }
+
+    public function find($id)
+    {
+        $model = $this->izinbelajar->find($id);
+        return $model;
     }
 
     public function Query()

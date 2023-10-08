@@ -3,20 +3,57 @@
 <div class="main-content">
     <section class="section">
       <div class="section-header">
-        <h1>Dashboard</h1>
+        <h1>Permohonan</h1>
+        <div class="section-header-breadcrumb">
+          <div class="breadcrumb-item active"><a href="/user/dashboard">Dashboard</a></div>
+          <div class="breadcrumb-item">Permohonan</div>
+        </div>
       </div>
       <div class="section-body">
         <div class="row">
-          <div class="col-md-12 mb-3">
+          <div class="col-md-6 mb-3">
             <div class="card">
               <div class="card-header">
-                <h4>Permohonan Penerbiatan Izin Belajar</h4>
+                <h4>Lampiran Permohonan Penerbitan Izin Belajar</h4>
             </div>
-            <div class="card-body table-responsive" id="dataTable">
-                <button class="btn btn-primary btn-lg btn-block" type="button" disabled>
-                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                    Mohon tunggu sebentar...
-                </button>
+            <div class="card-body">
+              <table class="table table-responsive">
+                <tbody>
+                  <tr>
+                    <th>1</th>
+                    <td><a href="{{ \Illuminate\Support\Facades\Storage::url($izin_belajar->lampiran1) }}" target="_blank"> Surat Pengantar Dari OPD</a></td>
+                  </tr>
+                  <tr>
+                    <th>2</th>
+                    <td><a href="{{ \Illuminate\Support\Facades\Storage::url($izin_belajar->lampiran2) }}" target="_blank"> SK Pangkat atau Jabatan Terakhir</a></td>
+                  </tr>
+                  <tr>
+                    <th>3</th>
+                    <td><a href="{{ \Illuminate\Support\Facades\Storage::url($izin_belajar->lampiran3) }}" target="_blank"> SKP 1 Tahun Terakhir</a></td>
+                  </tr>
+                  <tr>
+                    <th>4</th>
+                    <td><a href="{{ \Illuminate\Support\Facades\Storage::url($izin_belajar->lampiran4) }}" target="_blank"> Daftar Hadir 3 Bulan Terakhir</a></td>
+                  </tr>
+                </tbody>
+            </table>
+            </div>
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <div class="card">
+              <div class="card-header">
+                <h4>Status Permohonan Penerbitan Izin Belajar</h4>
+            </div>
+            <div class="card-body">
+              <table class="table table-responsive">
+                <tbody>
+                  <tr>
+                    <td><button class="btn btn-success">Permohonan Dalam antrian</button></td>
+                    <td><button class="btn btn-info">Unduh Surat Izin</button></td>
+                  </tr>
+                </tbody>
+            </table>
             </div>
             </div>
           </div>
@@ -28,27 +65,4 @@
 @endsection
 @push('js')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.2.2/lazysizes.min.js" async=""></script>
-<script type="text/javascript">
-    $(document).ready(function() {
-        loadData();
-    });
-
-    async function loadData() {
-        var param = {
-            method: 'GET',
-            url: '{{ url()->current() }}',
-            data: {
-                load: 'table',
-            }
-        }
-        loading(true);
-        await transAjax(param).then((result) => {
-            loading(false);
-            $('#dataTable').html(result)
-
-        }).catch((err) => {
-            $('#dataTable').html(`<button class="btn btn-warning btn-lg btn-block">${err.responseJSON.message}</button>`)
-    });
-  }
-</script>
 @endpush

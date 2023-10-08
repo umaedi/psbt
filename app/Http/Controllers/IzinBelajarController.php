@@ -18,8 +18,19 @@ class IzinBelajarController extends Controller
 
     public function index()
     {
-        $data['title'] = 'Permohonan izin belajar';
+        if (request()->ajax()) {
+            $data['table'] = $this->izinbelajar->Query()->where('user_id', auth()->user()->id)->get();
+            return view('izinbelajar._data_table', $data);
+        }
+
+        $data['title'] = "Permohonan izin belajar";
         return view('izinbelajar.index', $data);
+    }
+
+    public function create()
+    {
+        $data['title'] = 'Permohonan izin belajar';
+        return view('izinbelajar.create', $data);
     }
 
     public function store(Request $request)
@@ -46,16 +57,12 @@ class IzinBelajarController extends Controller
         }
 
         DB::commit();
-        return redirect('/user/dashboard')->with('msg_izin_belajar', 'Permohonan izin belajar berhasil terkirim');
+        return redirect('/user/permohonan_izin_belajar/show')->with('msg_izin_belajar', 'Permohonan izin belajar berhasil terkirim');
     }
 
-    public function show()
+    public function show($id)
     {
-        if (request()->ajax()) {
-            $data['table'] = $this->izinbelajar->Query()->where('user_id', auth()->user()->id)->get();
-            return view('izinbelajar._data_table', $data);
-        }
-
+        $data['izin_belajar'] = $this->izinbelajar->find($id);
         $data['title'] = "Permohonan izin belajar";
         return view('izinbelajar.show', $data);
     }
