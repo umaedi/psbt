@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('no_tlp');
             $table->text('domisili');
-            $table->text('role')->default('user');
+            $table->string('role')->default('user');
             $table->string('photo')->default('avatar.png');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

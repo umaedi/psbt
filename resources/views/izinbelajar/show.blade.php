@@ -6,7 +6,8 @@
         <h1>Permohonan</h1>
         <div class="section-header-breadcrumb">
           <div class="breadcrumb-item active"><a href="/user/dashboard">Dashboard</a></div>
-          <div class="breadcrumb-item">Permohonan</div>
+          <div class="breadcrumb-item active"><a href="/user/permohonan_izin_belajar">Permohonan</a></div>
+          <div class="breadcrumb-item">Show</div>
         </div>
       </div>
       <div class="section-body">
@@ -49,13 +50,35 @@
               <table class="table table-responsive">
                 <tbody>
                   <tr>
+                    @if ($izin_belajar->status == null)
                     <td><button class="btn btn-warning">Dalam antrian</button></td>
+                    @elseif($izin_belajar->status == '1')
+                    <td><button class="btn btn-info">Diproses</button></td>
+                    @elseif($izin_belajar->status == '2')
+                    <td><button class="btn btn-success">Diterima</button></td>
+                    @else
+                    <td><button class="btn btn-danger">Ditolak</button></td>
+                    @endif
+                    @if ($izin_belajar->status == null || $izin_belajar->status == '1')
                     <td><button onclick="return confirm('Permohonan masih dalam antrian')" class="btn btn-info">Unduh Surat Izin</button></td>
+                    @elseif($izin_belajar->status == '2')
+                    <td><a href="{{ \Illuminate\Support\Facades\Storage::url($izin_belajar->suratizin) }}" class="btn btn-info">Unduh Surat Izin</a></td>
+                    @endif
                   </tr>
                 </tbody>
-            </table>
+              </table>
             </div>
             </div>
+            @if ($izin_belajar->status == '3')
+            <div class="card mt-3">
+              <div class="card-header">
+                <h4>Alasan Penolakan</h4>
+            </div>
+            <div class="card-body">
+              <textarea class="form-control">{{ $izin_belajar->pesan }}</textarea>
+            </div>
+            </div>
+            @endif
           </div>
           </div>
       </div>

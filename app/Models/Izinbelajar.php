@@ -14,6 +14,8 @@ class Izinbelajar extends Model
         'lampiran2',
         'lampiran3',
         'lampiran4',
-        'status'
+        'status',
+        'suratizin',
+        'pesan'
     ];
 }

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class ForgotpasswordController extends Controller
+class ProfileController extends Controller
 {
     /**
      * Handle the incoming request.
@@ -14,6 +14,7 @@ class ForgotpasswordController extends Controller
      */
     public function __invoke(Request $request)
     {
-        //
+        $data['title'] = "Data diri";
+        return view('profile.index', $data);
     }
 }

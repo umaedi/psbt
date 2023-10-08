@@ -21,6 +21,11 @@ Route::get('/', function () {
 
 //route for users
 Route::middleware('auth')->prefix('user')->group(function () {
+
+    //route for profile
+    Route::get('/profile', ProfileController::class);
+
+    //route for ddashboard
     Route::get('/dashboard', DashboardController::class);
 
     //router for izin belajar

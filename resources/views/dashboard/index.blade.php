@@ -34,6 +34,10 @@
                       <input id="nip" type="text" class="form-control" name="nip" tabindex="2" value="{{ auth()->user()->nip }}">
                     </div>
                     <div class="form-group">
+                      <label for="">Pangkat</label>
+                      <input type="text" class="form-control" name="pangkat" tabindex="2" value="{{ auth()->user()->pangkat }}">
+                  </div>
+                    <div class="form-group">
                         <label for="">Jabatan</label>
                         <input type="text" class="form-control" name="jabatan" tabindex="2" value="{{ auth()->user()->jabatan }}">
                     </div>

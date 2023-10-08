@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('lampiran3');
             $table->string('lampiran4');
             $table->string('status')->nullable();
+            $table->string('suratizin')->nullable();
+            $table->string('pesan')->nullable();
             $table->timestamps();
         });
     }

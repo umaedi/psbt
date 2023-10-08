@@ -9,10 +9,6 @@
         <a href="/user/profile" class="dropdown-item has-icon">
           Profile
         </a>
-        @elseif(auth()->user()->role == "admin")
-        <a href="/admin/profile" class="dropdown-item has-icon">
-          Profile
-        </a>
         @else
         <a href="/admin/profile" class="dropdown-item has-icon">
           Profile

@@ -17,7 +17,18 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $guarded = ['id'];
+    protected $fillable = [
+        'nama',
+        'nip',
+        'pangkat',
+        'jabatan',
+        'instansi',
+        'email',
+        'no_tlp',
+        'domisili',
+        'role',
+        'photo',
+    ];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -29,7 +40,8 @@ class User extends Authenticatable
         'remember_token',
         'two_factor_secret',
         'two_factor_recovery_codes',
-        'two_factor_confirmed_at'
+        'two_factor_confirmed_at',
+        'role'
     ];
 
     /**
