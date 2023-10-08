@@ -49,8 +49,8 @@
               <table class="table table-responsive">
                 <tbody>
                   <tr>
-                    <td><button class="btn btn-success">Permohonan Dalam antrian</button></td>
-                    <td><button class="btn btn-info">Unduh Surat Izin</button></td>
+                    <td><button class="btn btn-warning">Dalam antrian</button></td>
+                    <td><button class="btn btn-info" disabled>Unduh Surat Izin</button></td>
                   </tr>
                 </tbody>
             </table>
