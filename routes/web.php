@@ -19,5 +19,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('/register', RegisterController::class);
-Route::post('/login', LoginController::class);
+//route for users
+Route::middleware('auth')->prefix('user')->group(function () {
+    Route::get('/dashboard', DashboardController::class);
+
+    //router for izin belajar
+    Route::get('/permohonan_izin_belajar', [IzinBelajarController::class, 'index']);
+    Route::post('/permohonan_izin_belajar/store', [IzinBelajarController::class, 'store']);
+    Route::get('/permohonan_izin_belajar/show', [IzinBelajarController::class, 'show']);
+});
