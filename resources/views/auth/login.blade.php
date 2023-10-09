@@ -4,17 +4,13 @@
     <!-- sign up area start -->
     <section class="signup__area po-rel-z1 pt-100 pb-145">
        <div class="container">
-          <div class="row">
-             <div class="col-xxl-8 offset-xxl-2 col-xl-8 offset-xl-2">
-                <div class="my-4 text-center mb-55">
-                    <h3>LOGIN</h3>
-                    <p>Silakan login menggunakan email dan password Anda</p>
-                  </div>
-               </div>
-            </div>
-            <div class="row">
+            <div class="row mt-4">
                <div class="col-xxl-6 offset-xxl-3 col-xl-6 offset-xl-3 col-lg-8 offset-lg-2">
                   <div class="sign__wrapper white-bg">
+                     <div class="text-center">
+                        <h3>LOGIN</h3>
+                        <p>Silakan login menggunakan email dan password Anda</p>
+                      </div>
                      @if ($errors->any())
                      <div class="alert alert-danger">Email atau Password salah!</div>
                      @endif

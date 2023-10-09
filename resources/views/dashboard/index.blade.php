@@ -118,8 +118,8 @@
                       </tr>
                     </tbody>
                 </table>
-                <button class="btn btn-primary">Ajukan Permohonan</button>
-                <button class="btn btn-info">Status Permohonan</button>
+                <a href="/user/mutasi/create" class="btn btn-primary">Ajukan Permohonan</a>
+                <a href="/user/mutasi" class="btn btn-info">Status Permohonan</a>
             </div>
             </div>
           </div>

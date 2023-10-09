@@ -79,4 +79,17 @@ class IzinBelajarController extends Controller
         $data['title'] = "Permohonan izin belajar";
         return view('izinbelajar.show', $data);
     }
+
+    public function destroy($id)
+    {
+        DB::beginTransaction();
+        try {
+            $this->izinbelajar->softDelete($id);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            throw $th;
+        }
+        DB::commit();
+        return redirect('/user/permohonan_izin_belajar')->with('msg_izin_belajar', 'Permohonan izin belajar berhasil dihapus!');
+    }
 }

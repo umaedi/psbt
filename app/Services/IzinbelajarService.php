@@ -29,4 +29,10 @@ class IzinbelajarService
     {
         return $this->izinbelajar->query();
     }
+
+    public function softDelete($id)
+    {
+        $model = $this->izinbelajar->find($id);
+        return $model->delete();
+    }
 }

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Izinbelajar extends Model
+class Mutasi extends Model
 {
     use HasFactory, SoftDeletes;
     protected $fillable = [
@@ -15,6 +15,7 @@ class Izinbelajar extends Model
         'lampiran2',
         'lampiran3',
         'lampiran4',
+        'lampiran5',
         'status',
         'suratizin',
         'pesan'

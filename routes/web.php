@@ -33,4 +33,12 @@ Route::middleware('auth')->prefix('user')->group(function () {
     Route::get('/permohonan_izin_belajar/create', [IzinBelajarController::class, 'create']);
     Route::post('/permohonan_izin_belajar/store', [IzinBelajarController::class, 'store']);
     Route::get('/permohonan_izin_belajar/show/{id}', [IzinBelajarController::class, 'show']);
+    Route::delete('/permohonan_izin_belajar/destroy/{id}', [IzinBelajarController::class, 'destroy']);
+
+    //route for tugas/mutasi
+    Route::get('/mutasi', [MutasiController::class, 'index']);
+    Route::get('/mutasi/create', [MutasiController::class, 'create']);
+    Route::post('/mutasi/create/store', [MutasiController::class, 'store']);
+    Route::get('/mutasi/show/{id}', [MutasiController::class, 'show']);
+    Route::delete('/mutasi/destroy/{id}', [MutasiController::class, 'destroy']);
 });
