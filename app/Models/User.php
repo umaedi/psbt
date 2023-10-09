@@ -25,6 +25,7 @@ class User extends Authenticatable
         'jabatan',
         'instansi',
         'email',
+        'password',
         'no_tlp',
         'domisili',
         'role',
