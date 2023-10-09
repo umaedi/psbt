@@ -70,7 +70,7 @@
                @enderror
              </div>
              <div class="form-group mb-3">
-               <label for="domisili">Domisili saat ini</label>
+               <label for="domisili">Domisili</label>
                <textarea type="text" class="form-control @error('domisili') is-invalid @enderror" id="domisili" name="domisili">{{ old('domisili') }}</textarea>
                @error('domisili')
                <div class="invalid-feedback">{{ $message }}</div>
@@ -84,7 +84,7 @@
                @enderror
              </div>
              <div class="form-group mb-3">
-               <label for="password">Password</label>
+               <label for="password">Password (Minimal 6 karakter)</label>
                <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password">
                @error('password')
                <div class="invalid-feedback">{{ $message }}</div>

@@ -33,7 +33,7 @@
          <div class="row align-items-center">
             <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-6 col-6">
                <div class="logo">
-                  <a href="index.html">
+                  <a href="/">
                      <img src="{{ asset('img') }}/logo/logo-tuba.png" alt="logo" width="40">
                   </a>
                </div>
@@ -79,7 +79,7 @@
       <div class="sidebar__content">
          <div class="logo mb-40">
             <a href="/">
-            <img src="{{ asset('img') }}/logo/logo-tuba.png" alt="logo">
+            <img src="{{ asset('img') }}/logo/logo-tuba.png" alt="logo" width="30">
             </a>
          </div>
          <div class="mobile-menu mobile-menu-5"></div>
