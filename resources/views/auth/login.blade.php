@@ -9,7 +9,7 @@
                   <div class="sign__wrapper white-bg">
                      <div class="text-center">
                         <h3>LOGIN</h3>
-                        <img src="{{ asset('img') }}/pass.png" alt="" width="50%">
+                        <img data-src="{{ asset('img') }}/pass.png" alt="login" class="lazyload" width="50%">
                         <p>Silakan login menggunakan email dan password Anda</p>
                       </div>
                      @if ($errors->any())

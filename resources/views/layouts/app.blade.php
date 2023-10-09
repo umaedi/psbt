@@ -34,7 +34,7 @@
             <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-6 col-6">
                <div class="logo">
                   <a href="/">
-                     <img src="{{ asset('img') }}/logo/logo-tuba.png" alt="logo" width="40">
+                     <img data-src="{{ asset('img') }}/logo/logo-tuba.png" alt="logo" class="lazyload" width="40">
                   </a>
                </div>
             </div>
@@ -79,7 +79,7 @@
       <div class="sidebar__content">
          <div class="logo mb-40">
             <a href="/">
-            <img src="{{ asset('img') }}/logo/logo-tuba.png" alt="logo" width="30">
+            <img data-src="{{ asset('img') }}/logo/logo-tuba.png" alt="logo" class="lazyload" width="30">
             </a>
          </div>
          <div class="mobile-menu mobile-menu-5"></div>
@@ -96,6 +96,7 @@
 <script src="{{ asset('js') }}/vendor/jquery-3.5.1.min.js"></script>
 <script src="{{ asset('js') }}/jquery.meanmenu.js"></script>
 <script src="{{ asset('js') }}/main.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.2.2/lazysizes.min.js" async=""></script>
 <script type="text/javascript">
    function previewImg(){
       const imgPreview = document.querySelector('#imgPrev');

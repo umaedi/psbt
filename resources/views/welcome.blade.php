@@ -4,14 +4,8 @@
    <!-- hero area start -->
    <section class="hero__area hero__height-4 grey-bg-9 p-relative d-flex align-items-center">
       <div class="hero__shape-4">
-         <img class="smile" src="{{ asset('img') }}/icon/hero/home-4/smile.png" alt="">
          <img class="smile-2" src="{{ asset('img') }}/icon/hero/home-4/smile-2.png" alt="">
          <img class="cross-1" src="{{ asset('img') }}/icon/hero/home-4/cross-1.png" alt="">
-         <img class="cross-2" src="{{ asset('img') }}/icon/hero/home-4/cross-2.png" alt="">
-         <img class="cross-3" src="{{ asset('img') }}/icon/hero/home-4/cross-3.png" alt="">
-         <img class="dot-1" src="{{ asset('img') }}/icon/hero/home-4/dot-1.png" alt="">
-         <img class="dot-2" src="{{ asset('img') }}/icon/hero/home-4/dot-2.png" alt="">
-         <img class="dot-3" src="{{ asset('img') }}/icon/hero/home-4/dot-3.png" alt="">
       </div>
       <div class="container">
          <div class="row align-items-center">
@@ -32,8 +26,8 @@
             <div class="col-xxl-5 col-xl-5 col-lg-6">
                <div class="hero__thumb-4-wrapper">
                   <div class="hero__thumb-4 p-relative">
-                     <img class="girl" src="{{ asset('img') }}/hero/home-4/girl.png" alt="">
-                     <img class="flower" src="{{ asset('img') }}/hero/home-4/flower.png" alt="">
+                     <img class="girl lazyload" data-src="{{ asset('img') }}/hero/home-4/girl.png" alt="">
+                     <img class="flower lazyload" data-src="{{ asset('img') }}/hero/home-4/flower.png" alt="">
                   </div>
                </div>
             </div>
