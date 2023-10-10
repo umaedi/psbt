@@ -42,3 +42,15 @@ Route::middleware('auth')->prefix('user')->group(function () {
     Route::get('/mutasi/show/{id}', [MutasiController::class, 'show']);
     Route::delete('/mutasi/destroy/{id}', [MutasiController::class, 'destroy']);
 });
+
+Route::middleware('auth')->prefix('admin')->group(function () {
+    Route::get('/dashboard', Admin\DashboardController::class);
+
+    //route for izin belajar
+    Route::get('/permohonan_izin_belajar', [Admin\IzinBelajarController::class, 'index']);
+    Route::get('/permohonan_izin_belajar/show/{id}', [Admin\IzinBelajarController::class, 'show']);
+    Route::put('/permohonan_izin_belajar/update/{id}', [Admin\IzinBelajarController::class, 'update']);
+
+    //route for mutasi
+    Route::get('/mutasi', [Admin\MutasiController::class, 'index']);
+});

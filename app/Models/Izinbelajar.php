@@ -19,4 +19,9 @@ class Izinbelajar extends Model
         'suratizin',
         'pesan'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

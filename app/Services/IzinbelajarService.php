@@ -25,6 +25,16 @@ class IzinbelajarService
         return $model;
     }
 
+    public function update($id, $status, $pesan = null)
+    {
+        $model = $this->izinbelajar->find($id);
+        $model->update([
+            'status'    => $status,
+            'pesan'     => $pesan,
+        ]);
+        return $model;
+    }
+
     public function Query()
     {
         return $this->izinbelajar->query();

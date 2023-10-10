@@ -26,8 +26,8 @@
             <div class="col-xxl-5 col-xl-5 col-lg-6">
                <div class="hero__thumb-4-wrapper">
                   <div class="hero__thumb-4 p-relative">
-                     <img class="girl lazyload" data-src="{{ asset('img') }}/hero/home-4/girl.png" alt="">
-                     <img class="flower lazyload" data-src="{{ asset('img') }}/hero/home-4/flower.png" alt="">
+                     <img class="girl lazyload" data-src="{{ asset('img') }}/hero/inspektur.png" alt="" width="50">
+                     {{-- <img class="flower lazyload" data-src="{{ asset('img') }}/hero/home-4/flower.png" alt=""> --}}
                   </div>
                </div>
             </div>

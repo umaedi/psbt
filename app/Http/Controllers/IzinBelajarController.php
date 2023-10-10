@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class IzinBelajarController extends Controller
 {
-    public $izinbelajar;
+    private $izinbelajar;
     public function __construct(IzinbelajarService $izinbelajarService)
     {
         $this->izinbelajar = $izinbelajarService;
@@ -68,7 +68,6 @@ class IzinBelajarController extends Controller
             DB::rollBack();
             throw $th;
         }
-
         DB::commit();
         return redirect('/user/permohonan_izin_belajar')->with('msg_izin_belajar', 'Permohonan izin belajar berhasil terkirim');
     }
