@@ -11,7 +11,7 @@
      <div class="row">
        <div class="col-md-8">
          <div class="my-3 p-3 bg-white rounded box-shadow">
-           <h6 class="border-bottom border-gray pb-2 mb-3">Persyaratan Penerbitan Iizn Belajar</h6>
+           <h6 class="border-bottom border-gray pb-2 mb-3">Persyaratan Penerbitan Izin Belajar</h6>
            <ul class="list-group list-group-flush">
              <li class="list-group-item">1. Surat Pengantar Dari OPD</li>
              <li class="list-group-item">2. SK Pangkat Atau Jabatan Terakhir</li>
