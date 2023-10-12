@@ -37,7 +37,7 @@
            <ul class="list-group list-group-flush">
              <li class="list-group-item">1. Pemohon melakukan pendaftaran</li>
              <li class="list-group-item">2. Pemohon mengajukan permohonan</li>
-             <li class="list-group-item">3. Permohonan diverifikasi</li>
+             <li class="list-group-item">3. Permohonan diverifikasi oleh admin</li>
              <li class="list-group-item">4. Permohonan dikonfirmmasi</li>
              <li class="list-group-item">5. Surat izin diterbitkan</li>
            </ul>

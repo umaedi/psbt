@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +15,18 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/redirect', function () {
+    if (Auth::check()) {
+        if (Auth::user()->role == 'user') {
+            return redirect('/user/dashboard');
+        } else {
+            return redirect('/admin/dashboard');
+        }
+    } else {
+        return redirect('/');
+    }
+});
 
 Route::get('/', function () {
     return view('welcome');
@@ -43,7 +56,7 @@ Route::middleware('auth')->prefix('user')->group(function () {
     Route::delete('/mutasi/destroy/{id}', [MutasiController::class, 'destroy']);
 });
 
-Route::middleware('auth')->prefix('admin')->group(function () {
+Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard', Admin\DashboardController::class);
 
     //route for izin belajar
