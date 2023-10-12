@@ -54,4 +54,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
 
     //route for mutasi
     Route::get('/mutasi', [Admin\MutasiController::class, 'index']);
+    Route::get('/mutasi/{value}', [Admin\MutasiController::class, 'index']);
+    Route::get('/mutasi/show/{id}', [Admin\MutasiController::class, 'show']);
+    Route::put('/mutasi/update/{id}', [Admin\MutasiController::class, 'update']);
 });

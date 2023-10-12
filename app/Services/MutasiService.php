@@ -23,6 +23,17 @@ class MutasiService
         return $model;
     }
 
+    public function update($id, $status, $pesan = null, $suratizin = null)
+    {
+        $model = $this->mutasi->find($id);
+        $model->update([
+            'status'    => $status,
+            'pesan'     => $pesan,
+            'suratizin' => $suratizin
+        ]);
+        return $model;
+    }
+
     public function Query()
     {
         return $this->mutasi->query();

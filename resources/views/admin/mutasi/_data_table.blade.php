@@ -23,7 +23,7 @@
                 @else
                 <td><span class="badge badge-danger">Ditolak</span></td>
                 @endif
-                <td><a href="/admin/permohonan_izin_belajar/show/{{ $tb->id }}" class="btn btn-sm btn-info"><i class="fa fa-eye"></i></a></td>
+                <td><a href="/admin/mutasi/show/{{ $tb->id }}" class="btn btn-sm btn-info"><i class="fa fa-eye"></i></a></td>
             </tr>
         @empty
             <tr>

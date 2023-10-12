@@ -76,6 +76,8 @@
                     <td><button onclick="return confirm('Permohonan masih dalam antrian')" class="btn btn-info btn-sm">Unduh Surat Izin</button></td>
                     @elseif($izin_belajar->status == '2')
                     <td><a href="{{ \Illuminate\Support\Facades\Storage::url($izin_belajar->suratizin) }}" class="btn btn-info btn-sm">Unduh Surat Izin</a></td>
+                    @else
+                    <td><button onclick="return confirm('Permohonan ditolak!')" class="btn btn-info btn-sm">Unduh Surat Izin</button></td>
                     @endif
                   </tr>
                 </tbody>

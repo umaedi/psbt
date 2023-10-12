@@ -51,12 +51,12 @@
                     <div class="card-icon bg-info">
                         <i class="fa fa-user fa-2x" style="color: #fff"></i>
                     </div>
-                    <a href="#" style="text-decoration: none">
+                    <a href="/admin/mutasi" style="text-decoration: none">
                     <div class="card-wrap">
                         <div class="card-header">
                             <h4>{{ __('Permohonan perlu diproses') }}</h4>
                         </div>
-                        <div class="card-body text-uppercase">2</div>
+                        <div class="card-body text-uppercase">{{ $mutasi }}</div>
                     </div>
                     </a>
                 </div>
@@ -66,12 +66,12 @@
                     <div class="card-icon bg-info">
                         <i class="fa fa-user-clock fa-2x" style="color: #fff"></i>
                     </div>
-                    <a href="#" style="text-decoration: none">
+                    <a href="/admin/mutasi?index=1" style="text-decoration: none">
                     <div class="card-wrap">
                         <div class="card-header">
                             <h4>{{ __('Permohonan sedang diproses') }}</h4>
                         </div>
-                        <div class="card-body text-uppercase">2</div>
+                        <div class="card-body text-uppercase">{{ $mutasi_diproses }}</div>
                     </div>
                     </a>
                 </div>
@@ -111,12 +111,12 @@
                     <div class="card-icon bg-info">
                         <i class="fa fa-user-check fa-2x" style="color: #fff"></i>
                     </div>
-                    <a href="#" style="text-decoration: none">
+                    <a href="/admin/mutasi?index=2" style="text-decoration: none">
                     <div class="card-wrap">
                         <div class="card-header">
                             <h4>{{ __('Permohonan diterima') }}</h4>
                         </div>
-                        <div class="card-body text-uppercase">2</div>
+                        <div class="card-body text-uppercase">{{ $mutasi_diterima }}</div>
                     </div>
                     </a>
                 </div>
@@ -126,12 +126,12 @@
                     <div class="card-icon bg-info">
                         <i class="fa fa-user-slash fa-2x" style="color: #fff"></i>
                     </div>
-                    <a href="#" style="text-decoration: none">
+                    <a href="/admin/mutasi?index=3" style="text-decoration: none">
                     <div class="card-wrap">
                         <div class="card-header">
                             <h4>{{ __('Permohonan ditolak') }}</h4>
                         </div>
-                        <div class="card-body text-uppercase">2</div>
+                        <div class="card-body text-uppercase">{{ $mutasi_ditolak }}</div>
                     </div>
                     </a>
                 </div>
