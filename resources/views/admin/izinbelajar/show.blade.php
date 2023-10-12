@@ -4,6 +4,10 @@
     <section class="section">
       <div class="section-header">
         <h1>Permohonan izin belajar</h1>
+        <div class="section-header-breadcrumb">
+          <div class="breadcrumb-item active"><a href="/admin/dashboard">Dashboard</a></div>
+          <div class="breadcrumb-item">Permohonan</div>
+      </div>
       </div>
       <div class="section-body">
         <div class="row">
@@ -62,6 +66,43 @@
             </div>
           </div>
           <div class="col-md-8 mb-3">
+            <div class="card mb-3">
+              <div class="card-header">
+                <h4>Informasi Status Permohonan Penerbitan Izin Belajar</h4>
+            </div>
+            <div class="card-body">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                      <th scope="col">Tgl Pengajuan</th>
+                      <th scope="col">Status</th>
+                      <th scope="col">Surat izin</th>
+                  </tr>
+              </thead>
+                <tbody>
+                  @if ($izinbelajar->status == null)
+                    <td>{{ \Carbon\Carbon::parse($izinbelajar->created_at)->isoFormat('D MMMM Y') }}</td>
+                    <td><span class="badge badge-warning">Perlu Diproses</span></td>
+                    <td><button class="btn btn-info btn-sm" onclick="return confirm('Permohonan perlu diproses')">Download</button></td>
+                  @elseif($izinbelajar->status == '1')
+                    <td>{{ \Carbon\Carbon::parse($izinbelajar->created_at)->isoFormat('D MMMM Y') }}</td>
+                    <td><span class="badge badge-success">Diproses</span></td>
+                    <td><button class="btn btn-info btn-sm" onclick="return confirm('Permohonan sedang diproses!')">Download</button></td>
+                    @elseif($izinbelajar->status == '2')
+                    <td>{{ \Carbon\Carbon::parse($izinbelajar->created_at)->isoFormat('D MMMM Y') }}</td>
+                    <td><span class="badge badge-success">Diterima</span></td>
+                    <td><a href="{{ \Illuminate\Support\Facades\Storage::url($izinbelajar->suratizin) }}" target="_blank"><span class="btn btn-info btn-sm">Download</span></a></td>
+                  @else
+                    <td>{{ \Carbon\Carbon::parse($izinbelajar->created_at)->isoFormat('D MMMM Y') }}</td>
+                    <td><span class="badge badge-danger">Ditolak</span></td>
+                    <td><button class="btn btn-info btn-sm" onclick="return confirm('Permohonan ditolak!')">Download</button></td>
+                  @endif
+         
+                </tbody>
+              </table>
+            </div>
+            </div>
+            
             <div class="card">
               <div class="card-header">
                 <h4>Lampiran Permohonan Penerbitan Izin Belajar</h4>
@@ -88,12 +129,18 @@
                 </tbody>
             </table>
             <div class="row">
+            @if ($izinbelajar->status == null)
             <form method="POST" onsubmit="return confirm('Yakin verifikasi data ini?')" action="/admin/permohonan_izin_belajar/update/{{ $izinbelajar->id }}">
-                @method('PUT')
-                @csrf
-                <button type="submit" class="btn btn-primary">VERIFIKASI PERMOHONAN</button>
+              @method('PUT')
+              @csrf
+              <input type="hidden" name="status" value="1">
+              <button type="submit" class="btn btn-primary">VERIFIKASI PERMOHONAN</button>
             </form>
             <button type="button" data-toggle="modal" data-target="#exampleModalCenter" class="ml-2 btn btn-info">TOLAK PERMOHONAN</button>
+            @elseif($izinbelajar->status == '1')
+              <button type="button" data-toggle="modal" data-target="#exampleModalCenter1" class="btn btn-primary">KONFIRMASI PERMOHONAN</button>
+              <button type="button" data-toggle="modal" data-target="#exampleModalCenter" class="ml-2 btn btn-info">TOLAK PERMOHONAN</button>
+            @endif
             </div>
             </div>
             </div>
@@ -117,6 +164,7 @@
           </button>
         </div>
         <div class="modal-body">
+          <input type="hidden" name="status" value="3">
           <textarea name="pesan"  class="form-control"></textarea>
         </div>
         <div class="modal-footer">
@@ -125,8 +173,32 @@
         </div>
       </div>
     </form>  
-    </div>
   </div>
+</div>
+<div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <form action="/admin/permohonan_izin_belajar/update/{{ $izinbelajar->id }}" method="POST" enctype="multipart/form-data">
+      @method('PUT')
+      @csrf
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Unggah Surat Izin</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" name="status" value="2">
+          <input type="file" name="suratizin" class="form-control" required>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">BATAL</button>
+          <button type="submit" class="btn btn-primary">UNGGAH</button>
+        </div>
+      </div>
+    </form>  
+  </div>
+</div>
 @endsection
 @push('js')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.2.2/lazysizes.min.js" async=""></script>

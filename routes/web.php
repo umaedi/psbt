@@ -48,6 +48,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
 
     //route for izin belajar
     Route::get('/permohonan_izin_belajar', [Admin\IzinBelajarController::class, 'index']);
+    Route::get('/permohonan_izin_belajar/{value}', [Admin\IzinBelajarController::class, 'index']);
     Route::get('/permohonan_izin_belajar/show/{id}', [Admin\IzinBelajarController::class, 'show']);
     Route::put('/permohonan_izin_belajar/update/{id}', [Admin\IzinBelajarController::class, 'update']);
 

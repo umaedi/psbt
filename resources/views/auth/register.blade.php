@@ -1,15 +1,23 @@
 @extends('layouts.app')
 @section('content')
+<img src="{{ asset('img') }}/hero/banner.png" loading="lazy" class="img-fluid" alt="Responsive image">
 <main role="main" class="container">
-   <div class="my-3 p-3 bg-white rounded">
-     <h6 class="border-bottom border-gray mb-3 pb-2 mb-0">Formulir Pendafataran</h6>
-       <form action="/register" method="POST" enctype="multipart/form-data">
+ <div class="d-flex align-items-center p-3 mt-3 text-white-50 bg-primary rounded box-shadow">
+    <div class="lh-100">
+      <h5 class="mb-0 text-white lh-100">Pendaftaran Akun</h5>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="my-3 p-3 bg-white rounded box-shadow">
+        <h6 class="border-bottom border-gray pb-2 mb-3">Silakan lengkapi data diri Anda</h6>
+        <form action="/register" method="POST" enctype="multipart/form-data">
           @csrf
           <div class="row">
              <div class="col-md-3">
                <div class="card">
                  <div class="card-body">
-                   <img id="imgPrev" src="{{ asset('img/avatar-1.png') }}" alt="photo" width="100%">
+                   <img id="imgPrev" src="{{ asset('img/avatar-1.png') }}" loading="lazy" alt="photo" width="100%">
                  </div>
                </div>
              </div>
@@ -97,14 +105,33 @@
                <div class="invalid-feedback">{{ $message }}</div>
                @enderror
              </div>
-             @include('layouts._loading')
-             <button id="btn_submit" type="submit" class="w-btn-round w-btn-round-header mb-3">DAFTAR</button>
+             <button id="btn_submit" type="submit" class="btn btn-primary mb-3">DAFTAR</button>
           </div>
        </form>
+      </div>
+      <div class="col-md-4">
+        <div class="my-3 p-3 bg-white rounded box-shadow">
+            <h6>Kontak Kami</h6>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item" >Iwan : <span class="font-weight-bold"><a style="text-decoration: none" href="https://api.whatsapp.com/send?phone=6281315100557" target="_blank">081315100557</a></span></li>
+              <li class="list-group-item">Email: <a style="text-decoration: none" href="mailto:"kobi.biologi@gmail.com>inspektorattuba@gmail.com</a></span></li>
+            </ul>
+        </div>
+      </div>
     </div>
-   </div>
- </main>  
+</div>
+</main>
 @endsection
+@push('js')
+<script type="text/javascript">
+  function previewImg(){
+     const imgPreview = document.querySelector('#imgPrev');
+     const image = document.querySelector('#image');
+     const blob = URL.createObjectURL(image.files[0]);
+     imgPreview.src = blob; 
+  }
+</script>
+@endpush
 
       
     

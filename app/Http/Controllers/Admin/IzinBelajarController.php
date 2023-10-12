@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use App\Services\IzinbelajarService;
+use Illuminate\Support\Facades\Storage;
 
 class IzinBelajarController extends Controller
 {
@@ -19,10 +20,21 @@ class IzinBelajarController extends Controller
     public function index()
     {
         if (request()->ajax()) {
+            $izinbelajar = $this->izinbelajar->Query();
             $page = request()->get('pagination', 10);
-            $data['table'] = $this->izinbelajar->Query()->with('user')->whereNull('status')->paginate($page);
+
+            if (request()->q) {
+                $izinbelajar->whereHas('user', function ($query) {
+                    $query->where('nama', 'like', '%' . request()->q . '%');
+                });
+            }
+
+            $data['table'] = $izinbelajar->with('user')->where('status', request()->index)->paginate($page);
             return view('admin.izinbelajar._data_table', $data);
         }
+
+        $data['title'] = 'Permohonan Izin Belajar';
+        return view('admin.izinbelajar.index', $data);
     }
 
     public function show($id)
@@ -34,22 +46,27 @@ class IzinBelajarController extends Controller
 
     public function update(Request $request, $id)
     {
-        if ($request->pesan) {
-            $status = '3';
-            $pesan = $request->pesan;
-        } else {
+
+        if ($request->status == '1') {
             $status = '1';
-            $pesan = '';
+            $redirect = '/admin/permohonan_izin_belajar?index=1';
+        } elseif ($request->status == '2') {
+            $status = '2';
+            $suratizin = $request->file('suratizin')->store('public/surat_izin');
+            $redirect = '/admin/permohonan_izin_belajar?index=2';
+        } else {
+            $status = '3';
+            $redirect = '/admin/permohonan_izin_belajar?index=3';
         }
 
         DB::beginTransaction();
         try {
-            $this->izinbelajar->update($id, $status, $pesan);
+            $this->izinbelajar->update($id, $status, $pesan ?? '', $suratizin ?? '');
         } catch (\Throwable $th) {
             DB::rollBack();
             return throw $th;
         }
         DB::commit();
-        return redirect('/permohonan_izin_belajar')->with('msg_success', 'Permohonan Izin Belajar Berhasil Dikonfirmasi');
+        return redirect($redirect)->with('msg_success', 'Status Permohonan Izin Belajar Berhasil Diperbaharui');
     }
 }

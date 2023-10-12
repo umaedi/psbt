@@ -1,41 +1,67 @@
-@extends('layouts.app')
+@extends('layouts.auth')
 @section('content')
-<main>
-    <!-- sign up area start -->
-    <section class="signup__area po-rel-z1 pt-100 pb-145">
-       <div class="container">
-            <div class="row mt-4">
-               <div class="col-xxl-6 offset-xxl-3 col-xl-6 offset-xl-3 col-lg-8 offset-lg-2">
-                  <div class="sign__wrapper white-bg">
-                     <div class="text-center">
-                        <h3>LOGIN</h3>
-                        <img data-src="{{ asset('img') }}/pass.png" alt="login" class="lazyload" width="50%">
-                        <p>Silakan login menggunakan email dan password Anda</p>
-                      </div>
-                     @if ($errors->any())
-                     <div class="alert alert-danger">Email atau Password salah!</div>
-                     @endif
-                    <form action="/login" method="POST">
-                     @csrf
-                        <div class="form-group mb-3">
-                          <label for="email">Email</label>
-                          <input type="email" class="form-control" id="email" name="email">
-                        </div>
-                        <div class="form-group mb-3">
-                          <label for="password">Password</label>
-                          <input type="password" class="form-control" id="password" name="password">
-                        </div>
-                        <div class="form-check">
-                          <input type="checkbox" name="remember" class="form-check-input" id="check">
-                          <label class="form-check-label"  for="check">Biarkan saya login selama 1 bulan</label>
-                        </div>
-                        <button type="submit" class="w-btn-round w-btn-round-header mt-3">Login</button>
-                      </form>
-                </div>
-             </div>
-          </div>
+<section class="section">
+   <div class="container mt-3">
+     <div class="row">
+       <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
+         <div class="login-brand">
+           <img src="{{ asset('img') }}/pass.png" alt="logo" width="50%">
+         </div>
+         @if ($errors->any())
+         <div class="alert alert-warning">Email atau Password salah!</div>
+         @endif
+         <div class="card card-primary">
+           <div class="card-header"><h4>Login</h4></div>
+
+           <div class="card-body">
+             <form method="POST" action="/login" class="needs-validation" novalidate="">
+               @csrf
+               <div class="form-group">
+                 <label for="email">Email</label>
+                 <input id="email" type="email" class="form-control" name="email" required tabindex="1" required autofocus>
+                 <div class="invalid-feedback">
+                   Please fill in your email
+                 </div>
+               </div>
+
+               <div class="form-group">
+                 <div class="d-block">
+                    <label for="password" class="control-label">Password</label>
+                   <div class="float-right">
+                     <a href="#" class="text-small">
+                       Lupa Password?
+                     </a>
+                   </div>
+                 </div>
+                 <input id="password" type="password" class="form-control" name="password" required tabindex="2" required>
+                 <div class="invalid-feedback">
+                   please fill in your password
+                 </div>
+               </div>
+
+               <div class="form-group">
+                 <div class="custom-control custom-checkbox">
+                   <input type="checkbox" name="remember" class="custom-control-input" tabindex="3" id="remember-me">
+                   <label class="custom-control-label" for="remember-me">Biarkan saya tetap login</label>
+                 </div>
+               </div>
+
+               <div class="form-group">
+                 <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
+                   Login
+                 </button>
+               </div>
+
+           </div>
+         </div>
+         <div class="mt-5 text-muted text-center">
+           Belum punya akun? <a href="/register">Daftar</a>
+         </div>
+         <div class="simple-footer">
+           Copyright &copy; Umaedi KH 2023
+         </div>
        </div>
-    </section>
-    <!-- sign up area end -->
- </main>
+     </div>
+   </div>
+ </section>
 @endsection
