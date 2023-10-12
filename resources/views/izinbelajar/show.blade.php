@@ -52,22 +52,30 @@
                 <h4>Status Permohonan Penerbitan Izin Belajar</h4>
             </div>
             <div class="card-body">
-              <table class="table table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Tgl Pengajuan</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Download</th>
+                  </tr>
+                </thead>
                 <tbody>
                   <tr>
+                    <td>{{ \Carbon\Carbon::parse($izin_belajar->created_at)->isoFormat('D MMMM Y') }}</td>
                     @if ($izin_belajar->status == null)
-                    <td><button class="btn btn-warning">Dalam antrian</button></td>
+                    <td><span class="badge badge-warning">Dalam antrian</span></td>
                     @elseif($izin_belajar->status == '1')
-                    <td><button class="btn btn-info">Diproses</button></td>
+                    <td><span class="badge badge-info">Diproses</span></td>
                     @elseif($izin_belajar->status == '2')
-                    <td><button class="btn btn-success">Diterima</button></td>
+                    <td><span class="badge badge-success">Diterima</span></td>
                     @else
-                    <td><button class="btn btn-danger">Ditolak</button></td>
+                    <td><span class="badge badge-danger">Ditolak</span></td>
                     @endif
                     @if ($izin_belajar->status == null || $izin_belajar->status == '1')
-                    <td><button onclick="return confirm('Permohonan masih dalam antrian')" class="btn btn-info">Unduh Surat Izin</button></td>
+                    <td><button onclick="return confirm('Permohonan masih dalam antrian')" class="btn btn-info btn-sm">Unduh Surat Izin</button></td>
                     @elseif($izin_belajar->status == '2')
-                    <td><a href="{{ \Illuminate\Support\Facades\Storage::url($izin_belajar->suratizin) }}" class="btn btn-info">Unduh Surat Izin</a></td>
+                    <td><a href="{{ \Illuminate\Support\Facades\Storage::url($izin_belajar->suratizin) }}" class="btn btn-info btn-sm">Unduh Surat Izin</a></td>
                     @endif
                   </tr>
                 </tbody>

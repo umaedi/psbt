@@ -57,6 +57,7 @@ class IzinBelajarController extends Controller
         } else {
             $status = '3';
             $redirect = '/admin/permohonan_izin_belajar?index=3';
+            $pesan = $request->pesan;
         }
 
         DB::beginTransaction();
