@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Jobs\ProcessLampiran;
 use Illuminate\Support\Facades\DB;
 use App\Services\IzinbelajarService;
 use Illuminate\Support\Facades\Auth;
@@ -61,14 +62,16 @@ class IzinBelajarController extends Controller
         $newLampiran4 = Str::replace('', '_', strtolower(auth()->user()->nama . '_daftar_hadir_3_bulan_terakhir_' . $randomName . '.' . $lampiran4->getClientOriginalExtension()));
         $data['lampiran4'] = $lampiran4->storeAs('public/lampiran', $newLampiran4);
 
-        DB::beginTransaction();
-        try {
-            $this->izinbelajar->store($data);
-        } catch (\Throwable $th) {
-            DB::rollBack();
-            throw $th;
-        }
-        DB::commit();
+        // DB::beginTransaction();
+        // try {
+        //     $this->izinbelajar->store($data);
+        // } catch (\Throwable $th) {
+        //     DB::rollBack();
+        //     throw $th;
+        // }
+        // DB::commit();
+
+        dispatch(new ProcessLampiran($data));
         return redirect('/user/permohonan_izin_belajar')->with('msg_izin_belajar', 'Permohonan izin belajar berhasil terkirim');
     }
 
