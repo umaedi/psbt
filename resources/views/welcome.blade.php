@@ -48,10 +48,13 @@
            <h6>Kontak Kami</h6>
            <ul class="list-group list-group-flush">
              <li class="list-group-item" >Iwan : <span class="font-weight-bold"><a style="text-decoration: none" href="https://api.whatsapp.com/send?phone=6281315100557" target="_blank">081315100557</a></span></li>
-             <li class="list-group-item">Email: <a style="text-decoration: none" href="mailto:"kobi.biologi@gmail.com>inspektorattuba@gmail.com</a></span></li>
+             <li class="list-group-item">Email: <a style="text-decoration: none" href="mailto:"inspektorattuba@gmail.com>inspektorattuba@gmail.com</a></span></li>
            </ul>
        </div>
      </div>
+     <footer class="my-5 text-muted text-center text-small">
+      <p class="mb-1">Copyright © 2023 Inspektorat Kabupaten Tulang Bawang. Developed By <a href="{{ env('NO_DEV') }}">Umaedi KH</a></p>
+    </footer>
    </div>
    </main>
    @stack('js')

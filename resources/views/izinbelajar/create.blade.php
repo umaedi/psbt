@@ -21,7 +21,7 @@
                     @csrf
                     <div class="form-group">
                       <label for="lampiran1">Surat Pengantar Dari OPD</label>
-                      <input type="file" class="form-control @error('lampiran1') is-invalid @enderror" id="lampiran1" name="lampiran1" required>
+                      <input onchange="displayFilePath()" type="file" class="form-control @error('lampiran1') is-invalid @enderror" id="fileInput" name="lampiran1" required>
                       @error('lampiran1')
                            <div class="invalid-feedback">{{ $message }}</div>
                       @enderror
@@ -59,5 +59,18 @@
   </div>
 @endsection
 @push('js')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.2.2/lazysizes.min.js" async=""></script>
+<script type="text/javascript">
+  function displayFilePath() {
+    const fileInput = document.getElementById('fileInput');
+    
+    if (fileInput.files.length > 0) {
+      const selectedFile = fileInput.files[0];
+      const fileURL = URL.createObjectURL(selectedFile);
+      
+      console.log("URL path file yang dipilih: " + fileURL);
+    } else {
+      console.log("Tidak ada file yang dipilih.");
+    }
+  }
+</script>
 @endpush

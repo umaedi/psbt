@@ -36,6 +36,7 @@ class IzinBelajarController extends Controller
 
     public function store(Request $request)
     {
+
         $request->validate([
             'lampiran1' => 'required|file|mimes:pdf,docx|max:2048',
             'lampiran2' => 'required|file|mimes:pdf,docx|max:2048',
