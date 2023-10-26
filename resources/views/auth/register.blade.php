@@ -120,6 +120,9 @@
       </div>
     </div>
 </div>
+<footer class="my-5 text-muted text-center text-small">
+  <p class="mb-1">Copyright © 2023 Inspektorat Kabupaten Tulang Bawang. Developed By <a href="https://api.whatsapp.com/send?phone={{ env('NO_DEV') }}">Umaedi KH</a></p>
+</footer>
 </main>
 @endsection
 @push('js')

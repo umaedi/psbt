@@ -58,7 +58,7 @@
            Belum punya akun? <a href="/register">Daftar</a>
          </div>
          <div class="simple-footer">
-           Copyright &copy; Umaedi KH 2023
+          Copyright © 2023 Inspektorat Kabupaten Tulang Bawang. Developed By <a href="https://api.whatsapp.com/send?phone={{ env('NO_DEV') }}">Umaedi KH</a>
          </div>
        </div>
      </div>
