@@ -34,7 +34,6 @@
   </div>
 @endsection
 @push('js')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.2.2/lazysizes.min.js" async=""></script>
 <script type="text/javascript">
     $(document).ready(function() {
         loadData();

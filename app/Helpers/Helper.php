@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\Log;
+use Illuminate\Support\Facades\Auth;
+
 if (!function_exists('create')) {
     function create($result)
     {
@@ -27,5 +30,16 @@ if (!function_exists('error')) {
         }
 
         return response()->json($response, $code);
+    }
+}
+
+if (!function_exists('saveLogs')) {
+    function saveLogs($description, $logtype)
+    {
+        Log::create([
+            'user_id'   => Auth::user()->id,
+            'description'   => $description,
+            'logtype'   => $logtype
+        ]);
     }
 }

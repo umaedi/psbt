@@ -68,6 +68,7 @@ class MutasiController extends Controller
         try {
             $this->mutasi->store($data);
         } catch (\Throwable $th) {
+            saveLogs($th->getMessage(), 'error!');
             DB::rollBack();
             throw $th;
         }
@@ -88,6 +89,7 @@ class MutasiController extends Controller
         try {
             $this->mutasi->sofDelete($id);
         } catch (\Throwable $th) {
+            saveLogs($th->getMessage(), 'error!');
             DB::rollBack();
             throw $th;
         }

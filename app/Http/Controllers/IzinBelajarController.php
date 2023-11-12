@@ -67,6 +67,7 @@ class IzinBelajarController extends Controller
         try {
             $this->izinbelajar->store($data);
         } catch (\Throwable $th) {
+            // saveLogs($th->getMessage(), 'error');
             DB::rollBack();
             throw $th;
         }
@@ -88,6 +89,7 @@ class IzinBelajarController extends Controller
         try {
             $this->izinbelajar->softDelete($id);
         } catch (\Throwable $th) {
+            saveLogs($th->getMessage(), 'error');
             DB::rollBack();
             throw $th;
         }

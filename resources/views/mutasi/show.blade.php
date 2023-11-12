@@ -53,25 +53,37 @@
           <div class="col-md-6 mb-3">
             <div class="card">
               <div class="card-header">
-                <h4>Status Permohonan Alih Tugas atau Mutasi</h4>
+                <h4>Status Permohonan Penerbitan Izin Belajar</h4>
             </div>
             <div class="card-body">
-              <table class="table table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Tgl Pengajuan</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Surat izin</th>
+                  </tr>
+                </thead>
                 <tbody>
                   <tr>
+                    <td>{{ \Carbon\Carbon::parse($mutasi->created_at)->isoFormat('D MMMM Y') }}</td>
                     @if ($mutasi->status == null)
-                    <td><button class="btn btn-warning">Dalam antrian</button></td>
+                    <td><span class="badge badge-warning">Dalam antrian</span></td>
                     @elseif($mutasi->status == '1')
-                    <td><button class="btn btn-info">Diproses</button></td>
+                    <td><span class="badge badge-info">Diproses</span></td>
                     @elseif($mutasi->status == '2')
-                    <td><button class="btn btn-success">Diterima</button></td>
+                    <td><span class="badge badge-success">Diterima</span></td>
                     @else
-                    <td><button class="btn btn-danger">Ditolak</button></td>
+                    <td><span class="badge badge-danger">Ditolak</span></td>
                     @endif
-                    @if ($mutasi->status == null || $mutasi->status == '1')
-                    <td><button onclick="return confirm('Permohonan masih dalam antrian')" class="btn btn-info">Unduh Surat Izin</button></td>
+                    @if ($mutasi->status == null)
+                    <td><button onclick="return confirm('Permohonan masih dalam antrian')" class="btn btn-info btn-sm">Download</button></td>
+                    @elseif($mutasi->status == '1')
+                    <td><button onclick="return confirm('Permohonan sedang diproses')" class="btn btn-info btn-sm">Download</button></td>
                     @elseif($mutasi->status == '2')
-                    <td><a href="{{ \Illuminate\Support\Facades\Storage::url($mutasi->suratizin) }}" class="btn btn-info">Unduh Surat Izin</a></td>
+                    <td><a href="{{ \Illuminate\Support\Facades\Storage::url($mutasi->suratizin) }}" class="btn btn-info btn-sm">Download</a></td>
+                    @else
+                    <td><button onclick="return confirm('Permohonan ditolak!')" class="btn btn-info btn-sm">Download</button></td>
                     @endif
                   </tr>
                 </tbody>
@@ -95,6 +107,3 @@
     </section>
   </div>
 @endsection
-@push('js')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.2.2/lazysizes.min.js" async=""></script>
-@endpush

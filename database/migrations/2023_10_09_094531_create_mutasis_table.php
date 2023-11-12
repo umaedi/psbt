@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('mutasis', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->foreignId('user_id');
             $table->string('lampiran1');
             $table->string('lampiran2');

@@ -33,7 +33,7 @@
             </div>
             <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                 <div class="card card-statistic-1">
-                    <div class="card-icon bg-primary">
+                    <div class="card-icon bg-info">
                         <i class="fa fa-user-clock fa-2x" style="color: #fff"></i>
                     </div>
                     <a href="/admin/permohonan_izin_belajar?index=1" style="text-decoration: none">
@@ -48,7 +48,7 @@
             </div>
             <div class="mb-3 col-lg-3 col-md-4 col-sm-6 col-12">
                 <div class="card card-statistic-1">
-                    <div class="card-icon bg-info">
+                    <div class="card-icon bg-primary">
                         <i class="fa fa-user fa-2x" style="color: #fff"></i>
                     </div>
                     <a href="/admin/mutasi" style="text-decoration: none">
@@ -78,7 +78,7 @@
             </div>
             <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                 <div class="card card-statistic-1">
-                    <div class="card-icon bg-primary">
+                    <div class="card-icon bg-success">
                         <i class="fa fa-user-check fa-2x" style="color: #fff"></i>
                     </div>
                     <a href="/admin/permohonan_izin_belajar?index=2" style="text-decoration: none">
@@ -93,7 +93,7 @@
             </div>
             <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                 <div class="card card-statistic-1">
-                    <div class="card-icon bg-primary">
+                    <div class="card-icon bg-danger">
                         <i class="fa fa-user-slash fa-2x" style="color: #fff"></i>
                     </div>
                     <a href="/admin/permohonan_izin_belajar?index=3" style="text-decoration: none">
@@ -108,7 +108,7 @@
             </div>
             <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                 <div class="card card-statistic-1">
-                    <div class="card-icon bg-info">
+                    <div class="card-icon bg-success">
                         <i class="fa fa-user-check fa-2x" style="color: #fff"></i>
                     </div>
                     <a href="/admin/mutasi?index=2" style="text-decoration: none">
@@ -123,7 +123,7 @@
             </div>
             <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                 <div class="card card-statistic-1">
-                    <div class="card-icon bg-info">
+                    <div class="card-icon bg-danger">
                         <i class="fa fa-user-slash fa-2x" style="color: #fff"></i>
                     </div>
                     <a href="/admin/mutasi?index=3" style="text-decoration: none">

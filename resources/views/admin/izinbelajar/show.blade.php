@@ -14,7 +14,7 @@
           <div class="col-md-4 mb-3">
             <div class="card">
               <div class="card-header">
-                <h4>DATA DIRI PERMOHONAN</h4>
+                <h4>DATA DIRI PEMOHON</h4>
               </div>
               <div class="card-body">
                   <form method="POST" action="/user/profile-information" class="needs-validation" novalidate="" enctype="multipart/form-data">
@@ -134,7 +134,7 @@
               @method('PUT')
               @csrf
               <input type="hidden" name="status" value="1">
-              <button type="submit" class="btn btn-primary">VERIFIKASI PERMOHONAN</button>
+              <button type="submit" class="btn btn-primary">VERIFIKASI BERKAS</button>
             </form>
             <button type="button" data-toggle="modal" data-target="#exampleModalCenter" class="ml-2 btn btn-info">TOLAK PERMOHONAN</button>
             @elseif($izinbelajar->status == '1')

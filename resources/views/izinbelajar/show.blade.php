@@ -57,7 +57,7 @@
                   <tr>
                     <th scope="col">Tgl Pengajuan</th>
                     <th scope="col">Status</th>
-                    <th scope="col">Download</th>
+                    <th scope="col">Surat izin</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -72,12 +72,14 @@
                     @else
                     <td><span class="badge badge-danger">Ditolak</span></td>
                     @endif
-                    @if ($izin_belajar->status == null || $izin_belajar->status == '1')
-                    <td><button onclick="return confirm('Permohonan masih dalam antrian')" class="btn btn-info btn-sm">Unduh Surat Izin</button></td>
+                    @if ($izin_belajar->status == null)
+                    <td><button onclick="return confirm('Permohonan masih dalam antrian')" class="btn btn-info btn-sm">Download</button></td>
+                    @elseif($izin_belajar->status == '1')
+                    <td><button onclick="return confirm('Permohonan sedang diproses')" class="btn btn-info btn-sm">Download</button></td>
                     @elseif($izin_belajar->status == '2')
-                    <td><a href="{{ \Illuminate\Support\Facades\Storage::url($izin_belajar->suratizin) }}" class="btn btn-info btn-sm">Unduh Surat Izin</a></td>
+                    <td><a href="{{ \Illuminate\Support\Facades\Storage::url($izin_belajar->suratizin) }}" class="btn btn-info btn-sm">Download</a></td>
                     @else
-                    <td><button onclick="return confirm('Permohonan ditolak!')" class="btn btn-info btn-sm">Unduh Surat Izin</button></td>
+                    <td><button onclick="return confirm('Permohonan ditolak!')" class="btn btn-info btn-sm">Download</button></td>
                     @endif
                   </tr>
                 </tbody>
@@ -101,6 +103,3 @@
     </section>
   </div>
 @endsection
-@push('js')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.2.2/lazysizes.min.js" async=""></script>
-@endpush
