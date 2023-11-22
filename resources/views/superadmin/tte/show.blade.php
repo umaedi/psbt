@@ -19,10 +19,8 @@
     </div>
     <!-- * App Header -->
 
-
     <!-- App Capsule -->
     <div id="appCapsule">
-
         <!-- Transactions -->
         <div class="section mt-2">
             <div class="section-title">Detail Permohonan</div>
