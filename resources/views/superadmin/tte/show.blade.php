@@ -115,7 +115,7 @@
         <!-- * Transactions -->
 
         <div class="section mt-2 mb-2">
-            <a href="javascript:;" class="btn btn-primary btn-block btn-lg">Tanda Tangani</a>
+            <a href="javascript:;" class="btn btn-primary btn-block btn-lg">Tanda Tangan Elektronik</a>
         </div>
 
 
