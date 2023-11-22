@@ -37,7 +37,7 @@
                         </div>
                     </div>
                     <div class="right">
-                        <div class="price text-danger"> - $ 150</div>
+                        <div class="price text-danger">lihat</div>
                     </div>
                 </a>
                 <!-- * item -->
@@ -55,7 +55,7 @@
                     </h2>
                     <div id="accordion01" class="accordion-collapse collapse" data-bs-parent="#accordionExample1">
                         <div class="accordion-body">
-                            <iframe src="{{ \Illuminate\Support\Facades\Storage::url($permohonan->lampiran1) }}" frameborder="0" width="100%"  height="1000px"></iframe>
+                            <iframe src="https://psbt-inspektorat.tulangbawangkab.go.id/umaedi_sk_mutasi_surat_persetujuan_dari_bupati_pvnwpsrpiblz2ywq.pdf" frameborder="0" width="100%"  height="1000px"></iframe>
                         </div>
                     </div>
                 </div>
