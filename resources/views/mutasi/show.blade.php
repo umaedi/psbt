@@ -67,20 +67,12 @@
                 <tbody>
                   <tr>
                     <td>{{ \Carbon\Carbon::parse($mutasi->created_at)->isoFormat('D MMMM Y') }}</td>
-                    @if ($mutasi->status == null)
-                    <td><span class="badge badge-warning">Dalam antrian</span></td>
-                    @elseif($mutasi->status == '1')
-                    <td><span class="badge badge-info">Diproses</span></td>
-                    @elseif($mutasi->status == '2')
-                    <td><span class="badge badge-success">Diterima</span></td>
-                    @else
-                    <td><span class="badge badge-danger">Ditolak</span></td>
-                    @endif
-                    @if ($mutasi->status == null)
+                    <td><span class="badge badge-primary">{{ $mutasi->status }}</span></td>
+                    @if ($mutasi->status == 'dalam antrian')
                     <td><button onclick="return confirm('Permohonan masih dalam antrian')" class="btn btn-info btn-sm">Download</button></td>
-                    @elseif($mutasi->status == '1')
+                    @elseif($mutasi->status == 'diproses')
                     <td><button onclick="return confirm('Permohonan sedang diproses')" class="btn btn-info btn-sm">Download</button></td>
-                    @elseif($mutasi->status == '2')
+                    @elseif($mutasi->status == 'diterima')
                     <td><a href="{{ \Illuminate\Support\Facades\Storage::url($mutasi->suratizin) }}" class="btn btn-info btn-sm">Download</a></td>
                     @else
                     <td><button onclick="return confirm('Permohonan ditolak!')" class="btn btn-info btn-sm">Download</button></td>
@@ -90,7 +82,7 @@
               </table>
             </div>
             </div>
-            @if ($mutasi->status == '3')
+            @if ($mutasi->status == 'ditolak')
             <div class="card mt-3">
               <div class="card-header">
                 <h4>Alasan Penolakan</h4>

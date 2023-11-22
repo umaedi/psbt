@@ -67,6 +67,9 @@
           </div>
           <div class="col-md-8 mb-3">
             <div class="card mb-3">
+              @if ($izinbelajar->status == 'diproses')
+              <div class="alert alert-primary">Permohonan ini telah diverifikasi & sedang menunggu untuk di TTE</div>
+              @endif
               <div class="card-header">
                 <h4>Informasi Status Permohonan Penerbitan Izin Belajar</h4>
             </div>
@@ -80,15 +83,15 @@
                   </tr>
               </thead>
                 <tbody>
-                  @if ($izinbelajar->status == null)
+                  @if ($izinbelajar->status == 'dalam antrian')
                     <td>{{ \Carbon\Carbon::parse($izinbelajar->created_at)->isoFormat('D MMMM Y') }}</td>
                     <td><span class="badge badge-warning">Perlu Diproses</span></td>
                     <td><button class="btn btn-info btn-sm" onclick="return confirm('Permohonan perlu diproses')">Download</button></td>
-                  @elseif($izinbelajar->status == '1')
+                  @elseif($izinbelajar->status == 'diproses')
                     <td>{{ \Carbon\Carbon::parse($izinbelajar->created_at)->isoFormat('D MMMM Y') }}</td>
                     <td><span class="badge badge-success">Diproses</span></td>
                     <td><button class="btn btn-info btn-sm" onclick="return confirm('Permohonan sedang diproses!')">Download</button></td>
-                    @elseif($izinbelajar->status == '2')
+                    @elseif($izinbelajar->status == 'diterima')
                     <td>{{ \Carbon\Carbon::parse($izinbelajar->created_at)->isoFormat('D MMMM Y') }}</td>
                     <td><span class="badge badge-success">Diterima</span></td>
                     <td><a href="{{ \Illuminate\Support\Facades\Storage::url($izinbelajar->suratizin) }}" target="_blank"><span class="btn btn-info btn-sm">Download</span></a></td>
@@ -97,7 +100,6 @@
                     <td><span class="badge badge-danger">Ditolak</span></td>
                     <td><button class="btn btn-info btn-sm" onclick="return confirm('Permohonan ditolak!')">Download</button></td>
                   @endif
-         
                 </tbody>
               </table>
             </div>
@@ -129,21 +131,28 @@
                 </tbody>
             </table>
             <div class="row">
-            @if ($izinbelajar->status == null)
+            @if ($izinbelajar->status == 'dalam antrian')
             <form method="POST" onsubmit="return confirm('Yakin verifikasi data ini?')" action="/admin/permohonan_izin_belajar/update/{{ $izinbelajar->id }}">
               @method('PUT')
               @csrf
-              <input type="hidden" name="status" value="1">
+              <input type="hidden" name="status" value="diproses">
               <button type="submit" class="btn btn-primary">VERIFIKASI BERKAS</button>
             </form>
-            <button type="button" data-toggle="modal" data-target="#exampleModalCenter" class="ml-2 btn btn-info">TOLAK PERMOHONAN</button>
-            @elseif($izinbelajar->status == '1')
-              <button type="button" data-toggle="modal" data-target="#exampleModalCenter1" class="btn btn-primary">KONFIRMASI PERMOHONAN</button>
-              <button type="button" data-toggle="modal" data-target="#exampleModalCenter" class="ml-2 btn btn-info">TOLAK PERMOHONAN</button>
+            <button type="button" data-toggle="modal" data-target="#exampleModalCenter" class="ml-2 btn btn-primary">TOLAK PERMOHONAN</button>
             @endif
             </div>
             </div>
             </div>
+            @if ($izinbelajar->status == 'ditolak')
+            <div class="card mt-3">
+              <div class="card-header">
+                <h4>Alasan Penolakan</h4>
+            </div>
+            <div class="card-body">
+              <textarea class="form-control">{{ $mutasi->pesan }}</textarea>
+            </div>
+            </div>
+            @endif
           </div>
           </div>
       </div>
@@ -164,7 +173,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <input type="hidden" name="status" value="3">
+          <input type="hidden" name="status" value="ditolak">
           <textarea name="pesan"  class="form-control"></textarea>
         </div>
         <div class="modal-footer">
@@ -188,7 +197,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <input type="hidden" name="status" value="2">
+          <input type="hidden" name="status" value="diterima">
           <input type="file" name="suratizin" class="form-control" required>
         </div>
         <div class="modal-footer">

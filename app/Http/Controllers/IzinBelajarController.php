@@ -6,21 +6,21 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Jobs\ProcessLampiran;
 use Illuminate\Support\Facades\DB;
-use App\Services\IzinbelajarService;
+use App\Services\PermohonanService;
 use Illuminate\Support\Facades\Auth;
 
 class IzinBelajarController extends Controller
 {
-    private $izinbelajar;
-    public function __construct(IzinbelajarService $izinbelajarService)
+    private $permohonan;
+    public function __construct(PermohonanService $permohonananService)
     {
-        $this->izinbelajar = $izinbelajarService;
+        $this->permohonan = $permohonananService;
     }
 
     public function index()
     {
         if (request()->ajax()) {
-            $data['table'] = $this->izinbelajar->Query()->where('user_id', auth()->user()->id)->get();
+            $data['table'] = $this->permohonan->Query()->where('user_id', auth()->user()->id)->where('kategori', 'Permohonan izin belajar')->get();
             return view('izinbelajar._data_table', $data);
         }
 
@@ -36,7 +36,6 @@ class IzinBelajarController extends Controller
 
     public function store(Request $request)
     {
-
         $request->validate([
             'lampiran1' => 'required|file|mimes:pdf,docx|max:2048',
             'lampiran2' => 'required|file|mimes:pdf,docx|max:2048',
@@ -45,6 +44,7 @@ class IzinBelajarController extends Controller
         ]);
 
         $data['user_id'] = Auth::user()->id;
+        $data['kategori'] = 'Permohonan izin belajar';
         $randomName = Str::random(16);
 
         $lampiran1 = $request->file('lampiran1');
@@ -65,9 +65,9 @@ class IzinBelajarController extends Controller
 
         DB::beginTransaction();
         try {
-            $this->izinbelajar->store($data);
+            $this->permohonan->store($data);
         } catch (\Throwable $th) {
-            // saveLogs($th->getMessage(), 'error');
+            saveLogs($th->getMessage(), 'error');
             DB::rollBack();
             throw $th;
         }
@@ -78,7 +78,7 @@ class IzinBelajarController extends Controller
 
     public function show($id)
     {
-        $data['izin_belajar'] = $this->izinbelajar->find($id);
+        $data['izin_belajar'] = $this->permohonan->find($id);
         $data['title'] = "Permohonan izin belajar";
         return view('izinbelajar.show', $data);
     }
@@ -87,7 +87,7 @@ class IzinBelajarController extends Controller
     {
         DB::beginTransaction();
         try {
-            $this->izinbelajar->softDelete($id);
+            $this->permohonan->softDelete($id);
         } catch (\Throwable $th) {
             saveLogs($th->getMessage(), 'error');
             DB::rollBack();

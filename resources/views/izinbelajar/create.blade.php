@@ -18,12 +18,12 @@
             </div>
             <div class="card-body">
                 <form action="/user/permohonan_izin_belajar/store" method="POST" enctype="multipart/form-data">
-                    @csrf
+                  @csrf
                     <div class="form-group">
                       <label for="lampiran1">Surat Pengantar Dari OPD</label>
                       <input onchange="displayFilePath()" type="file" class="form-control @error('lampiran1') is-invalid @enderror" id="fileInput" name="lampiran1" required>
                       @error('lampiran1')
-                           <div class="invalid-feedback">{{ $message }}</div>
+                      <div class="invalid-feedback">{{ $message }}</div>
                       @enderror
                     </div>
                     <div class="form-group">

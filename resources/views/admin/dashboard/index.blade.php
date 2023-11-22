@@ -21,7 +21,7 @@
                     <div class="card-icon bg-primary">
                         <i class="fa fa-user fa-2x" style="color: #fff"></i>
                     </div>
-                    <a href="/admin/permohonan_izin_belajar" style="text-decoration: none">
+                    <a href="/admin/permohonan_izin_belajar?index=dalam antrian" style="text-decoration: none">
                     <div class="card-wrap">
                         <div class="card-header">
                             <h4>{{ __('Permohonan perlu diproses') }}</h4>
@@ -36,7 +36,7 @@
                     <div class="card-icon bg-info">
                         <i class="fa fa-user-clock fa-2x" style="color: #fff"></i>
                     </div>
-                    <a href="/admin/permohonan_izin_belajar?index=1" style="text-decoration: none">
+                    <a href="/admin/permohonan_izin_belajar?index=diproses" style="text-decoration: none">
                     <div class="card-wrap">
                         <div class="card-header">
                             <h4>{{ __('Permohonan sedang diproses') }}</h4>
@@ -51,7 +51,7 @@
                     <div class="card-icon bg-primary">
                         <i class="fa fa-user fa-2x" style="color: #fff"></i>
                     </div>
-                    <a href="/admin/mutasi" style="text-decoration: none">
+                    <a href="/admin/mutasi?index=dalam antrian" style="text-decoration: none">
                     <div class="card-wrap">
                         <div class="card-header">
                             <h4>{{ __('Permohonan perlu diproses') }}</h4>
@@ -66,7 +66,7 @@
                     <div class="card-icon bg-info">
                         <i class="fa fa-user-clock fa-2x" style="color: #fff"></i>
                     </div>
-                    <a href="/admin/mutasi?index=1" style="text-decoration: none">
+                    <a href="/admin/mutasi?index=diproses" style="text-decoration: none">
                     <div class="card-wrap">
                         <div class="card-header">
                             <h4>{{ __('Permohonan sedang diproses') }}</h4>
@@ -81,7 +81,7 @@
                     <div class="card-icon bg-success">
                         <i class="fa fa-user-check fa-2x" style="color: #fff"></i>
                     </div>
-                    <a href="/admin/permohonan_izin_belajar?index=2" style="text-decoration: none">
+                    <a href="/admin/permohonan_izin_belajar?index=diterima" style="text-decoration: none">
                     <div class="card-wrap">
                         <div class="card-header">
                             <h4>{{ __('Permohonan diterima') }}</h4>
@@ -96,7 +96,7 @@
                     <div class="card-icon bg-danger">
                         <i class="fa fa-user-slash fa-2x" style="color: #fff"></i>
                     </div>
-                    <a href="/admin/permohonan_izin_belajar?index=3" style="text-decoration: none">
+                    <a href="/admin/permohonan_izin_belajar?index=ditolak" style="text-decoration: none">
                     <div class="card-wrap">
                         <div class="card-header">
                             <h4>{{ __('Permohonan ditolak') }}</h4>
@@ -111,7 +111,7 @@
                     <div class="card-icon bg-success">
                         <i class="fa fa-user-check fa-2x" style="color: #fff"></i>
                     </div>
-                    <a href="/admin/mutasi?index=2" style="text-decoration: none">
+                    <a href="/admin/mutasi?index=diterima" style="text-decoration: none">
                     <div class="card-wrap">
                         <div class="card-header">
                             <h4>{{ __('Permohonan diterima') }}</h4>
@@ -126,7 +126,7 @@
                     <div class="card-icon bg-danger">
                         <i class="fa fa-user-slash fa-2x" style="color: #fff"></i>
                     </div>
-                    <a href="/admin/mutasi?index=3" style="text-decoration: none">
+                    <a href="/admin/mutasi?index=ditolak" style="text-decoration: none">
                     <div class="card-wrap">
                         <div class="card-header">
                             <h4>{{ __('Permohonan ditolak') }}</h4>

@@ -14,15 +14,7 @@
                 <td>{{ $table->firstItem() + $key }}</td>
                 <td>{{ $tb->user->nama }}</td>
                 <td>{{ \Carbon\Carbon::parse($tb->created_at)->isoFormat('D MMMM Y') }}</td>
-                @if ($tb->status == null)
-                <td><span class="badge badge-warning">Perlu diproses</span></td>
-                @elseif($tb->status == '1')
-                <td><span class="badge badge-info">Diproses</span></td>
-                @elseif($tb->status == '2')
-                <td><span class="badge badge-success">Diterima</span></td>
-                @else
-                <td><span class="badge badge-danger">Ditolak</span></td>
-                @endif
+                <td><span class="badge badge-primary">{{ $tb->status }}</span></td>
                 <td><a href="/admin/mutasi/show/{{ $tb->id }}" class="btn btn-sm btn-info"><i class="fa fa-eye"></i></a></td>
             </tr>
         @empty

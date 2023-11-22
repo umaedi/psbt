@@ -63,20 +63,12 @@
                 <tbody>
                   <tr>
                     <td>{{ \Carbon\Carbon::parse($izin_belajar->created_at)->isoFormat('D MMMM Y') }}</td>
-                    @if ($izin_belajar->status == null)
-                    <td><span class="badge badge-warning">Dalam antrian</span></td>
-                    @elseif($izin_belajar->status == '1')
-                    <td><span class="badge badge-info">Diproses</span></td>
-                    @elseif($izin_belajar->status == '2')
-                    <td><span class="badge badge-success">Diterima</span></td>
-                    @else
-                    <td><span class="badge badge-danger">Ditolak</span></td>
-                    @endif
-                    @if ($izin_belajar->status == null)
+                    <td><span class="badge badge-primary">{{ $izin_belajar->status }}</span></td>
+                    @if ($izin_belajar->status == 'dalam antrian')
                     <td><button onclick="return confirm('Permohonan masih dalam antrian')" class="btn btn-info btn-sm">Download</button></td>
-                    @elseif($izin_belajar->status == '1')
+                    @elseif($izin_belajar->status == 'diproses')
                     <td><button onclick="return confirm('Permohonan sedang diproses')" class="btn btn-info btn-sm">Download</button></td>
-                    @elseif($izin_belajar->status == '2')
+                    @elseif($izin_belajar->status == 'diterima')
                     <td><a href="{{ \Illuminate\Support\Facades\Storage::url($izin_belajar->suratizin) }}" class="btn btn-info btn-sm">Download</a></td>
                     @else
                     <td><button onclick="return confirm('Permohonan ditolak!')" class="btn btn-info btn-sm">Download</button></td>
@@ -86,7 +78,7 @@
               </table>
             </div>
             </div>
-            @if ($izin_belajar->status == '3')
+            @if ($izin_belajar->status == 'ditolak')
             <div class="card mt-3">
               <div class="card-header">
                 <h4>Alasan Penolakan</h4>

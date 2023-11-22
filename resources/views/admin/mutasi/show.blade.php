@@ -3,7 +3,7 @@
 <div class="main-content">
     <section class="section">
       <div class="section-header">
-        <h1>Permohonan izin belajar</h1>
+        <h1>Permohonan alih tugas</h1>
         <div class="section-header-breadcrumb">
           <div class="breadcrumb-item active"><a href="/admin/dashboard">Dashboard</a></div>
           <div class="breadcrumb-item">Permohonan</div>
@@ -67,8 +67,11 @@
           </div>
           <div class="col-md-8 mb-3">
             <div class="card mb-3">
+              @if ($mutasi->status == 'diproses')
+              <div class="alert alert-primary">Permohonan ini telah diverifikasi & sedang menunggu untuk di TTE</div>
+              @endif
               <div class="card-header">
-                <h4>Informasi Status Permohonan Penerbitan Izin Belajar</h4>
+                <h4>Informasi Status Permohonan Penerbitan Izin Alih Tugas</h4>
             </div>
             <div class="card-body">
               <table class="table table-bordered">
@@ -80,15 +83,15 @@
                   </tr>
               </thead>
                 <tbody>
-                  @if ($mutasi->status == null)
+                  @if ($mutasi->status == 'dalam antrian')
                     <td>{{ \Carbon\Carbon::parse($mutasi->created_at)->isoFormat('D MMMM Y') }}</td>
                     <td><span class="badge badge-warning">Perlu Diproses</span></td>
                     <td><button class="btn btn-info btn-sm" onclick="return confirm('Permohonan perlu diproses')">Download</button></td>
-                  @elseif($mutasi->status == '1')
+                  @elseif($mutasi->status == 'diproses')
                     <td>{{ \Carbon\Carbon::parse($mutasi->created_at)->isoFormat('D MMMM Y') }}</td>
                     <td><span class="badge badge-success">Diproses</span></td>
                     <td><button class="btn btn-info btn-sm" onclick="return confirm('Permohonan sedang diproses!')">Download</button></td>
-                    @elseif($mutasi->status == '2')
+                    @elseif($mutasi->status == 'diterima')
                     <td>{{ \Carbon\Carbon::parse($mutasi->created_at)->isoFormat('D MMMM Y') }}</td>
                     <td><span class="badge badge-success">Diterima</span></td>
                     <td><a href="{{ \Illuminate\Support\Facades\Storage::url($mutasi->suratizin) }}" target="_blank"><span class="btn btn-info btn-sm">Download</span></a></td>
@@ -97,7 +100,6 @@
                     <td><span class="badge badge-danger">Ditolak</span></td>
                     <td><button class="btn btn-info btn-sm" onclick="return confirm('Permohonan ditolak!')">Download</button></td>
                   @endif
-         
                 </tbody>
               </table>
             </div>
@@ -105,7 +107,7 @@
             
             <div class="card">
               <div class="card-header">
-                <h4>Lampiran Permohonan Penerbitan Izin Belajar</h4>
+                <h4>Lampiran Permohonan Penerbitan Izin Alih Tugas</h4>
             </div>
             <div class="card-body">
               <table class="table table-responsive">
@@ -129,21 +131,28 @@
                 </tbody>
             </table>
             <div class="row">
-            @if ($mutasi->status == null)
+            @if ($mutasi->status == 'dalam antrian')
             <form method="POST" onsubmit="return confirm('Yakin verifikasi data ini?')" action="/admin/mutasi/update/{{ $mutasi->id }}">
               @method('PUT')
               @csrf
-              <input type="hidden" name="status" value="1">
+              <input type="hidden" name="status" value="diproses">
               <button type="submit" class="btn btn-primary">VERIFIKASI BERKAS</button>
             </form>
             <button type="button" data-toggle="modal" data-target="#exampleModalCenter" class="ml-2 btn btn-info">TOLAK PERMOHONAN</button>
-            @elseif($mutasi->status == '1')
-              <button type="button" data-toggle="modal" data-target="#exampleModalCenter1" class="btn btn-primary">KONFIRMASI PERMOHONAN</button>
-              <button type="button" data-toggle="modal" data-target="#exampleModalCenter" class="ml-2 btn btn-info">TOLAK PERMOHONAN</button>
             @endif
             </div>
             </div>
             </div>
+            @if ($mutasi->status == 'ditolak')
+            <div class="card mt-3">
+              <div class="card-header">
+                <h4>Alasan Penolakan</h4>
+            </div>
+            <div class="card-body">
+              <textarea class="form-control">{{ $mutasi->pesan }}</textarea>
+            </div>
+            </div>
+            @endif
           </div>
           </div>
       </div>
@@ -164,7 +173,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <input type="hidden" name="status" value="3">
+          <input type="hidden" name="status" value="ditolak">
           <textarea name="pesan"  class="form-control"></textarea>
         </div>
         <div class="modal-footer">

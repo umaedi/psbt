@@ -71,3 +71,9 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/mutasi/show/{id}', [Admin\MutasiController::class, 'show']);
     Route::put('/mutasi/update/{id}', [Admin\MutasiController::class, 'update']);
 });
+
+Route::middleware(['auth', 'super_admin'])->prefix('super_admin')->group(function () {
+    Route::get('/dashboard', Superadmin\DashboardController::class);
+    Route::get('/tte', [Superadmin\TTEController::class, 'index']);
+    Route::get('/tte/show/{id}', [Superadmin\TTEController::class, 'show']);
+});

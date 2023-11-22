@@ -4,22 +4,22 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use App\Services\MutasiService;
+use App\Services\PermohonanService;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class MutasiController extends Controller
 {
-    public $mutasi;
-    public function __construct(MutasiService $mutasiService)
+    public $permohonan;
+    public function __construct(PermohonanService $permohonanService)
     {
-        $this->mutasi = $mutasiService;
+        $this->permohonan = $permohonanService;
     }
 
     public function index()
     {
         if (request()->ajax()) {
-            $data['table'] = $this->mutasi->Query()->where('user_id', auth()->user()->id)->get();
+            $data['table'] = $this->permohonan->Query()->where('user_id', auth()->user()->id)->where('kategori', 'Permohonan alih tugas')->get();
             return view('mutasi._data_table', $data);
         }
         return view('mutasi.index');
@@ -42,6 +42,7 @@ class MutasiController extends Controller
         ]);
 
         $data['user_id'] = Auth::user()->id;
+        $data['kategori'] = 'Permohonan alih tugas';
         $randomName = Str::random(16);
 
         $lampiran1 = $request->file('lampiran1');
@@ -66,7 +67,7 @@ class MutasiController extends Controller
 
         DB::beginTransaction();
         try {
-            $this->mutasi->store($data);
+            $this->permohonan->store($data);
         } catch (\Throwable $th) {
             saveLogs($th->getMessage(), 'error!');
             DB::rollBack();
@@ -79,7 +80,7 @@ class MutasiController extends Controller
     public function show($id)
     {
         $data['title'] = 'Permohonan Alih Tugas atau Mutasi';
-        $data['mutasi'] = $this->mutasi->find($id);
+        $data['mutasi'] = $this->permohonan->find($id);
         return view('mutasi.show', $data);
     }
 
@@ -87,7 +88,7 @@ class MutasiController extends Controller
     {
         DB::beginTransaction();
         try {
-            $this->mutasi->sofDelete($id);
+            $this->permohonan->softDelete($id);
         } catch (\Throwable $th) {
             saveLogs($th->getMessage(), 'error!');
             DB::rollBack();
