@@ -8,7 +8,7 @@
             </a>
         </div>
         <div class="pageTitle">
-            Transactions
+            Tanda Tangan Elektronik
         </div>
         <div class="right">
             <a href="app-notifications.html" class="headerButton">
