@@ -76,4 +76,7 @@ Route::middleware(['auth', 'super_admin'])->prefix('super_admin')->group(functio
     Route::get('/dashboard', Superadmin\DashboardController::class);
     Route::get('/tte', [Superadmin\TTEController::class, 'index']);
     Route::get('/tte/show/{id}', [Superadmin\TTEController::class, 'show']);
+
+    //users
+    Route::get('/user/show/{id}', [Superadmin\UserController::class, 'show']);
 });

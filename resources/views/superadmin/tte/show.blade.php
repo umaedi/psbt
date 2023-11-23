@@ -26,7 +26,7 @@
             <div class="section-title">Detail Permohonan</div>
             <div class="transactions">
                 <!-- item -->
-                <a href="app-transaction-detail.html" class="item">
+                <a href="/super_admin/user/show/{{ $permohonan->user->id }}" class="item">
                     <div class="detail">
                         <img src="{{ \Illuminate\Support\Facades\Storage::url($permohonan->user->photo) }}" alt="img" class="image-block imaged w48">
                         <div>
