@@ -13,7 +13,7 @@
     <link rel="icon" type="image/png" href="{{ asset('superadmin') }}/img/favicon.png" sizes="32x32">
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('superadmin') }}/img/icon/192x192.png">
     <link rel="stylesheet" href="{{ asset('superadmin') }}/css/style.css">
-    <link rel="manifest" href="__manifest.json">
+    {{-- <link rel="manifest" href="__manifest.json"> --}}
 </head>
 <body>
 @yield('content')
@@ -31,7 +31,8 @@
     async function transAjax(data) {
     html = null;
     data.headers = {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+        "Authorization": "Basic " + btoa('esign-bapenda-tuba' + ":" + '#esign@bapenda')
     }
     await $.ajax(data).done(function(res) {
         html = res;

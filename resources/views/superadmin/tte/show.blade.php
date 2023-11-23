@@ -115,10 +115,64 @@
         <!-- * Transactions -->
 
         <div class="section mt-2 mb-2">
-            <a href="javascript:;" class="btn btn-primary btn-block btn-lg">Tanda Tangan Elektronik</a>
+            <button class="btn btn-primary btn-block btn-lg" data-bs-toggle="modal" data-bs-target="#DialogForm">Tanda Tangan Elektronik</button>
         </div>
-
-
     </div>
     <!-- * App Capsule -->
+
+           <!-- Dialog Form -->
+           <div class="modal fade dialogbox" id="DialogForm" data-bs-backdrop="static" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Masukan Passphrase Anda</h5>
+                    </div>
+                    <form id="sign">
+                        <div class="modal-body text-start mb-2">
+                            <div class="form-group basic">
+                                <div class="input-wrapper">
+                                    <input type="text" class="form-control" id="text1" placeholder="***">
+                                    <i class="clear-input">
+                                        <ion-icon name="close-circle"></ion-icon>
+                                    </i>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <div class="btn-inline">
+                                <button type="button" class="btn btn-text-secondary"
+                                    data-bs-dismiss="modal">BATAL</button>
+                                <button type="submit" class="btn btn-text-primary">LANJUTKAN</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- * Dialog Form -->
 @endsection
+@push('js')
+    <script type="text/javascript">
+        $('#sign').submit(async function sign(e) {
+            e.preventDefault();
+
+            var param = {
+                method: 'GET',
+                url: 'http://10.23.4.3/api/user/status/1805020112800005',
+                // username: 'esign-bapenda-tuba',
+                // password: '#esign@bapenda',
+                // processData: false,
+                // contentType: false,
+                // cache: false,
+                // nik: '1805020112800005',
+                // passphrase: '#TT3@Tuba',
+                // tampilan: 'invisible'
+            }
+            
+            await transAjax(param).then((result) => {
+                console.log(result);
+            });
+        });
+    </script>
+@endpush
