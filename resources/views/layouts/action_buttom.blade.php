@@ -1,12 +1,12 @@
 <div class="appBottomMenu">
-    <a href="/super_admin/permohonan" class="item {{ Request::is('super_admin/permohonan') ? 'active' : '' }}">
+    <a href="/super_admin/dashboard" class="item {{ Request::is('super_admin/permohonan') ? 'active' : '' }}">
         <div class="col">
-            <ion-icon name="document-text-outline"></ion-icon><strong>Permohonan</strong>
+            <ion-icon name="home-outline"></ion-icon><strong>Beranda</strong>
         </div>
     </a>
-    <a href="/super_admin/permohonan/signed" class="item {{ Request::is('super_admin/permohonan/signed') ? 'active' : '' }}">
+    <a href="/super_admin/permohonan/permohonan" class="item {{ Request::is('super_admin/permohonan/signed') ? 'active' : '' }}">
         <div class="col">
-            <ion-icon name="create-outline"></ion-icon><strong>TTE</strong>
+            <ion-icon name="document-text-outline"></ion-icon><strong>Permohonan</strong>
         </div>
     </a>
     <a href="/super_admin/permohonan/waiting_sign" data-toggle="modal" class="item">
