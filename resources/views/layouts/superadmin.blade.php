@@ -27,6 +27,7 @@
 <script src="https://kit.fontawesome.com/0ccb04165b.js" crossorigin="anonymous"></script>
 <!-- Splide -->
 <script src="{{ asset('superadmin') }}/js/plugins/splide/splide.min.js"></script>
+<script src="{{ asset('superadmin/js/toast.js') }}"></script>
 <script type="text/javascript">
     async function transAjax(data) {
     html = null;
@@ -42,6 +43,16 @@
         })
     return html
 }
+
+    function initToast(title, message, status, time) {
+        $.toast({
+            type: status,
+            title: title,
+            subtitle: time,
+            content: message,
+            delay: 5000,
+        });
+    }
 </script>
 @stack('js')
 

@@ -17,6 +17,11 @@ class PermohonanService
         return $this->permohonan->create($data);
     }
 
+    public function get()
+    {
+        return $this->permohonan->get();
+    }
+
     public function find($id)
     {
         $model = $this->permohonan->find($id);

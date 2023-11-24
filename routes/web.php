@@ -74,6 +74,13 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 
 Route::middleware(['auth', 'super_admin'])->prefix('super_admin')->group(function () {
     Route::get('/dashboard', Superadmin\DashboardController::class);
+
+    Route::get('/permohonan', [Superadmin\PermohonanController::class, 'index']);
+    Route::get('/permohonan/show/{id}', [Superadmin\PermohonanController::class, 'show']);
+    Route::get('/permohonan/waiting_sign', [Superadmin\PermohonanController::class, 'waiting_sign']);
+    Route::get('/permohonan/signed', [Superadmin\PermohonanController::class, 'signed']);
+    Route::get('/permohonan/rejected', [Superadmin\PermohonanController::class, 'rejected']);
+
     Route::get('/tte', [Superadmin\TTEController::class, 'index']);
     Route::get('/tte/show/{id}', [Superadmin\TTEController::class, 'show']);
 

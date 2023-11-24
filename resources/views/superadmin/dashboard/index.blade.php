@@ -46,7 +46,7 @@
         <div class="section">
             <div class="row mt-2">
                 <div class="col-6">
-                <a href="">
+                <a href="/super_admin/permohonan">
                     <div class="stat-box">
                         <div class="title">Permohonan</div>
                         <div class="value text-warning">{{ $permohonan }}</div>
@@ -54,7 +54,7 @@
                 </a>
                 </div>
                 <div class="col-6">
-                <a href="">
+                <a href="/super_admin/permohonan/waiting_sign">
                     <div class="stat-box">
                         <div class="title">Menunggu TTE</div>
                         <div class="value text-danger">{{ $waiting_sign }}</div>
@@ -64,7 +64,7 @@
             </div>
             <div class="row mt-2">
                 <div class="col-6">
-                <a href="">
+                <a href="/super_admin/permohonan/signed">
                     <div class="stat-box">
                         <div class="title">Telah Di TTE</div>
                         <div class="value text-success">{{ $signed }}</div>
@@ -72,7 +72,7 @@
                 </a>
                 </div>
                 <div class="col-6">
-                <a href="">
+                <a href="/super_admin/permohonan/rejected">
                     <div class="stat-box">
                         <div class="title">Dokumen Ditolak</div>
                         <div class="value">{{ $sign_rejected }}</div>
@@ -87,10 +87,13 @@
         <div class="section my-4">
             <div class="section-heading">
                 <h3 class="title">Menunggu TTE</h3>
-                <a href="#" class="link">View All</a>
+                <a href="/super_admin/permohonan/waiting_sign" class="link">Lihat semua</a>
             </div>
             <div class="transactions" id="dataTable">
-                
+                <button class="btn btn-primary btn-lg btn-block" type="button" disabled>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Tunggu sebentar yah...
+                </button>
             </div>
         </div>
     </div>
@@ -101,7 +104,9 @@
         var param = {
             url: '{{ url()->current() }}',
             method: 'GET',
-            load: 'table'
+            data: {
+                load: 'table'
+            }
         }
         
         await transAjax(param).then((result) => {

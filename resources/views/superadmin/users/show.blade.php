@@ -34,7 +34,7 @@
             </div>
     
             <div class="section mt-2 mb-2">
-                <div class="section-title">Profile Pemohon</div>
+                <div class="section-title">Profil Pemohon</div>
                 <div class="card">
                     <div class="card-body">
                         <form>
@@ -119,5 +119,4 @@
                 </div>
             </div>
         </div>
-        <!-- * App Capsule -->
 @endsection
