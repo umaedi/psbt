@@ -1,10 +1,10 @@
 <div class="appBottomMenu">
-    <a href="/super_admin/dashboard" class="item {{ Request::is('super_admin/permohonan') ? 'active' : '' }}">
+    <a href="/super_admin/dashboard" class="item {{ Request::is('super_admin/dashboard') ? 'active' : '' }}">
         <div class="col">
             <ion-icon name="home-outline"></ion-icon><strong>Beranda</strong>
         </div>
     </a>
-    <a href="/super_admin/permohonan/permohonan" class="item {{ Request::is('super_admin/permohonan/signed') ? 'active' : '' }}">
+    <a href="/super_admin/permohonan" class="item {{ Request::is('super_admin/permohonan/signed') ? 'active' : '' }}">
         <div class="col">
             <ion-icon name="document-text-outline"></ion-icon><strong>Permohonan</strong>
         </div>
