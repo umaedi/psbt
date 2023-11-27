@@ -3,7 +3,7 @@
         <!-- App Header -->
         <div class="appHeader">
             <div class="left">
-                <a href="#" class="headerButton goBack">
+                <a href="/super_admin/dashboard" class="headerButton goBack">
                     <ion-icon name="chevron-back-outline"></ion-icon>
                 </a>
             </div>

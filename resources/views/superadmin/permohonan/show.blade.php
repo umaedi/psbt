@@ -3,7 +3,7 @@
       <!-- App Header -->
       <div class="appHeader">
         <div class="left">
-            <a href="#" class="headerButton goBack">
+            <a href="/super_admin/dashboard" class="headerButton goBack">
                 <ion-icon name="chevron-back-outline"></ion-icon>
             </a>
         </div>
@@ -13,7 +13,7 @@
         <div class="right">
             <a href="app-notifications.html" class="headerButton">
                 <ion-icon class="icon" name="notifications-outline"></ion-icon>
-                <span class="badge badge-danger">4</span>
+                <span class="badge badge-danger" id="notif"></span>
             </a>
         </div>
     </div>
@@ -43,6 +43,7 @@
         </div>
         <div class="section inset mt-1">
             <div class="section-title">Lampiran</div>
+            <div class="alert alert-info mb-2">Lampiran ini telah di verifikasi oleh Admin</div>
             <div class="accordion" id="accordionExample1">
                 <div class="accordion-item">
                     <h2 class="accordion-header">

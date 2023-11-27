@@ -3,17 +3,17 @@
     <!-- App Header -->
     <div class="appHeader">
     <div class="left">
-        <a href="#" class="headerButton goBack">
+        <a href="/super_admin/dashboard" class="headerButton goBack">
             <ion-icon name="chevron-back-outline"></ion-icon>
         </a>
     </div>
     <div class="pageTitle">
-       List Permohonan Telah TTE
+       List Permohonan TTE Ditolak
     </div>
     <div class="right">
         <a href="app-notifications.html" class="headerButton">
             <ion-icon class="icon" name="notifications-outline"></ion-icon>
-            <span class="badge badge-danger">4</span>
+            <span class="badge badge-danger" id="notif"></span>
         </a>
     </div>
 </div>
@@ -23,7 +23,7 @@
 <div id="appCapsule">
     <!-- Transactions -->
     <div class="section mt-2" id="content">
-        <div class="section-title">List Permohonan Telah TTE</div>
+        <div class="section-title">List Permohonan TTE Ditolak</div>
         <div class="transactions" id="dataTable">
             <!-- item -->
             <button class="btn btn-primary btn-lg btn-block" type="button" disabled>

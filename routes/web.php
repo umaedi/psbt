@@ -86,4 +86,7 @@ Route::middleware(['auth', 'super_admin'])->prefix('super_admin')->group(functio
 
     //users
     Route::get('/user/show/{id}', [Superadmin\UserController::class, 'show']);
+
+    //notif
+    Route::get('/notification', Superadmin\NotifController::class);
 });

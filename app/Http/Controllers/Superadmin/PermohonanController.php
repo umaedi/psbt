@@ -20,13 +20,14 @@ class PermohonanController extends Controller
             return view('superadmin.permohonan._data_table', $data);
         }
 
-        $data['title'] = 'Permohonan';
+        $data['title'] = 'List Permohonan TTE';
         return view('superadmin.permohonan.index', $data);
     }
 
     public function show($id)
     {
         $data['permohonan'] = $this->permohonan->find($id);
+        $data['title'] = 'Detail permohonan TTE';
         return view('superadmin.permohonan.show', $data);
     }
 
@@ -36,8 +37,8 @@ class PermohonanController extends Controller
             $data['table'] = $this->permohonan->Query()->where('status', 'diproses')->get();
             return view('superadmin.permohonan._data_table_tte', $data);
         }
-        $data['title'] = 'Permohonan menunggu TTE';
-        return view('superadmin.permohonan.waiting_sign');
+        $data['title'] = 'List Permohonan Menunggu TTE';
+        return view('superadmin.permohonan.waiting_sign', $data);
     }
 
     public function signed()
@@ -47,7 +48,7 @@ class PermohonanController extends Controller
             return view('superadmin.permohonan._data_table_tte', $data);
         }
         $data['title'] = 'Permohonan tertnda';
-        return view('superadmin.permohonan.signed');
+        return view('superadmin.permohonan.signed', $data);
     }
 
     public function rejected()
@@ -56,7 +57,7 @@ class PermohonanController extends Controller
             $data['table'] = $this->permohonan->Query()->where('status', 'ditolak')->get();
             return view('superadmin.permohonan._data_table_tte', $data);
         }
-        $data['title'] = 'Permohonan tertnda';
-        return view('superadmin.permohonan.rejected');
+        $data['title'] = 'List Permohonan TTE Ditolak';
+        return view('superadmin.permohonan.rejected', $data);
     }
 }
