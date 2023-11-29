@@ -157,47 +157,20 @@
     <script type="text/javascript">
         $('#sign').submit(async function sign(e) {
             e.preventDefault();
-
-            $.ajaxSetup({
-                headers: {
-                    "Authorization": "Basic " + btoa('esign-bapenda-tuba' + ":" + '#esign@bapenda'),
-                    "Access-Control-Allow-Orgin": '*',
-                    "Content-Type": "application/json",
-                }
-            });
-
-            $.ajax({
-                url: 'http://10.23.4.3/api/login',
-                method: 'POST',
-                data: {
-                    nik: '1805020112800005',
-                    passphrase: '#TT3@Tuba',
-                }, 
-                success: function(data) {
-                    console.log(data);
-                },
-                error: function(data) {
-                    console.log(data);
-                }
-            });
-            // var param = {
-            //     method: 'GET',
-            //     url: 'https://esign-api.tulangbawangkab.go.id/api/user/status/1805020112800005',
-            //     // username: 'esign-bapenda-tuba',
-            //     // password: '#esign@bapenda',
-            //     // processData: false,
-            //     // contentType: false,
-            //     // cache: false,
-            //     // nik: '1805020112800005',
-            //     // passphrase: '#TT3@Tuba',
-            //     // tampilan: 'invisible'
-            // }
+ 
+            //cek status user
+            var param = {
+                method: 'GET',
+                url: 'https://esign-api.tulangbawangkab.go.id/api/user/status/1805020112800005',
+                // username: 'esign-bapenda-tuba',
+                // password: '#esign@bapenda',
+            }
             
-            // await transAjax(param).then((result) => {
-            //     console.log(result);
-            // }).catch((err) => {
-            //     console.log(err);
-            // })
+            await transAjax(param).then((result) => {
+                console.log(result);
+            }).catch((err) => {
+                console.log(err);
+            })
         });
     </script>
 @endpush
