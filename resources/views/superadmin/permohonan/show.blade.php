@@ -114,44 +114,45 @@
 
         </div>
         <!-- * Transactions -->
-
         <div class="section mt-2 mb-2">
             <button class="btn btn-primary btn-block btn-lg" data-bs-toggle="modal" data-bs-target="#DialogForm">Tanda Tangan Elektronik</button>
         </div>
     </div>
-    <!-- * App Capsule -->
 
-           <!-- Dialog Form -->
-           <div class="modal fade dialogbox" id="DialogForm" data-bs-backdrop="static" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Masukan Passphrase Anda</h5>
-                    </div>
-                    <form id="sign">
-                        <div class="modal-body text-start mb-2">
-                            <div class="form-group basic">
-                                <div class="input-wrapper">
-                                    <input type="text" class="form-control" id="text1" placeholder="***">
-                                    <i class="clear-input">
-                                        <ion-icon name="close-circle"></ion-icon>
-                                    </i>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="modal-footer">
-                            <div class="btn-inline">
-                                <button type="button" class="btn btn-text-secondary"
-                                    data-bs-dismiss="modal">BATAL</button>
-                                <button type="submit" class="btn btn-text-primary">LANJUTKAN</button>
-                            </div>
-                        </div>
-                    </form>
+    <!-- Dialog Form -->
+    <div class="modal fade dialogbox" id="DialogForm" data-bs-backdrop="static" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Masukan Passphrase Anda</h5>
                 </div>
+                <form id="sign">
+                    <div class="modal-body text-start mb-2">
+                        <div class="form-group basic">
+                            <div class="input-wrapper">
+                                <input type="password" class="form-control" id="text1" placeholder="***">
+                                <i class="clear-input">
+                                    <ion-icon name="close-circle"></ion-icon>
+                                </i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="btn-inline">
+                            <button type="button" class="btn btn-text-secondary"
+                                data-bs-dismiss="modal">BATAL</button>
+                                <button type="submit" id="btn_submit" class="btn btn-text-primary">LANJUTKAN</button>
+                                <button id="btn_loading" class="btn btn-primary d-none" type="button" disabled>
+                                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                    Loading...
+                                </button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
-        <!-- * Dialog Form -->
+    </div>
+@include('layouts._dialog')
 @endsection
 @push('js')
     <script type="text/javascript">
@@ -161,16 +162,32 @@
             //cek status user
             var param = {
                 method: 'GET',
-                url: 'https://esign-api.tulangbawangkab.go.id/api/user/status/1805020112800005',
-                // username: 'esign-bapenda-tuba',
-                // password: '#esign@bapenda',
+                url: '/api/status/user',
             }
             
+            loading(true);
             await transAjax(param).then((result) => {
+                loading(false);
+                $('#DialogForm').modal('hide');
+                $('#DialogIconedSuccess').modal('show');
                 console.log(result);
             }).catch((err) => {
+                loading(false);
+                $('#DialogForm').modal('hide');
+                $('#error').html(err.statusText);
+                $('#DialogIconedDanger').modal('show');
                 console.log(err);
-            })
+            });
         });
+
+        function loading(state) {
+            if(state) {
+                $('#btn_submit').addClass('d-none');
+                $('#btn_loading').removeClass('d-none');
+            }else {
+                $('#btn_submit').removeClass('d-none');
+                $('#btn_loading').addClass('d-none');
+            }
+        }
     </script>
 @endpush

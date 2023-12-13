@@ -89,4 +89,6 @@ Route::middleware(['auth', 'super_admin'])->prefix('super_admin')->group(functio
 
     //notif
     Route::get('/notification', Superadmin\NotifController::class);
+
+    // Route::middleware('cors')->get('/status/user', [Api\TestController::class, 'index']);
 });

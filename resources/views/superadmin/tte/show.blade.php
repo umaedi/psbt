@@ -157,22 +157,26 @@
         $('#sign').submit(async function sign(e) {
             e.preventDefault();
 
-            var param = {
-                method: 'GET',
-                url: 'http://10.23.4.3/api/user/status/1805020112800005',
-                // username: 'esign-bapenda-tuba',
-                // password: '#esign@bapenda',
-                // processData: false,
-                // contentType: false,
-                // cache: false,
-                // nik: '1805020112800005',
-                // passphrase: '#TT3@Tuba',
-                // tampilan: 'invisible'
-            }
-            
-            await transAjax(param).then((result) => {
-                console.log(result);
-            });
-        });
+    // const userId = '1805020112800005';
+    // const apiUrl = 'http://localhost:8000/api/status/user';
+
+    // $.ajax({
+    //   url: apiUrl,
+    //   method: 'GET',
+    //   dataType: 'json',
+    //   headers: {
+    //     // Atur header CORS di sini
+    //     'Access-Control-Allow-Origin': '*',
+    //     'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+    //     'Access-Control-Allow-Headers': 'X-Requested-With, Content-Type, Accept, Origin, Authorization'
+    //   },
+    //   success: function (data) {
+    //     console.log('Data dari server:', data);
+    //   },
+    //   error: function (xhr, status, error) {
+    //     console.error('Error:', status, error);
+    //   }
+    });
+     // });
     </script>
 @endpush

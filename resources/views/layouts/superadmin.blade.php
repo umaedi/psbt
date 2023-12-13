@@ -26,13 +26,12 @@
 <script src="https://kit.fontawesome.com/0ccb04165b.js" crossorigin="anonymous"></script>
 <!-- Splide -->
 <script src="{{ asset('superadmin') }}/js/plugins/splide/splide.min.js"></script>
-<script src="{{ asset('superadmin/js/toast.js') }}"></script>
+{{-- <script src="{{ asset('superadmin/js/toast.js') }}"></script> --}}
 <script type="text/javascript">
     async function transAjax(data) {
     html = null;
     data.headers = {
-        // 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-        "Authorization": "Basic " + btoa('esign-bapenda-tuba' + ":" + '#esign@bapenda'),
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
         "Access-Control-Allow-Orgin": '*',
         "Content-Type": "application/json",
     }
