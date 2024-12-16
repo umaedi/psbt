@@ -12,6 +12,7 @@
       <div class="section-body">
         <div class="row">
           <div class="col-md-12 mb-3">
+            <div class="alert alert-warning">File yang diupload wajib PDF dengan ukuran file maksimal 2MB</div>
             <div class="card">
               <div class="card-header">
                 <h4>Formulir Permohonan Penerbiatan Izin Belajar</h4>

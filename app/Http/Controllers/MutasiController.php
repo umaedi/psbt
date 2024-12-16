@@ -34,11 +34,11 @@ class MutasiController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'lampiran1' => 'required|file|mimes:pdf,docx|max:2048',
-            'lampiran2' => 'required|file|mimes:pdf,docx|max:2048',
-            'lampiran3' => 'required|file|mimes:pdf,docx|max:2048',
-            'lampiran4' => 'required|file|mimes:pdf,docx|max:2048',
-            'lampiran5' => 'required|file|mimes:pdf,docx|max:2048',
+            'lampiran1' => 'required|file|mimes:pdf|max:2048',
+            'lampiran2' => 'required|file|mimes:pdf|max:2048',
+            'lampiran3' => 'required|file|mimes:pdf|max:2048',
+            'lampiran4' => 'required|file|mimes:pdf|max:2048',
+            'lampiran5' => 'required|file|mimes:pdf|max:2048',
         ]);
 
         $data['user_id'] = Auth::user()->id;

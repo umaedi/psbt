@@ -62,7 +62,7 @@ class MutasiController extends Controller
             $this->permohonan->update($id, $status, $pesan ?? '', $suratizin ?? '');
         } catch (\Throwable $th) {
             DB::rollBack();
-            return throw $th;
+            return;
         }
         DB::commit();
         return redirect($redirect)->with('msg_success', 'Status Permohonan Izin Mutasi Berhasil Diperbaharui');
