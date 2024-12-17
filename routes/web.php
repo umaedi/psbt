@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Storage;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -46,6 +46,8 @@ Route::middleware('auth')->prefix('user')->group(function () {
     Route::get('/permohonan_izin_belajar/create', [IzinBelajarController::class, 'create']);
     Route::post('/permohonan_izin_belajar/store', [IzinBelajarController::class, 'store']);
     Route::get('/permohonan_izin_belajar/show/{id}', [IzinBelajarController::class, 'show']);
+    Route::get('/permohonan_izin_belajar/edit/{id}', [IzinBelajarController::class, 'edit']);
+    Route::post('/permohonan_izin_belajar/update/{id}', [IzinBelajarController::class, 'update']);
     Route::delete('/permohonan_izin_belajar/destroy/{id}', [IzinBelajarController::class, 'destroy']);
 
     //route for tugas/mutasi
@@ -53,6 +55,8 @@ Route::middleware('auth')->prefix('user')->group(function () {
     Route::get('/mutasi/create', [MutasiController::class, 'create']);
     Route::post('/mutasi/create/store', [MutasiController::class, 'store']);
     Route::get('/mutasi/show/{id}', [MutasiController::class, 'show']);
+    Route::get('/mutasi/edit/{id}', [MutasiController::class, 'edit']);
+    Route::post('/mutasi/update/{id}', [MutasiController::class, 'update']);
     Route::delete('/mutasi/destroy/{id}', [MutasiController::class, 'destroy']);
 });
 
@@ -70,6 +74,9 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/mutasi/{value}', [Admin\MutasiController::class, 'index']);
     Route::get('/mutasi/show/{id}', [Admin\MutasiController::class, 'show']);
     Route::put('/mutasi/update/{id}', [Admin\MutasiController::class, 'update']);
+
+    //route for profile
+    Route::get('/profile', ProfileController::class);
 });
 
 Route::middleware(['auth', 'super_admin'])->prefix('super_admin')->group(function () {
@@ -91,4 +98,19 @@ Route::middleware(['auth', 'super_admin'])->prefix('super_admin')->group(functio
     Route::get('/notification', Superadmin\NotifController::class);
 
     // Route::middleware('cors')->get('/status/user', [Api\TestController::class, 'index']);
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/files/{file}', function ($file) {
+        // Path fisik file di storage
+        $filePath = Storage::path($file);
+
+        // Cek keberadaan file
+        if (!Storage::exists($file)) {
+            abort(404, 'File not found');
+        }
+
+        // Return file sebagai response
+        return response()->file($filePath);
+    })->name('lampiran');
 });

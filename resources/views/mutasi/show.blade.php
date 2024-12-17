@@ -42,13 +42,18 @@
                   </tr>
                 </tbody>
             </table>
-            <form method="POST" onsubmit="return confirm('Yakin hapus data ini?')" action="/user/mutasi/destroy/{{ $mutasi->id }}">
-              @method('DELETE')
-              @csrf
-              <button type="submit" value="delete" class="btn btn-danger">HAPUS PERMOHONAN</button>
-            </form>
+            <div class="d-flex">
+              <form method="POST" onsubmit="return confirm('Yakin hapus data ini?')" action="/user/mutasi/destroy/{{ $mutasi->id }}">
+                @method('DELETE')
+                @csrf
+                <button type="submit" class="btn btn-danger mr-1">HAPUS PERMOHONAN</button>
+              </form>
+              @if ($mutasi->status == 'ditolak')
+              <a href="/user/mutasi/edit/{{ $mutasi->id }}" class="btn btn-primary">PERBAHARUI LAMPIRAN</a>
+              @endif
             </div>
             </div>
+          </div>
           </div>
           <div class="col-md-6 mb-3">
             <div class="card">

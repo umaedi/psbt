@@ -28,14 +28,10 @@ class PermohonanService
         return $model;
     }
 
-    public function update($id, $status, $pesan = null, $suratizin = null)
+    public function update($id, $data)
     {
         $model = $this->permohonan->find($id);
-        $model->update([
-            'status'    => $status,
-            'pesan'     => $pesan,
-            'suratizin' => $suratizin
-        ]);
+        $model->update($data);
         return $model;
     }
 

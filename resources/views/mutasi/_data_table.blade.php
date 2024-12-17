@@ -1,10 +1,11 @@
-<table class="table table-bordered">
+<div class="table-responsive">
+    <table class="table table-bordered text-nowrap">
     <thead>
         <tr>
             <th scope="col">#</th>
             <th scope="col">Tgl Pengajuan</th>
             <th scope="col">Status</th>
-            <th scope="col">Detail</th>
+            <th scope="col">Aksi</th>
         </tr>
     </thead>
     <tbody>
@@ -12,8 +13,21 @@
             <tr>
                 <td>{{ $key + 1 }}</td>
                 <td>{{ \Carbon\Carbon::parse($tb->created_at)->isoFormat('D MMMM Y') }}</td>
-                <td><span class="badge badge-primary">{{ $tb->status }}</span></td>
-                <td><a href="/user/mutasi/show/{{ $tb->id }}" class="btn btn-sm btn-info"><i class="fa fa-eye"></i></a></td>
+                <td>
+                    @if ($tb->status == 'dalam antrian')
+                    <span class="badge badge-warning">{{ $tb->status }}</span>
+                    @elseif($tb->status == 'diproses')
+                    <span class="badge badge-success">{{ $tb->status }}</span>
+                    @elseif($tb->status == 'ditolak')
+                    <span class="badge badge-danger">{{ $tb->status }}</span>
+                    @else
+                    <span class="badge badge-primary">{{ $tb->status }}</span>
+                    @endif          
+                </td>
+                <td>
+                    <a href="/user/mutasi/show/{{ $tb->id }}" class="btn btn-sm btn-info">Lihat</a>
+                    <a target="_blank" href="{{ \Illuminate\Support\Facades\Storage::url($tb->suratizin) }}" class="btn btn-primary btn-sm">Unduh surat balasan</a>
+                </td>
             </tr>
         @empty
             <tr>
@@ -45,6 +59,7 @@
         @endforelse
     </tbody>
 </table>
+</div>
 {{-- <div class="container">
     <div class="row justify-content-center">
         {{ $table->links('pagination.stisla-paging') }}

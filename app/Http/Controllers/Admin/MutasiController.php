@@ -27,7 +27,7 @@ class MutasiController extends Controller
                 });
             }
 
-            $data['table'] = $mutasi->with('user')->where('kategori', 'Permohonan alih tugas')->where('status', request()->index)->paginate($page);
+            $data['table'] = $mutasi->with('user')->where('kategori', 'Permohonan alih tugas')->where('status', 'dalam antrian')->paginate($page);
             return view('admin.mutasi._data_table', $data);
         }
 
@@ -45,21 +45,21 @@ class MutasiController extends Controller
     public function update(Request $request, $id)
     {
         if ($request->status == 'diproses') {
-            $status = 'diproses';
+            $data['status'] = 'diproses';
             $redirect = 'admin/mutasi?index=diproses';
         } elseif ($request->status == 'diterima') {
-            $status = 'diterima';
-            $suratizin = $request->file('suratizin')->store('public/surat_izin');
+            $data['status'] = 'diterima';
+            $data['suratizin'] = $request->file('suratizin')->store('public/surat_izin');
             $redirect = 'admin/mutasi?index=diterima';
         } else {
-            $status = 'ditolak';
+            $data['status'] = 'ditolak';
             $redirect = 'admin/mutasi?index=ditolak';
-            $pesan = $request->pesan;
+            $data['pesan'] = $request->pesan;
         }
 
         DB::beginTransaction();
         try {
-            $this->permohonan->update($id, $status, $pesan ?? '', $suratizin ?? '');
+            $this->permohonan->update($id, $data);
         } catch (\Throwable $th) {
             DB::rollBack();
             return;

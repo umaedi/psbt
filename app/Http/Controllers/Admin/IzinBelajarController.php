@@ -29,7 +29,7 @@ class IzinBelajarController extends Controller
                 });
             }
 
-            $data['table'] = $permohonan->with('user')->where('kategori', 'Permohonan izin belajar')->where('status', request()->index)->paginate($page);
+            $data['table'] = $permohonan->with('user')->where('kategori', 'Permohonan izin belajar')->where('status', 'dalam antrian')->paginate($page);
             return view('admin.izinbelajar._data_table', $data);
         }
 
@@ -48,21 +48,21 @@ class IzinBelajarController extends Controller
     {
 
         if ($request->status == 'diproses') {
-            $status = 'diproses';
+            $data['status'] = 'diproses';
             $redirect = '/admin/permohonan_izin_belajar?index=diproses';
         } elseif ($request->status == 'diterima') {
-            $status = 'diterima';
-            $suratizin = $request->file('suratizin')->store('public/surat_izin');
+            $data['status'] = 'diterima';
+            $data['suratizin'] = $request->file('suratizin')->store('public/surat_izin');
             $redirect = '/admin/permohonan_izin_belajar?index=diterima';
         } else {
-            $status = 'ditolak';
+            $data['status'] = 'ditolak';
             $redirect = '/admin/permohonan_izin_belajar?index=ditolak';
-            $pesan = $request->pesan;
+            $data['pesan'] = $request->pesan;
         }
 
         DB::beginTransaction();
         try {
-            $this->permohonan->update($id, $status, $pesan ?? '', $suratizin ?? '');
+            $this->permohonan->update($id, $data);
         } catch (\Throwable $th) {
             DB::rollBack();
             return;

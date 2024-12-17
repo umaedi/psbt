@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('content')
-<img src="{{ asset('img') }}/hero/banner.png" loading="lazy" class="img-fluid" alt="Responsive image">
 <main role="main" class="container">
  <div class="d-flex align-items-center p-3 mt-3 text-white-50 bg-primary rounded box-shadow">
     <div class="lh-100">

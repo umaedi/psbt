@@ -22,9 +22,6 @@ class DashboardController extends Controller
 
     public function __invoke(Request $request)
     {
-        if (request()->ajax()) {
-            dd('ok');
-        }
 
         $data['izin_belajar'] = $this->permohonan->Query()->where('kategori', 'Permohonan izin belajar')->where('status', 'dalam antrian')->count();
         $data['izin_diproses'] = $this->permohonan->Query()->where('kategori', 'Permohonan izin belajar')->where('status', 'diproses')->count();

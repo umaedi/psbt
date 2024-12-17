@@ -68,7 +68,7 @@
           <div class="col-md-8 mb-3">
             <div class="card mb-3">
               @if ($mutasi->status == 'diproses')
-              <div class="alert alert-primary">Permohonan ini telah diverifikasi & sedang menunggu untuk di TTE</div>
+              <div class="alert alert-warning">Permohonan ini telah diverifikasi. Silakan upload surat balasan</div>
               @endif
               <div class="card-header">
                 <h4>Informasi Status Permohonan Penerbitan Izin Alih Tugas</h4>
@@ -132,13 +132,11 @@
             </table>
             <div class="row">
             @if ($mutasi->status == 'dalam antrian')
-            <form method="POST" onsubmit="return confirm('Yakin verifikasi data ini?')" action="/admin/mutasi/update/{{ $mutasi->id }}">
-              @method('PUT')
-              @csrf
-              <input type="hidden" name="status" value="diproses">
-              <button type="submit" class="btn btn-primary">VERIFIKASI BERKAS</button>
-            </form>
-            <button type="button" data-toggle="modal" data-target="#exampleModalCenter" class="ml-2 btn btn-info">TOLAK PERMOHONAN</button>
+            <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#uploadFile">TERIMA, DAN UNGGAH SURAT BALASAN</button>
+            <button type="button" data-toggle="modal" data-target="#exampleModalCenter" class="ml-2 btn btn-warning">TOLAK PERMOHONAN</button>
+            @endif
+            @if ($mutasi->status == 'diproses')
+                
             @endif
             </div>
             </div>
@@ -160,7 +158,7 @@
     </section>
   </div>
   <!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <form action="/admin/mutasi/update/{{ $mutasi->id }}" method="POST">
       @method('PUT')
       @csrf
@@ -184,20 +182,20 @@
     </form>  
   </div>
 </div>
-<div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="uploadFile" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <form action="/admin/mutasi/update/{{ $mutasi->id }}" method="POST" enctype="multipart/form-data">
       @method('PUT')
       @csrf
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Unggah Surat Izin</h5>
+          <h5 class="modal-title" id="exampleModalLongTitle">Unggah Surat Balasan</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <input type="hidden" name="status" value="2">
+          <input type="hidden" name="status" value="diterima">
           <input type="file" name="suratizin" class="form-control" required>
         </div>
         <div class="modal-footer">

@@ -68,7 +68,7 @@
           <div class="col-md-8 mb-3">
             <div class="card mb-3">
               @if ($izinbelajar->status == 'diproses')
-              <div class="alert alert-primary">Permohonan ini telah diverifikasi & sedang menunggu untuk di TTE</div>
+              <div class="alert alert-warning">Permohonan ini telah diverifikasi. Silakan upload surat balasan</div>
               @endif
               <div class="card-header">
                 <h4>Informasi Status Permohonan Penerbitan Izin Belajar</h4>
@@ -93,7 +93,7 @@
                     <td><button class="btn btn-info btn-sm" onclick="return confirm('Permohonan sedang diproses!')">Download</button></td>
                     @elseif($izinbelajar->status == 'diterima')
                     <td>{{ \Carbon\Carbon::parse($izinbelajar->created_at)->isoFormat('D MMMM Y') }}</td>
-                    <td><span class="badge badge-success">Diterima</span></td>
+                    <td><span class="badge badge-primary">Diterima</span></td>
                     <td><a href="{{ \Illuminate\Support\Facades\Storage::url($izinbelajar->suratizin) }}" target="_blank"><span class="btn btn-info btn-sm">Download</span></a></td>
                   @else
                     <td>{{ \Carbon\Carbon::parse($izinbelajar->created_at)->isoFormat('D MMMM Y') }}</td>
@@ -132,13 +132,8 @@
             </table>
             <div class="row">
             @if ($izinbelajar->status == 'dalam antrian')
-            <form method="POST" onsubmit="return confirm('Yakin verifikasi data ini?')" action="/admin/permohonan_izin_belajar/update/{{ $izinbelajar->id }}">
-              @method('PUT')
-              @csrf
-              <input type="hidden" name="status" value="diproses">
-              <button type="submit" class="btn btn-primary">VERIFIKASI BERKAS</button>
-            </form>
-            <button type="button" data-toggle="modal" data-target="#exampleModalCenter" class="ml-2 btn btn-primary">TOLAK PERMOHONAN</button>
+            <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#uploadFile">TERIMA, DAN UNGGAH SURAT BASALAN</button>
+            <button type="button" data-toggle="modal" data-target="#exampleModalCenter" class="ml-2 btn btn-warning">TOLAK PERMOHONAN</button>
             @endif
             </div>
             </div>
@@ -149,9 +144,12 @@
                 <h4>Alasan Penolakan</h4>
             </div>
             <div class="card-body">
-              <textarea class="form-control">{{ $mutasi->pesan }}</textarea>
+              <textarea class="form-control">{{ $izinbelajar->pesan }}</textarea>
             </div>
             </div>
+            @endif
+            @if ($izinbelajar->status == 'diproses')
+            <button class="btn btn-primary mt-3" data-toggle="modal" data-target="#uploadFile">UNGGAH SURAT BALASAN</button>
             @endif
           </div>
           </div>
@@ -184,14 +182,14 @@
     </form>  
   </div>
 </div>
-<div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="uploadFile" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <form action="/admin/permohonan_izin_belajar/update/{{ $izinbelajar->id }}" method="POST" enctype="multipart/form-data">
       @method('PUT')
       @csrf
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Unggah Surat Izin</h5>
+          <h5 class="modal-title" id="exampleModalLongTitle">Unggah surat balasan</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>

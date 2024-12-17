@@ -89,7 +89,7 @@
                     </tbody>
                 </table>
                 <a href="/user/permohonan_izin_belajar/create" class="btn btn-primary">Ajukan Permohonan</a>
-                <a href="/user/permohonan_izin_belajar" class="btn btn-info">Status Permohonan</a>
+                <a href="/user/permohonan_izin_belajar" class="btn btn-info">Riwayat Pengajaun</a>
             </div>
             <hr>
             <div class="card-body">
@@ -119,7 +119,7 @@
                     </tbody>
                 </table>
                 <a href="/user/mutasi/create" class="btn btn-primary">Ajukan Permohonan</a>
-                <a href="/user/mutasi" class="btn btn-info">Status Permohonan</a>
+                <a href="/user/mutasi" class="btn btn-info">Riwayat Pengajaun</a>
             </div>
             </div>
           </div>

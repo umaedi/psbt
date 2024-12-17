@@ -38,13 +38,18 @@
                   </tr>
                 </tbody>
             </table>
-            <form method="POST" onsubmit="return confirm('Yakin hapus data ini?')" action="/user/permohonan_izin_belajar/destroy/{{ $izin_belajar->id }}">
-              @method('DELETE')
-              @csrf
-              <button type="submit" class="btn btn-danger">HAPUS PERMOHONAN</button>
-            </form>
+            <div class="d-flex">
+              <form method="POST" onsubmit="return confirm('Yakin hapus data ini?')" action="/user/permohonan_izin_belajar/destroy/{{ $izin_belajar->id }}">
+                @method('DELETE')
+                @csrf
+                <button type="submit" class="btn btn-danger mr-1">HAPUS PERMOHONAN</button>
+              </form>
+              @if ($izin_belajar->status == 'ditolak')
+              <a href="/user/permohonan_izin_belajar/edit/{{ $izin_belajar->id }}" class="btn btn-primary">PERBAHARUI LAMPIRAN</a>
+              @endif
             </div>
             </div>
+          </div>
           </div>
           <div class="col-md-6 mb-3">
             <div class="card">
@@ -63,7 +68,7 @@
                 <tbody>
                   <tr>
                     <td>{{ \Carbon\Carbon::parse($izin_belajar->created_at)->isoFormat('D MMMM Y') }}</td>
-                    <td><span class="badge badge-primary">{{ $izin_belajar->status }}</span></td>
+                    <td><span class="badge {{ $izin_belajar->status == 'ditolak' ? 'badge-danger' : 'badge-primary' }}">{{ $izin_belajar->status }}</span></td>
                     @if ($izin_belajar->status == 'dalam antrian')
                     <td><button onclick="return confirm('Permohonan masih dalam antrian')" class="btn btn-info btn-sm">Download</button></td>
                     @elseif($izin_belajar->status == 'diproses')
