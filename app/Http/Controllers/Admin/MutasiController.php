@@ -27,7 +27,7 @@ class MutasiController extends Controller
                 });
             }
 
-            $data['table'] = $mutasi->with('user')->where('kategori', 'Permohonan alih tugas')->where('status', 'dalam antrian')->paginate($page);
+            $data['table'] = $mutasi->with('user')->where('kategori', 'Permohonan alih tugas')->where('status', \request()->index)->paginate($page);
             return view('admin.mutasi._data_table', $data);
         }
 
