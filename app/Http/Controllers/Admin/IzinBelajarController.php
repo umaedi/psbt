@@ -29,7 +29,7 @@ class IzinBelajarController extends Controller
                 });
             }
 
-            $data['table'] = $permohonan->with('user')->where('kategori', 'Permohonan izin belajar')->where('status', 'dalam antrian')->paginate($page);
+            $data['table'] = $permohonan->with('user')->where('kategori', 'Permohonan izin belajar')->where('status', \request()->index)->paginate($page);
             return view('admin.izinbelajar._data_table', $data);
         }
 
