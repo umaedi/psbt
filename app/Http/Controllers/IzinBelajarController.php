@@ -49,7 +49,7 @@ class IzinBelajarController extends Controller
         $randomName = Str::random(16);
 
         $lampiran1 = $request->file('lampiran1');
-        $newLampiran1 = Str::replace('', '_',  strtolower(auth()->user()->nama . '_surat_pengantar_dari_opd_' . $randomName . '.' . $lampiran1->getClientOriginalExtension()));
+        $newLampiran1 = Str::replace(' ', '_',  strtolower(auth()->user()->nama . '_surat_pengantar_dari_opd_' . $randomName . '.' . $lampiran1->getClientOriginalExtension()));
         $data['lampiran1'] = $lampiran1->storeAs('public/lampiran/izin_belajar/'.date('Y'), $newLampiran1);
 
         $lampiran2 = $request->file('lampiran2');
@@ -57,11 +57,11 @@ class IzinBelajarController extends Controller
         $data['lampiran2'] = $lampiran2->storeAs('public/lampiran/izin_belajar/'.date('Y'), $newLampiran2);
 
         $lampiran3 = $request->file('lampiran3');
-        $newLampiran3 = Str::replace('', '_', strtolower(auth()->user()->nama . '_skp_1_tahun_terakhir_' . $randomName . '.' . $lampiran3->getClientOriginalExtension()));
+        $newLampiran3 = Str::replace(' ', '_', strtolower(auth()->user()->nama . '_skp_1_tahun_terakhir_' . $randomName . '.' . $lampiran3->getClientOriginalExtension()));
         $data['lampiran3'] = $lampiran3->storeAs('public/lampiran/izin_belajar/'.date('Y'), $newLampiran3);
 
         $lampiran4 = $request->file('lampiran4');
-        $newLampiran4 = Str::replace('', '_', strtolower(auth()->user()->nama . '_daftar_hadir_3_bulan_terakhir_' . $randomName . '.' . $lampiran4->getClientOriginalExtension()));
+        $newLampiran4 = Str::replace(' ', '_', strtolower(auth()->user()->nama . '_daftar_hadir_3_bulan_terakhir_' . $randomName . '.' . $lampiran4->getClientOriginalExtension()));
         $data['lampiran4'] = $lampiran4->storeAs('public/lampiran/izin_belajar/'.date('Y'), $newLampiran4);
 
         DB::beginTransaction();
@@ -103,28 +103,28 @@ class IzinBelajarController extends Controller
 
         if($request->hasFile('lampiran1')) {
             $lampiran1 = $request->file('lampiran1');
-            $newLampiran1 = Str::replace('', '_',  strtolower(auth()->user()->nama . '_surat_pengantar_dari_opd_' . $randomName . '.' . $lampiran1->getClientOriginalExtension()));
+            $newLampiran1 = Str::replace(' ', '_',  strtolower(auth()->user()->nama . '_surat_pengantar_dari_opd_' . $randomName . '.' . $lampiran1->getClientOriginalExtension()));
             $data['lampiran1'] = $lampiran1->storeAs('public/lampiran/izin_belajar/'.$izin_belajar->created_at->format('Y'), $newLampiran1);
             Storage::delete($izin_belajar->lampiran1);
         }
 
         if($request->hasFile('lampiran2')) {
             $lampiran2 = $request->file('lampiran2');
-            $newLampiran2 = Str::replace('', '_', strtolower(auth()->user()->nama . '_sk_pangkat_atau_jabatan_terakhir_' . $randomName . '.' . $lampiran2->getClientOriginalExtension()));
+            $newLampiran2 = Str::replace(' ', '_', strtolower(auth()->user()->nama . '_sk_pangkat_atau_jabatan_terakhir_' . $randomName . '.' . $lampiran2->getClientOriginalExtension()));
             $data['lampiran2'] = $lampiran2->storeAs('public/lampiran/izin_belajar/'.$izin_belajar->created_at->format('Y'), $newLampiran2);
             Storage::delete($izin_belajar->lampiran2);
         }
 
         if($request->hasFile('lampiran3')) {
             $lampiran3 = $request->file('lampiran3');
-            $newLampiran3 = Str::replace('', '_', strtolower(auth()->user()->nama . '_skp_1_tahun_terakhir_' . $randomName . '.' . $lampiran3->getClientOriginalExtension()));
+            $newLampiran3 = Str::replace(' ', '_', strtolower(auth()->user()->nama . '_skp_1_tahun_terakhir_' . $randomName . '.' . $lampiran3->getClientOriginalExtension()));
             $data['lampiran3'] = $lampiran3->storeAs('public/lampiran/izin_belajar/'.$izin_belajar->created_at->format('Y'), $newLampiran3);
             Storage::delete($izin_belajar->lampiran3);
         }
 
         if($request->hasFile('lampiran4')) {
             $lampiran4 = $request->file('lampiran4');
-            $newLampiran4 = Str::replace('', '_', strtolower(auth()->user()->nama . '_daftar_hadir_3_bulan_terakhir_' . $randomName . '.' . $lampiran4->getClientOriginalExtension()));
+            $newLampiran4 = Str::replace(' ', '_', strtolower(auth()->user()->nama . '_daftar_hadir_3_bulan_terakhir_' . $randomName . '.' . $lampiran4->getClientOriginalExtension()));
             $data['lampiran4'] = $lampiran4->storeAs('public/lampiran/izin_belajar/'.$izin_belajar->created_at->format('Y'), $newLampiran4);
             Storage::delete($izin_belajar->lampiran4);
         }

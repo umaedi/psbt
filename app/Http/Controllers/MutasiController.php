@@ -47,23 +47,23 @@ class MutasiController extends Controller
         $randomName = Str::random(16);
 
         $lampiran1 = $request->file('lampiran1');
-        $newLampiran1 = Str::replace('', '_',  strtolower(auth()->user()->nama . '_sk_mutasi_surat_persetujuan_dari_bupati_' . $randomName . '.' . $lampiran1->getClientOriginalExtension()));
+        $newLampiran1 = Str::replace(' ', '_',  strtolower(auth()->user()->nama . '_sk_mutasi_surat_persetujuan_dari_bupati_' . $randomName . '.' . $lampiran1->getClientOriginalExtension()));
         $data['lampiran1'] = $lampiran1->storeAs('public/lampiran/mutasi/'.date('Y'), $newLampiran1);
 
         $lampiran2 = $request->file('lampiran2');
-        $newLampiran2 = Str::replace('', '_', strtolower(auth()->user()->nama . '_pengantar_dari_kepala_opd_' . $randomName . '.' . $lampiran2->getClientOriginalExtension()));
+        $newLampiran2 = Str::replace(' ', '_', strtolower(auth()->user()->nama . '_pengantar_dari_kepala_opd_' . $randomName . '.' . $lampiran2->getClientOriginalExtension()));
         $data['lampiran2'] = $lampiran2->storeAs('public/lampiran/mutasi/'.date('Y'), $newLampiran2);
 
         $lampiran3 = $request->file('lampiran3');
-        $newLampiran3 = Str::replace('', '_', strtolower(auth()->user()->nama . '_sk_pangkat_jabatan_terakhir_' . $randomName . '.' . $lampiran3->getClientOriginalExtension()));
+        $newLampiran3 = Str::replace(' ', '_', strtolower(auth()->user()->nama . '_sk_pangkat_jabatan_terakhir_' . $randomName . '.' . $lampiran3->getClientOriginalExtension()));
         $data['lampiran3'] = $lampiran3->storeAs('public/lampiran/mutasi/'.date('Y'), $newLampiran3);
 
         $lampiran4 = $request->file('lampiran4');
-        $newLampiran4 = Str::replace('', '_', strtolower(auth()->user()->nama . '_skp_1_tahun_terakhir_' . $randomName . '.' . $lampiran4->getClientOriginalExtension()));
+        $newLampiran4 = Str::replace(' ', '_', strtolower(auth()->user()->nama . '_skp_1_tahun_terakhir_' . $randomName . '.' . $lampiran4->getClientOriginalExtension()));
         $data['lampiran4'] = $lampiran4->storeAs('public/lampiran/mutasi/'.date('Y'), $newLampiran4);
 
         $lampiran5 = $request->file('lampiran5');
-        $newLampiran5 = Str::replace('', '_', strtolower(auth()->user()->nama . '_daftar_hadir_3_bulan_terakhir_' . $randomName . '.' . $lampiran5->getClientOriginalExtension()));
+        $newLampiran5 = Str::replace(' ', '_', strtolower(auth()->user()->nama . '_daftar_hadir_3_bulan_terakhir_' . $randomName . '.' . $lampiran5->getClientOriginalExtension()));
         $data['lampiran5'] = $lampiran5->storeAs('public/lampiran/mutasi/'.date('Y'), $newLampiran5);
 
         DB::beginTransaction();
@@ -114,35 +114,35 @@ class MutasiController extends Controller
 
         if($request->hasFile('lampiran1')) {
             $lampiran1 = $request->file('lampiran1');
-            $newLampiran1 = Str::replace('', '_',  strtolower(auth()->user()->nama . '_sk_mutasi_surat_persetujuan_dari_bupati_' . $randomName . '.' . $lampiran1->getClientOriginalExtension()));
+            $newLampiran1 = Str::replace(' ', '_',  strtolower(auth()->user()->nama . '_sk_mutasi_surat_persetujuan_dari_bupati_' . $randomName . '.' . $lampiran1->getClientOriginalExtension()));
             $data['lampiran1'] = $lampiran1->storeAs('public/lampiran/mutasi/'.$mutasi->created_at->format('Y'), $newLampiran1);
             Storage::delete($mutasi->lampiran1);
         }
 
         if($request->hasFile('lampiran2')) {
             $lampiran2 = $request->file('lampiran2');
-            $newLampiran2 = Str::replace('', '_', strtolower(auth()->user()->nama . '_pengantar_dari_kepala_opd_' . $randomName . '.' . $lampiran2->getClientOriginalExtension()));
+            $newLampiran2 = Str::replace(' ', '_', strtolower(auth()->user()->nama . '_pengantar_dari_kepala_opd_' . $randomName . '.' . $lampiran2->getClientOriginalExtension()));
             $data['lampiran2'] = $lampiran2->storeAs('public/lampiran/mutasi/'.$mutasi->created_at->format('Y'), $newLampiran2);
             Storage::delete($mutasi->lampiran1);
         }
 
         if($request->hasFile('lampiran3')) {
             $lampiran3 = $request->file('lampiran3');
-            $newLampiran3 = Str::replace('', '_', strtolower(auth()->user()->nama . '_sk_pangkat_jabatan_terakhir_' . $randomName . '.' . $lampiran3->getClientOriginalExtension()));
+            $newLampiran3 = Str::replace(' ', '_', strtolower(auth()->user()->nama . '_sk_pangkat_jabatan_terakhir_' . $randomName . '.' . $lampiran3->getClientOriginalExtension()));
             $data['lampiran3'] = $lampiran3->storeAs('public/lampiran/mutasi/'.$mutasi->created_at->format('Y'), $newLampiran3);
             Storage::delete($mutasi->lampiran3);
         }
 
         if($request->hasFile('lampiran4')) {
             $lampiran4 = $request->file('lampiran4');
-            $newLampiran4 = Str::replace('', '_', strtolower(auth()->user()->nama . '_skp_1_tahun_terakhir_' . $randomName . '.' . $lampiran4->getClientOriginalExtension()));
+            $newLampiran4 = Str::replace(' ', '_', strtolower(auth()->user()->nama . '_skp_1_tahun_terakhir_' . $randomName . '.' . $lampiran4->getClientOriginalExtension()));
             $data['lampiran4'] = $lampiran4->storeAs('public/lampiran/mutasi/'.$mutasi->created_at->format('Y'), $newLampiran4);
             Storage::delete($mutasi->lampiran4);
         }
       
         if($request->hasFile('lampiran5')) {
             $lampiran5 = $request->file('lampiran5');
-            $newLampiran5 = Str::replace('', '_', strtolower(auth()->user()->nama . '_daftar_hadir_3_bulan_terakhir_' . $randomName . '.' . $lampiran5->getClientOriginalExtension()));
+            $newLampiran5 = Str::replace(' ', '_', strtolower(auth()->user()->nama . '_daftar_hadir_3_bulan_terakhir_' . $randomName . '.' . $lampiran5->getClientOriginalExtension()));
             $data['lampiran5'] = $lampiran5->storeAs('public/lampiran/mutasi/'.$mutasi->created_at->format('Y'), $newLampiran5);
             Storage::delete($mutasi->lampiran5);
         }
