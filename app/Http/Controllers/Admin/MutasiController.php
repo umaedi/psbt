@@ -44,12 +44,22 @@ class MutasiController extends Controller
 
     public function update(Request $request, $id)
     {
+        $mutasi = $this->permohonan->find($id);
         if ($request->status == 'diproses') {
             $data['status'] = 'diproses';
             $redirect = 'admin/mutasi?index=diproses';
         } elseif ($request->status == 'diterima') {
+            $request->validate([
+                'suratizin' => 'required|mimes:pdf|max:2045'
+            ]);
+
             $data['status'] = 'diterima';
-            $data['suratizin'] = $request->file('suratizin')->store('public/surat_izin');
+            
+            $pathFile = 'lampiran/surat_izin/mutasi';
+            $fileName = uniqid() . '_surat_izin_alih_tugas_atau_mutasi_' . str_replace(' ', '_', $mutasi->user->nama) . '.pdf';
+            $request->file('suratizin')->storeAs($pathFile, $fileName, 's3');
+            $data['suratizin'] = $fileName;
+            
             $redirect = 'admin/mutasi?index=diterima';
         } else {
             $data['status'] = 'ditolak';

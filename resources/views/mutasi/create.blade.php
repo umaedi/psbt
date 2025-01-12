@@ -12,44 +12,48 @@
       <div class="section-body">
         <div class="row">
           <div class="col-md-12 mb-3">
+            <div class="alert alert-danger" role="alert">
+              <h4 class="alert-heading">Perhatian!</h4>
+              <p>File yang diupload wajib PDF dengan ukuran file maksimal 2MB</p>
+            </div>
             <div class="card">
               <div class="card-header">
                 <h4>Formulir Permohonan Alih Tugas atau Mutasi</h4>
             </div>
             <div class="card-body">
                 <form action="/user/mutasi/create/store" method="POST" enctype="multipart/form-data">
-                    @csrf
+                     @csrf
                     <div class="form-group">
                       <label for="lampiran1">SK Mutasi/Surat Persetujuan Dari Bupati</label>
-                      <input type="file" class="form-control @error('lampiran1') is-invalid @enderror" id="lampiran1" name="lampiran1" required>
+                      <input type="file" class="form-control @error('lampiran1') is-invalid @enderror" id="lampiran1" name="lampiran1" accept=".pdf" required>
                       @error('lampiran1')
                            <div class="invalid-feedback">{{ $message }}</div>
                       @enderror
                     </div>
                     <div class="form-group">
                       <label for="lampiran2">Pengantar Dari Kepala OPD</label>
-                      <input type="file" class="form-control @error('lampiran2') is-invalid @enderror" id="lampiran1" name="lampiran2" required>
+                      <input type="file" class="form-control @error('lampiran2') is-invalid @enderror" id="lampiran1" name="lampiran2" accept=".pdf" required>
                       @error('lampiran2')
                         <div class="invalid-feedback">{{ $message }}</div>
                       @enderror
                     </div>
                     <div class="form-group">
                       <label for="lampiran3">SK Pangkat/Jabatan Terakhir</label>
-                      <input type="file" class="form-control @error('lampiran3') is-invalid @enderror" id="lampiran1" name="lampiran3" required>
+                      <input type="file" class="form-control @error('lampiran3') is-invalid @enderror" id="lampiran1" name="lampiran3" accept=".pdf" required>
                       @error('lampiran3')
                         <div class="invalid-feedback">{{ $message }}</div>
                       @enderror
                     </div>
                     <div class="form-group">
                       <label for="lampiran4">SKP 1 Tahun Terakhir</label>
-                      <input type="file" class="form-control @error('lampiran4') is-invalid @enderror" id="lampiran1" name="lampiran4" required>
+                      <input type="file" class="form-control @error('lampiran4') is-invalid @enderror" id="lampiran1" name="lampiran4" accept=".pdf" required>
                       @error('lampiran4')
                         <div class="invalid-feedback">{{ $message }}</div>
                       @enderror
                     </div>
                     <div class="form-group">
                       <label for="lampiran5">Daftar Hadir 3 Bulan Terakhir</label>
-                      <input type="file" class="form-control @error('lampiran5') is-invalid @enderror" id="lampiran5" name="lampiran5" required>
+                      <input type="file" class="form-control @error('lampiran5') is-invalid @enderror" id="lampiran5" name="lampiran5" accept=".pdf" required>
                       @error('lampiran5')
                         <div class="invalid-feedback">{{ $message }}</div>
                       @enderror

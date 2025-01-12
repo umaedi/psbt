@@ -22,23 +22,23 @@
                 <tbody>
                   <tr>
                     <th>1</th>
-                    <td><a href="{{ \Illuminate\Support\Facades\Storage::url($mutasi->lampiran1) }}" target="_blank"> SK Mutasi/Surat Persetujuan Dari Bupati</a></td>
+                    <td><a href="{{ route('lampiran', ['folder' => 'mutasi', 'year' => $mutasi->created_at->format('Y'), 'filename' => $mutasi->lampiran1]) }}" target="_blank"> SK Mutasi/Surat Persetujuan Dari Bupati</a></td>
                   </tr>
                   <tr>
                     <th>2</th>
-                    <td><a href="{{ \Illuminate\Support\Facades\Storage::url($mutasi->lampiran2) }}" target="_blank"> Pengantar Dari Kepala OPD</a></td>
+                    <td><a href="{{ route('lampiran', ['folder' => 'mutasi', 'year' => $mutasi->created_at->format('Y'), 'filename' => $mutasi->lampiran2]) }}" target="_blank"> Pengantar Dari Kepala OPD</a></td>
                   </tr>
                   <tr>
                     <th>3</th>
-                    <td><a href="{{ \Illuminate\Support\Facades\Storage::url($mutasi->lampiran3) }}" target="_blank"> SK Pangkat/Jabatan Terakhir</a></td>
+                    <td><a href="{{ route('lampiran', ['folder' => 'mutasi', 'year' => $mutasi->created_at->format('Y'), 'filename' => $mutasi->lampiran3]) }}" target="_blank"> SK Pangkat/Jabatan Terakhir</a></td>
                   </tr>
                   <tr>
                     <th>4</th>
-                    <td><a href="{{ \Illuminate\Support\Facades\Storage::url($mutasi->lampiran4) }}" target="_blank"> SKP 1 Tahun Terakhir</a></td>
+                    <td><a href="{{ route('lampiran', ['folder' => 'mutasi', 'year' => $mutasi->created_at->format('Y'), 'filename' => $mutasi->lampiran4]) }}" target="_blank"> SKP 1 Tahun Terakhir</a></td>
                   </tr>
                   <tr>
                     <th>5</th>
-                    <td><a href="{{ \Illuminate\Support\Facades\Storage::url($mutasi->lampiran5) }}" target="_blank"> Daftar Hadir 3 Bulan Terakhir</a></td>
+                    <td><a href="{{ route('lampiran', ['folder' => 'mutasi', 'year' => $mutasi->created_at->format('Y'), 'filename' => $mutasi->lampiran5]) }}" target="_blank"> Daftar Hadir 3 Bulan Terakhir</a></td>
                   </tr>
                 </tbody>
             </table>
@@ -58,7 +58,7 @@
           <div class="col-md-6 mb-3">
             <div class="card">
               <div class="card-header">
-                <h4>Status Permohonan Penerbitan Izin Belajar</h4>
+                <h4>Status Permohonan Alih Tugas atau Mutasi</h4>
             </div>
             <div class="card-body">
               <table class="table">
@@ -78,7 +78,7 @@
                     @elseif($mutasi->status == 'diproses')
                     <td><button onclick="return confirm('Permohonan sedang diproses')" class="btn btn-info btn-sm">Download</button></td>
                     @elseif($mutasi->status == 'diterima')
-                    <td><a href="{{ \Illuminate\Support\Facades\Storage::url($mutasi->suratizin) }}" class="btn btn-info btn-sm">Download</a></td>
+                    <td><a href="{{ route('surat_izin', ['folder' => 'mutasi', 'filename' => $mutasi->suratizin]) }}" target="_blank" class="btn btn-info btn-sm">Download</a></td>
                     @else
                     <td><button onclick="return confirm('Permohonan ditolak!')" class="btn btn-info btn-sm">Download</button></td>
                     @endif

@@ -28,6 +28,11 @@ class MutasiController extends Controller
 
     public function create()
     {
+        $mutasi = $this->permohonan->Query()->where('user_id', auth()->user()->id)->where('kategori', 'Permohonan alih tugas')->latest()->first();
+        if($mutasi && $mutasi->status !== 'diterima') {
+            return redirect('/user/dashboard')->with('error', 'Mohon maaf untuk saat ini Anda belum bisa mengajukan permohonan alih tugas atau mutasi, karena ada permohonan sebelumnya yang belum selesai!');
+        }
+
         $data['title'] = 'Formulir Permohonan Alih Tugas atau Mutasi';
         return view('mutasi.create', $data);
     }
@@ -44,27 +49,31 @@ class MutasiController extends Controller
 
         $data['user_id'] = Auth::user()->id;
         $data['kategori'] = 'Permohonan alih tugas';
-        $randomName = Str::random(16);
 
-        $lampiran1 = $request->file('lampiran1');
-        $newLampiran1 = Str::replace(' ', '_',  strtolower(auth()->user()->nama . '_sk_mutasi_surat_persetujuan_dari_bupati_' . $randomName . '.' . $lampiran1->getClientOriginalExtension()));
-        $data['lampiran1'] = $lampiran1->storeAs('public/lampiran/mutasi/'.date('Y'), $newLampiran1);
+        $fileName1 = uniqid() . '_' . str_replace(' ', '_', auth()->user()->nama) . '_sk_mutasi_surat_persetujuan_dari_bupati' . '.pdf';
+        $pathFile = 'lampiran/mutasi/'. date('Y');
+        $request->file('lampiran1')->storeAs($pathFile, $fileName1, 's3');
+        $data['lampiran1'] = $fileName1;
 
-        $lampiran2 = $request->file('lampiran2');
-        $newLampiran2 = Str::replace(' ', '_', strtolower(auth()->user()->nama . '_pengantar_dari_kepala_opd_' . $randomName . '.' . $lampiran2->getClientOriginalExtension()));
-        $data['lampiran2'] = $lampiran2->storeAs('public/lampiran/mutasi/'.date('Y'), $newLampiran2);
+        $fileName2 = uniqid() . '_' . str_replace(' ', '_', auth()->user()->nama) . '_pengantar_dari_kepala_opd' . '.pdf';
+        $pathFile = 'lampiran/mutasi/'. date('Y');
+        $request->file('lampiran2')->storeAs($pathFile, $fileName2, 's3');
+        $data['lampiran2'] = $fileName2;
 
-        $lampiran3 = $request->file('lampiran3');
-        $newLampiran3 = Str::replace(' ', '_', strtolower(auth()->user()->nama . '_sk_pangkat_jabatan_terakhir_' . $randomName . '.' . $lampiran3->getClientOriginalExtension()));
-        $data['lampiran3'] = $lampiran3->storeAs('public/lampiran/mutasi/'.date('Y'), $newLampiran3);
+        $fileName3 = uniqid() . '_' . str_replace(' ', '_', auth()->user()->nama) . '_sk_pangkat_jabatan_terakhir' . '.pdf';
+        $pathFile = 'lampiran/mutasi/'. date('Y');
+        $request->file('lampiran3')->storeAs($pathFile, $fileName3, 's3');
+        $data['lampiran3'] = $fileName3;
 
-        $lampiran4 = $request->file('lampiran4');
-        $newLampiran4 = Str::replace(' ', '_', strtolower(auth()->user()->nama . '_skp_1_tahun_terakhir_' . $randomName . '.' . $lampiran4->getClientOriginalExtension()));
-        $data['lampiran4'] = $lampiran4->storeAs('public/lampiran/mutasi/'.date('Y'), $newLampiran4);
+        $fileName4 = uniqid() . '_' . str_replace(' ', '_', auth()->user()->nama) . '_skp_1_tahun_terakhir' . '.pdf';
+        $pathFile = 'lampiran/mutasi/'. date('Y');
+        $request->file('lampiran4')->storeAs($pathFile, $fileName4, 's3');
+        $data['lampiran4'] = $fileName4;
 
-        $lampiran5 = $request->file('lampiran5');
-        $newLampiran5 = Str::replace(' ', '_', strtolower(auth()->user()->nama . '_daftar_hadir_3_bulan_terakhir_' . $randomName . '.' . $lampiran5->getClientOriginalExtension()));
-        $data['lampiran5'] = $lampiran5->storeAs('public/lampiran/mutasi/'.date('Y'), $newLampiran5);
+        $fileName5 = uniqid() . '_' . str_replace(' ', '_', auth()->user()->nama) . '_daftar_hadir_3_bulan_terakhir' . '.pdf';
+        $pathFile = 'lampiran/mutasi/'. date('Y');
+        $request->file('lampiran5')->storeAs($pathFile, $fileName5, 's3');
+        $data['lampiran5'] = $fileName5;
 
         DB::beginTransaction();
         try {
@@ -113,38 +122,43 @@ class MutasiController extends Controller
         $randomName = Str::random(16);
 
         if($request->hasFile('lampiran1')) {
-            $lampiran1 = $request->file('lampiran1');
-            $newLampiran1 = Str::replace(' ', '_',  strtolower(auth()->user()->nama . '_sk_mutasi_surat_persetujuan_dari_bupati_' . $randomName . '.' . $lampiran1->getClientOriginalExtension()));
-            $data['lampiran1'] = $lampiran1->storeAs('public/lampiran/mutasi/'.$mutasi->created_at->format('Y'), $newLampiran1);
-            Storage::delete($mutasi->lampiran1);
+            $fileName1 = uniqid() . '_' . str_replace(' ', '_', auth()->user()->nama) . '_sk_mutasi_surat_persetujuan_dari_bupati' . '.pdf';
+            $pathFile = 'lampiran/mutasi/'. $mutasi->created_at->format('Y');
+            $request->file('lampiran1')->storeAs($pathFile, $fileName1, 's3');
+            $data['lampiran1'] = $fileName1;
+            Storage::disk('s3')->delete('lampiran/mutasi/'.$mutasi->created_at->format('Y').'/'.$mutasi->lampiran1);
         }
 
         if($request->hasFile('lampiran2')) {
-            $lampiran2 = $request->file('lampiran2');
-            $newLampiran2 = Str::replace(' ', '_', strtolower(auth()->user()->nama . '_pengantar_dari_kepala_opd_' . $randomName . '.' . $lampiran2->getClientOriginalExtension()));
-            $data['lampiran2'] = $lampiran2->storeAs('public/lampiran/mutasi/'.$mutasi->created_at->format('Y'), $newLampiran2);
-            Storage::delete($mutasi->lampiran1);
+            $fileName2 = uniqid() . '_' . str_replace(' ', '_', auth()->user()->nama) . '_pengantar_dari_kepala_opd' . '.pdf';
+            $pathFile = 'lampiran/mutasi/'. $mutasi->created_at->format('Y');
+            $request->file('lampiran2')->storeAs($pathFile, $fileName2, 's3');
+            $data['lampiran2'] = $fileName2;
+            Storage::disk('s3')->delete('lampiran/mutasi/'.$mutasi->created_at->format('Y').'/'.$mutasi->lampiran2);
         }
 
         if($request->hasFile('lampiran3')) {
-            $lampiran3 = $request->file('lampiran3');
-            $newLampiran3 = Str::replace(' ', '_', strtolower(auth()->user()->nama . '_sk_pangkat_jabatan_terakhir_' . $randomName . '.' . $lampiran3->getClientOriginalExtension()));
-            $data['lampiran3'] = $lampiran3->storeAs('public/lampiran/mutasi/'.$mutasi->created_at->format('Y'), $newLampiran3);
-            Storage::delete($mutasi->lampiran3);
+            $fileName3 = uniqid() . '_' . str_replace(' ', '_', auth()->user()->nama) . '_sk_pangkat_jabatan_terakhir' . '.pdf';
+            $pathFile = 'lampiran/mutasi/'. $mutasi->created_at->format('Y');
+            $request->file('lampiran3')->storeAs($pathFile, $fileName3, 's3');
+            $data['lampiran3'] = $fileName3;
+            Storage::disk('s3')->delete('lampiran/mutasi/'.$mutasi->created_at->format('Y').'/'.$mutasi->lampiran3);
         }
 
         if($request->hasFile('lampiran4')) {
-            $lampiran4 = $request->file('lampiran4');
-            $newLampiran4 = Str::replace(' ', '_', strtolower(auth()->user()->nama . '_skp_1_tahun_terakhir_' . $randomName . '.' . $lampiran4->getClientOriginalExtension()));
-            $data['lampiran4'] = $lampiran4->storeAs('public/lampiran/mutasi/'.$mutasi->created_at->format('Y'), $newLampiran4);
-            Storage::delete($mutasi->lampiran4);
+            $fileName4 = uniqid() . '_' . str_replace(' ', '_', auth()->user()->nama) . '_skp_1_tahun_terakhir' . '.pdf';
+            $pathFile = 'lampiran/mutasi/'. $mutasi->created_at->format('Y');
+            $request->file('lampiran4')->storeAs($pathFile, $fileName4, 's3');
+            $data['lampiran4'] = $fileName4;
+            Storage::disk('s3')->delete('lampiran/mutasi/'.$mutasi->created_at->format('Y').'/'.$mutasi->lampiran4);
         }
       
         if($request->hasFile('lampiran5')) {
-            $lampiran5 = $request->file('lampiran5');
-            $newLampiran5 = Str::replace(' ', '_', strtolower(auth()->user()->nama . '_daftar_hadir_3_bulan_terakhir_' . $randomName . '.' . $lampiran5->getClientOriginalExtension()));
-            $data['lampiran5'] = $lampiran5->storeAs('public/lampiran/mutasi/'.$mutasi->created_at->format('Y'), $newLampiran5);
-            Storage::delete($mutasi->lampiran5);
+            $fileName5 = uniqid() . '_' . str_replace(' ', '_', auth()->user()->nama) . '_daftar_hadir_3_bulan_terakhir' . '.pdf';
+            $pathFile = 'lampiran/mutasi/'. date('Y');
+            $request->file('lampiran5')->storeAs($pathFile, $fileName5, 's3');
+            $data['lampiran5'] = $fileName5;
+            Storage::disk('s3')->delete('lampiran/mutasi/'.$mutasi->created_at->format('Y').'/'.$mutasi->lampiran5);
         }
 
         if($mutasi->status == 'ditolak') {

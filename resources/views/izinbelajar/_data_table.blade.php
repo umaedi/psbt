@@ -26,7 +26,7 @@
                 <td>
                     <a href="/user/permohonan_izin_belajar/show/{{ $tb->id }}" class="btn btn-sm btn-info">Lihat</a>
                     @if ($tb->status == 'diterima')
-                    <a target="_blank" href="{{ \Illuminate\Support\Facades\Storage::url($tb->suratizin) }}" class="btn btn-primary btn-sm">Unduh surat balasan</a>
+                    <a target="_blank" href="{{ route('surat_izin',['folder' => 'izin_belajar', 'filename' => $tb->suratizin]) }}" class="btn btn-primary btn-sm">Unduh surat balasan</a>
                     @endif
                 </td>
             </tr>

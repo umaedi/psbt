@@ -26,7 +26,9 @@
                 </td>
                 <td>
                     <a href="/user/mutasi/show/{{ $tb->id }}" class="btn btn-sm btn-info">Lihat</a>
-                    <a target="_blank" href="{{ \Illuminate\Support\Facades\Storage::url($tb->suratizin) }}" class="btn btn-primary btn-sm">Unduh surat balasan</a>
+                    @if ($tb->status == 'diterima')
+                    <a target="_blank" href="{{ route('surat_izin', ['folder' => 'mutasi', 'filename' => $tb->suratizin]) }}" class="btn btn-primary btn-sm">Unduh surat balasan</a>
+                    @endif
                 </td>
             </tr>
         @empty

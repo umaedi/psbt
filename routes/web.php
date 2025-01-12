@@ -96,21 +96,39 @@ Route::middleware(['auth', 'super_admin'])->prefix('super_admin')->group(functio
 
     //notif
     Route::get('/notification', Superadmin\NotifController::class);
-
-    // Route::middleware('cors')->get('/status/user', [Api\TestController::class, 'index']);
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/files/{file}', function ($file) {
-        // Path fisik file di storage
-        $filePath = Storage::path($file);
+    Route::get('/files/{folder}/{year}/{filename}', function ($folder, $year, $filename) {
 
-        // Cek keberadaan file
-        if (!Storage::exists($file)) {
-            abort(404, 'File not found');
-        }
+        $relativePath = 'lampiran/'.$folder.'/'.$year .'/'.$filename;
 
-        // Return file sebagai response
-        return response()->file($filePath);
+        return response()->stream(function () use ($relativePath) {
+            $stream = Storage::disk('s3')->readStream($relativePath);
+            while (!feof($stream)) {
+                echo fread($stream, 1024 * 8); // Membaca file dalam blok 8 KB
+            }
+            fclose($stream);
+        }, 200, [
+            'Content-Type' => 'application/pdf', // Menghapus tanda kutip tambahan
+            'Content-Disposition' => 'inline; filename="' . basename($relativePath) . '"',
+        ]);
+
     })->name('lampiran');
+    Route::get('/files/{folder}/{filename}', function ($folder, $filename) {
+
+        $relativePath = 'lampiran/surat_izin/'.$folder.'/'. $filename;
+
+        return response()->stream(function () use ($relativePath) {
+            $stream = Storage::disk('s3')->readStream($relativePath);
+            while (!feof($stream)) {
+                echo fread($stream, 1024 * 8); // Membaca file dalam blok 8 KB
+            }
+            fclose($stream);
+        }, 200, [
+            'Content-Type' => 'application/pdf', // Menghapus tanda kutip tambahan
+            'Content-Disposition' => 'inline; filename="' . basename($relativePath) . '"',
+        ]);
+
+    })->name('surat_izin');
 });

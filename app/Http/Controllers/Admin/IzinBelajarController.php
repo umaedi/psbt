@@ -39,7 +39,7 @@ class IzinBelajarController extends Controller
 
     public function show($id)
     {
-        $data['izinbelajar'] = $this->permohonan->find($id);
+        $data['izin_belajar'] = $this->permohonan->find($id);
         $data['title'] = 'Permohonan Izin Belajar';
         return view('admin.izinbelajar.show', $data);
     }
@@ -47,12 +47,18 @@ class IzinBelajarController extends Controller
     public function update(Request $request, $id)
     {
 
+        $izin_belajar = $this->permohonan->find($id);
         if ($request->status == 'diproses') {
             $data['status'] = 'diproses';
             $redirect = '/admin/permohonan_izin_belajar?index=diproses';
         } elseif ($request->status == 'diterima') {
             $data['status'] = 'diterima';
-            $data['suratizin'] = $request->file('suratizin')->store('public/surat_izin');
+           
+            $pathFile = 'lampiran/surat_izin/izin_belajar';
+            $fileName = uniqid() . '_surat_izin_belajar_' . str_replace(' ', '_', $izin_belajar->user->nama) . '.pdf';
+            $request->file('suratizin')->storeAs($pathFile, $fileName, 's3');
+            $data['suratizin'] = $fileName;
+
             $redirect = '/admin/permohonan_izin_belajar?index=diterima';
         } else {
             $data['status'] = 'ditolak';

@@ -33,7 +33,7 @@
                     <div class="form-group">
                       <label for="lampiran1">SK Mutasi/Surat Persetujuan Dari Bupati</label>
                       <input type="file" class="form-control mb-1 @error('lampiran1') is-invalid @enderror" id="lampiran1" name="lampiran1">
-                      <a href="{{ \Illuminate\Support\Facades\Storage::url($mutasi->lampiran1) }}" target="_blank">Lampiran sebelumnya</a>
+                      <a href="{{ route('lampiran', ['folder' => 'mutasi','year' => $mutasi->created_at->format('Y'), 'filename' => $mutasi->lampiran1]) }}" target="_blank">Lampiran sebelumnya</a>
                       @error('lampiran1')
                            <div class="invalid-feedback">{{ $message }}</div>
                       @enderror
@@ -41,7 +41,7 @@
                     <div class="form-group">
                       <label for="lampiran2">Pengantar Dari Kepala OPD</label>
                       <input type="file" class="form-control mb-1 @error('lampiran2') is-invalid @enderror" id="lampiran1" name="lampiran2">
-                      <a href="{{ \Illuminate\Support\Facades\Storage::url($mutasi->lampiran2) }}" target="_blank">Lampiran sebelumnya</a>
+                      <a href="{{ route('lampiran', ['folder' => 'mutasi','year' => $mutasi->created_at->format('Y'), 'filename' => $mutasi->lampiran2]) }}" target="_blank">Lampiran sebelumnya</a>
                       @error('lampiran2')
                         <div class="invalid-feedback">{{ $message }}</div>
                       @enderror
@@ -49,7 +49,7 @@
                     <div class="form-group">
                       <label for="lampiran3">SK Pangkat/Jabatan Terakhir</label>
                       <input type="file" class="form-control mb-1 @error('lampiran3') is-invalid @enderror" id="lampiran1" name="lampiran3">
-                      <a href="{{ \Illuminate\Support\Facades\Storage::url($mutasi->lampiran3) }}" target="_blank">Lampiran sebelumnya</a>
+                      <a href="{{ route('lampiran', ['folder' => 'mutasi','year' => $mutasi->created_at->format('Y'), 'filename' => $mutasi->lampiran3]) }}" target="_blank">Lampiran sebelumnya</a>
                       @error('lampiran3')
                         <div class="invalid-feedback">{{ $message }}</div>
                       @enderror
@@ -57,7 +57,7 @@
                     <div class="form-group">
                       <label for="lampiran4">SKP 1 Tahun Terakhir</label>
                       <input type="file" class="form-control mb-1 @error('lampiran4') is-invalid @enderror" id="lampiran1" name="lampiran4">
-                      <a href="{{ \Illuminate\Support\Facades\Storage::url($mutasi->lampiran4) }}" target="_blank">Lampiran sebelumnya</a>
+                      <a href="{{ route('lampiran', ['folder' => 'mutasi','year' => $mutasi->created_at->format('Y'), 'filename' => $mutasi->lampiran4]) }}" target="_blank">Lampiran sebelumnya</a>
                       @error('lampiran4')
                         <div class="invalid-feedback">{{ $message }}</div>
                       @enderror
@@ -65,7 +65,7 @@
                     <div class="form-group">
                       <label for="lampiran5">Daftar Hadir 3 Bulan Terakhir</label>
                       <input type="file" class="form-control mb-1 @error('lampiran5') is-invalid @enderror" id="lampiran5" name="lampiran5">
-                      <a href="{{ \Illuminate\Support\Facades\Storage::url($mutasi->lampiran5) }}" target="_blank">Lampiran sebelumnya</a>
+                      <a href="{{ route('lampiran', ['folder' => 'mutasi','year' => $mutasi->created_at->format('Y'), 'filename' => $mutasi->lampiran5]) }}" target="_blank">Lampiran sebelumnya</a>
                       @error('lampiran5')
                         <div class="invalid-feedback">{{ $message }}</div>
                       @enderror

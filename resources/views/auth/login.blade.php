@@ -8,8 +8,7 @@
          <div class="alert alert-warning">Email atau Password salah!</div>
          @endif
          <div class="card card-primary mt-5">
-           <div class="card-header text-center"><h4>LOGIN SIBETE</h4></div>
-
+           <div class="card-header"><h4>LOGIN SIBETE</h4></div>
            <div class="card-body">
              <form method="POST" action="/login" class="needs-validation" novalidate="">
                @csrf

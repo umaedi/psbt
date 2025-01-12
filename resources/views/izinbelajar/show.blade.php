@@ -22,19 +22,19 @@
                 <tbody>
                   <tr>
                     <th>1</th>
-                    <td><a href="{{ \Illuminate\Support\Facades\Storage::url($izin_belajar->lampiran1) }}" target="_blank"> Surat Pengantar Dari OPD</a></td>
+                    <td><a href="{{ route('lampiran', ['folder' => 'izin_belajar', 'year' => $izin_belajar->created_at->format('Y'), 'filename' => $izin_belajar->lampiran1]) }}" target="_blank"> Surat Pengantar Dari OPD</a></td>
                   </tr>
                   <tr>
                     <th>2</th>
-                    <td><a href="{{ \Illuminate\Support\Facades\Storage::url($izin_belajar->lampiran2) }}" target="_blank"> SK Pangkat atau Jabatan Terakhir</a></td>
+                    <td><a href="{{ route('lampiran', ['folder' => 'izin_belajar','year' => $izin_belajar->created_at->format('Y'), 'filename' => $izin_belajar->lampiran2]) }}" target="_blank"> SK Pangkat atau Jabatan Terakhir</a></td>
                   </tr>
                   <tr>
                     <th>3</th>
-                    <td><a href="{{ \Illuminate\Support\Facades\Storage::url($izin_belajar->lampiran3) }}" target="_blank"> SKP 1 Tahun Terakhir</a></td>
+                    <td><a href="{{ route('lampiran', ['folder' => 'izin_belajar','year' => $izin_belajar->created_at->format('Y'), 'filename' => $izin_belajar->lampiran3]) }}" target="_blank"> SKP 1 Tahun Terakhir</a></td>
                   </tr>
                   <tr>
                     <th>4</th>
-                    <td><a href="{{ \Illuminate\Support\Facades\Storage::url($izin_belajar->lampiran4) }}" target="_blank"> Daftar Hadir 3 Bulan Terakhir</a></td>
+                    <td><a href="{{ route('lampiran', ['folder' => 'izin_belajar','year' => $izin_belajar->created_at->format('Y'), 'filename' => $izin_belajar->lampiran4]) }}" target="_blank"> Daftar Hadir 3 Bulan Terakhir</a></td>
                   </tr>
                 </tbody>
             </table>
@@ -68,13 +68,23 @@
                 <tbody>
                   <tr>
                     <td>{{ \Carbon\Carbon::parse($izin_belajar->created_at)->isoFormat('D MMMM Y') }}</td>
-                    <td><span class="badge {{ $izin_belajar->status == 'ditolak' ? 'badge-danger' : 'badge-primary' }}">{{ $izin_belajar->status }}</span></td>
+                    <td>
+                      @if ($izin_belajar->status == 'dalam antrian')
+                      <span class="badge badge-warning">{{ $izin_belajar->status }}</span>
+                      @elseif($izin_belajar->status == 'diproses')
+                      <span class="badge badge-success">{{ $izin_belajar->status }}</span>
+                      @elseif($izin_belajar->status == 'ditolak')
+                      <span class="badge badge-danger">{{ $izin_belajar->status }}</span>
+                      @else
+                      <span class="badge badge-primary">{{ $izin_belajar->status }}</span>
+                      @endif   
+                    </td>
                     @if ($izin_belajar->status == 'dalam antrian')
                     <td><button onclick="return confirm('Permohonan masih dalam antrian')" class="btn btn-info btn-sm">Download</button></td>
                     @elseif($izin_belajar->status == 'diproses')
                     <td><button onclick="return confirm('Permohonan sedang diproses')" class="btn btn-info btn-sm">Download</button></td>
                     @elseif($izin_belajar->status == 'diterima')
-                    <td><a href="{{ \Illuminate\Support\Facades\Storage::url($izin_belajar->suratizin) }}" class="btn btn-info btn-sm">Download</a></td>
+                    <td><a href="{{ route('surat_izin',['folder' => 'izin_belajar', 'filename' => $izin_belajar->suratizin]) }}" target="_blank" class="btn btn-info btn-sm">Download</a></td>
                     @else
                     <td><button onclick="return confirm('Permohonan ditolak!')" class="btn btn-info btn-sm">Download</button></td>
                     @endif

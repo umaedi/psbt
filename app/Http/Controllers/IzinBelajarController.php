@@ -31,6 +31,11 @@ class IzinBelajarController extends Controller
 
     public function create()
     {
+        $izin_belajar = $this->permohonan->Query()->where('user_id', auth()->user()->id)->where('kategori', 'Permohonan izin belajar')->latest()->first();
+        if($izin_belajar && $izin_belajar->status !== 'diterima') {
+            return redirect('/user/dashboard')->with('error', 'Mohon maaf untuk saat ini Anda belum bisa mengajukan permohonan izin belajar, karena ada permohonan sebelumnya yang belum selesai!');
+        }
+
         $data['title'] = 'Permohonan izin belajar';
         return view('izinbelajar.create', $data);
     }
@@ -44,35 +49,36 @@ class IzinBelajarController extends Controller
             'lampiran4' => 'required|mimes:pdf|max:2048',
         ]);
 
-        $data['user_id'] = Auth::user()->id;
+        $data['user_id'] = Auth::id();
         $data['kategori'] = 'Permohonan izin belajar';
-        $randomName = Str::random(16);
 
-        $lampiran1 = $request->file('lampiran1');
-        $newLampiran1 = Str::replace(' ', '_',  strtolower(auth()->user()->nama . '_surat_pengantar_dari_opd_' . $randomName . '.' . $lampiran1->getClientOriginalExtension()));
-        $data['lampiran1'] = $lampiran1->storeAs('public/lampiran/izin_belajar/'.date('Y'), $newLampiran1);
+        $fileName1 = uniqid() . '_' . str_replace(' ', '_', auth()->user()->nama) . '_surat_pengantar_dari_opd' . '.pdf';
+        $pathFile = 'lampiran/izin_belajar/'. date('Y');
+        $request->file('lampiran1')->storeAs($pathFile, $fileName1, 's3');
+        $data['lampiran1'] = $fileName1;
 
-        $lampiran2 = $request->file('lampiran2');
-        $newLampiran2 = Str::replace('', '_', strtolower(auth()->user()->nama . '_sk_pangkat_atau_jabatan_terakhir_' . $randomName . '.' . $lampiran2->getClientOriginalExtension()));
-        $data['lampiran2'] = $lampiran2->storeAs('public/lampiran/izin_belajar/'.date('Y'), $newLampiran2);
+        $fileName2 = uniqid() . '_' . str_replace(' ', '_', auth()->user()->nama) . '_sk_pangkat_atau_jabatan_terakhir_' . '.pdf';
+        $pathFile = 'lampiran/izin_belajar/'. date('Y');
+        $request->file('lampiran2')->storeAs($pathFile, $fileName2, 's3');
+        $data['lampiran2'] = $fileName2;
 
-        $lampiran3 = $request->file('lampiran3');
-        $newLampiran3 = Str::replace(' ', '_', strtolower(auth()->user()->nama . '_skp_1_tahun_terakhir_' . $randomName . '.' . $lampiran3->getClientOriginalExtension()));
-        $data['lampiran3'] = $lampiran3->storeAs('public/lampiran/izin_belajar/'.date('Y'), $newLampiran3);
+        $fileName3 = uniqid() . '_' . str_replace(' ', '_', auth()->user()->nama) . '_skp_1_tahun_terakhir_' . '.pdf';
+        $pathFile = 'lampiran/izin_belajar/'. date('Y');
+        $request->file('lampiran3')->storeAs($pathFile, $fileName3, 's3');
+        $data['lampiran3'] = $fileName3;
 
-        $lampiran4 = $request->file('lampiran4');
-        $newLampiran4 = Str::replace(' ', '_', strtolower(auth()->user()->nama . '_daftar_hadir_3_bulan_terakhir_' . $randomName . '.' . $lampiran4->getClientOriginalExtension()));
-        $data['lampiran4'] = $lampiran4->storeAs('public/lampiran/izin_belajar/'.date('Y'), $newLampiran4);
+        $fileName4 = uniqid() . '_' . str_replace(' ', '_', auth()->user()->nama) . '_daftar_hadir_3_bulan_terakhir_' . '.pdf';
+        $pathFile = 'lampiran/izin_belajar/'. date('Y');
+        $request->file('lampiran4')->storeAs($pathFile, $fileName4, 's3');
+        $data['lampiran4'] = $fileName4;
 
-        DB::beginTransaction();
         try {
             $this->permohonan->store($data);
         } catch (\Throwable $th) {
             saveLogs($th->getMessage(), 'error');
             DB::rollBack();
         }
-        DB::commit();
-        // dispatch(new ProcessLampiran($data));
+
         return redirect('/user/permohonan_izin_belajar')->with('msg_izin_belajar', 'Permohonan izin belajar berhasil terkirim');
     }
 
@@ -99,34 +105,37 @@ class IzinBelajarController extends Controller
         $izin_belajar = $this->permohonan->find($id);
 
         $data['user_id'] = Auth::user()->id;
-        $randomName = Str::random(16);
 
         if($request->hasFile('lampiran1')) {
-            $lampiran1 = $request->file('lampiran1');
-            $newLampiran1 = Str::replace(' ', '_',  strtolower(auth()->user()->nama . '_surat_pengantar_dari_opd_' . $randomName . '.' . $lampiran1->getClientOriginalExtension()));
-            $data['lampiran1'] = $lampiran1->storeAs('public/lampiran/izin_belajar/'.$izin_belajar->created_at->format('Y'), $newLampiran1);
-            Storage::delete($izin_belajar->lampiran1);
+            $fileName1 = uniqid() . '_' . str_replace(' ', '_', auth()->user()->nama) . '_surat_pengantar_dari_opd' . '.pdf';
+            $pathFile = 'lampiran/izin_belajar/'. date('Y');
+            $request->file('lampiran1')->storeAs($pathFile, $fileName1, 's3');
+            Storage::disk('s3')->delete('lampiran/izin_belajar/'. $izin_belajar->created_at->format('Y') . '/'. $izin_belajar->lampiran1);
+            $data['lampiran1'] = $fileName1;
         }
 
         if($request->hasFile('lampiran2')) {
-            $lampiran2 = $request->file('lampiran2');
-            $newLampiran2 = Str::replace(' ', '_', strtolower(auth()->user()->nama . '_sk_pangkat_atau_jabatan_terakhir_' . $randomName . '.' . $lampiran2->getClientOriginalExtension()));
-            $data['lampiran2'] = $lampiran2->storeAs('public/lampiran/izin_belajar/'.$izin_belajar->created_at->format('Y'), $newLampiran2);
-            Storage::delete($izin_belajar->lampiran2);
+            $fileName2 = uniqid() . '_' . str_replace(' ', '_', auth()->user()->nama) . '_sk_pangkat_atau_jabatan_terakhir_' . '.pdf';
+            $pathFile = 'lampiran/izin_belajar/'. date('Y');
+            $request->file('lampiran2')->storeAs($pathFile, $fileName2, 's3');
+            Storage::disk('s3')->delete('lampiran/izin_belajar/'. $izin_belajar->created_at->format('Y') . '/'. $izin_belajar->lampiran2);
+            $data['lampiran2'] = $fileName2;
         }
 
         if($request->hasFile('lampiran3')) {
-            $lampiran3 = $request->file('lampiran3');
-            $newLampiran3 = Str::replace(' ', '_', strtolower(auth()->user()->nama . '_skp_1_tahun_terakhir_' . $randomName . '.' . $lampiran3->getClientOriginalExtension()));
-            $data['lampiran3'] = $lampiran3->storeAs('public/lampiran/izin_belajar/'.$izin_belajar->created_at->format('Y'), $newLampiran3);
-            Storage::delete($izin_belajar->lampiran3);
+            $fileName3 = uniqid() . '_' . str_replace(' ', '_', auth()->user()->nama) . '_skp_1_tahun_terakhir_' . '.pdf';
+            $pathFile = 'lampiran/izin_belajar/'. date('Y');
+            $request->file('lampiran3')->storeAs($pathFile, $fileName3, 's3');   
+            Storage::disk('s3')->delete('lampiran/izin_belajar/'. $izin_belajar->created_at->format('Y') . '/'. $izin_belajar->lampiran3);
+            $data['lampiran3'] = $fileName3;
         }
 
         if($request->hasFile('lampiran4')) {
-            $lampiran4 = $request->file('lampiran4');
-            $newLampiran4 = Str::replace(' ', '_', strtolower(auth()->user()->nama . '_daftar_hadir_3_bulan_terakhir_' . $randomName . '.' . $lampiran4->getClientOriginalExtension()));
-            $data['lampiran4'] = $lampiran4->storeAs('public/lampiran/izin_belajar/'.$izin_belajar->created_at->format('Y'), $newLampiran4);
-            Storage::delete($izin_belajar->lampiran4);
+            $fileName4 = uniqid() . '_' . str_replace(' ', '_', auth()->user()->nama) . '_daftar_hadir_3_bulan_terakhir_' . '.pdf';
+            $pathFile = 'lampiran/izin_belajar/'. date('Y');
+            $request->file('lampiran4')->storeAs($pathFile, $fileName4, 's3');
+            Storage::disk('s3')->delete('lampiran/izin_belajar/'. $izin_belajar->created_at->format('Y') . '/'. $izin_belajar->lampiran4);
+            $data['lampiran4'] = $fileName4;
         }
 
         if($izin_belajar->status == 'ditolak') {

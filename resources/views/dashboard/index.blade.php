@@ -6,6 +6,12 @@
         <h1>Dashboard</h1>
       </div>
       <div class="section-body">
+        @if (session('error'))
+        <div class="alert alert-danger" role="alert">
+          <h4 class="alert-heading">Perhatian!</h4>
+          <p>{{ session('error') }}</p>
+        </div>
+        @endif
         <div class="row">
           <div class="col-md-4 mb-3">
             <div class="card">

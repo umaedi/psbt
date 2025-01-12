@@ -179,7 +179,7 @@
 
     async function loadTableIzin() {
         var param = {
-          url: '/admin/permohonan_izin_belajar',
+          url: '/admin/permohonan_izin_belajar?index=dalam antrian',
           method: 'GET',
           data: {
             load: 'table',
@@ -198,7 +198,7 @@
 
     async function loadTableMutasi() {
       var param = {
-          url: '/admin/mutasi',
+          url: '/admin/mutasi?index=dalam antrian',
           method: 'GET',
           data: {
             load: 'table',

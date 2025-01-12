@@ -12,7 +12,10 @@
       <div class="section-body">
         <div class="row">
           <div class="col-md-12 mb-3">
-            <div class="alert alert-danger">File yang diupload wajib PDF dengan ukuran file maksimal 2MB</div>
+            <div class="alert alert-danger" role="alert">
+              <h4 class="alert-heading">Perhatian!</h4>
+              <p>File yang diupload wajib PDF dengan ukuran file maksimal 2MB</p>
+            </div>
             <div class="card">
               <div class="card-header">
                 <h4>Formulir Permohonan Penerbiatan Izin Belajar</h4>
@@ -22,28 +25,28 @@
                   @csrf
                     <div class="form-group">
                       <label for="lampiran1">Surat Pengantar Dari OPD</label>
-                      <input onchange="displayFilePath()" type="file" class="form-control @error('lampiran1') is-invalid @enderror" id="fileInput" name="lampiran1" required>
+                      <input onchange="displayFilePath()" type="file" class="form-control @error('lampiran1') is-invalid @enderror" id="fileInput" name="lampiran1" accept=".pdf" required>
                       @error('lampiran1')
                       <div class="invalid-feedback">{{ $message }}</div>
                       @enderror
                     </div>
                     <div class="form-group">
                       <label for="lampiran2">SK Pangkat atau Jabatan Terakhir</label>
-                      <input type="file" class="form-control @error('lampiran2') is-invalid @enderror" id="lampiran1" name="lampiran2" required>
+                      <input type="file" class="form-control @error('lampiran2') is-invalid @enderror" id="lampiran1" name="lampiran2" accept=".pdf" required>
                       @error('lampiran2')
                         <div class="invalid-feedback">{{ $message }}</div>
                       @enderror
                     </div>
                     <div class="form-group">
                       <label for="lampiran3">SKP 1 Tahun Terakhir</label>
-                      <input type="file" class="form-control @error('lampiran3') is-invalid @enderror" id="lampiran1" name="lampiran3" required>
+                      <input type="file" class="form-control @error('lampiran3') is-invalid @enderror" id="lampiran1" name="lampiran3" accept=".pdf" required>
                       @error('lampiran3')
                         <div class="invalid-feedback">{{ $message }}</div>
                       @enderror
                     </div>
                     <div class="form-group">
                       <label for="lampiran4">Daftar Hadir 3 Bulan Terakhir</label>
-                      <input type="file" class="form-control @error('lampiran4') is-invalid @enderror" id="lampiran1" name="lampiran4" required>
+                      <input type="file" class="form-control @error('lampiran4') is-invalid @enderror" id="lampiran1" name="lampiran4" accept=".pdf" required>
                       @error('lampiran4')
                         <div class="invalid-feedback">{{ $message }}</div>
                       @enderror
