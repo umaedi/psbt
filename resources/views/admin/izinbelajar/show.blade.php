@@ -132,7 +132,7 @@
             </table>
             <div class="row">
             @if ($izin_belajar->status == 'dalam antrian')
-            <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#uploadFile">TERIMA, DAN UNGGAH SURAT BASALAN</button>
+            <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#uploadFile">TERIMA, DAN UNGGAH SURAT BALASAN</button>
             <button type="button" data-toggle="modal" data-target="#exampleModalCenter" class="ml-2 btn btn-warning">TOLAK PERMOHONAN</button>
             @endif
             </div>

@@ -20,7 +20,7 @@
            </ul>
          </div>
          <div class="my-3 p-3 bg-white rounded box-shadow">
-           <h6 class="border-bottom border-gray pb-2 mb-3">Persyaratan penerbitan alih tugas atau mutasi</h6>
+           <h6 class="border-bottom border-gray pb-2 mb-3">Persyaratan surat bebas temuan untuk alih tugas atau mutasi</h6>
            <ul class="list-group list-group-flush">
              <li class="list-group-item">1. SK Mutasi Atau Surat Persetujuan Bupati</li>
              <li class="list-group-item">2. Pengantar Dari Kepala OPD</li>
