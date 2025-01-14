@@ -32,6 +32,10 @@
   {{-- <script src="{{ asset('js') }}/scripts.js"></script> --}}
   {{-- <script src="{{ asset('js') }}/custom.js"></script> --}}
 <script type="text/javascript">
+  document.getElementById('btnSubmit').addEventListener('click', function() {
+    document.getElementById('btnLoading').classList.remove('d-none');
+    document.getElementById('btnSubmit').classList.add('d-none');
+   });
 async function transAjax(data) {
     html = null;
     data.headers = {

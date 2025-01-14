@@ -37,12 +37,13 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
         ])->validateWithBag('updateProfileInformation');
 
         if (isset($input['photo'])) {
-            $img = Storage::putFile('public/img', $input['photo']);
-            if ($input['photo'] != 'avatar.png') {
-                Storage::delete($user->photo);
-            }
+            $fileName = time() . '_' . str_replace(' ', '_', $input['photo']->getClientOriginalName()); // Nama file unik
+        
+            // Simpan file ke S3
+            $input['photo']->storeAs('profile/photo', $fileName, 's3');
+            Storage::disk('s3')->delete('profile/photo/'.$user->photo);
         } else {
-            $img = $user->photo;
+            $fileName = $user->photo;
         }
 
         if (
@@ -60,7 +61,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
                 'instansi' => $input['instansi'],
                 'no_tlp' => $input['no_tlp'],
                 'domisili' => $input['domisili'],
-                'photo' => $img,
+                'photo' => $fileName,
             ])->save();
         }
     }

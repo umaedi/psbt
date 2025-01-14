@@ -43,7 +43,11 @@
                </div>
 
                <div class="form-group">
-                 <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
+                <button id="btnLoading" class="btn btn-primary btn-block d-none" type="button" disabled>
+                  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                  Loading...
+                </button>
+                 <button id="btnSubmit" type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
                    Login
                  </button>
                </div>

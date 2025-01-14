@@ -131,4 +131,19 @@ Route::middleware('auth')->group(function () {
         ]);
 
     })->name('surat_izin');
+
+    Route::get('/files{filename}', function($filename) {
+        $relativePath = 'profile/photo/'.$filename;
+
+        return response()->stream(function () use ($relativePath) {
+            $stream = Storage::disk('s3')->readStream($relativePath);
+            while (!feof($stream)) {
+                echo fread($stream, 1024 * 8); // Membaca file dalam blok 8 KB
+            }
+            fclose($stream);
+        }, 200, [
+            'Content-Type' => '',
+            'Content-Disposition' => 'inline; filename="' . basename($relativePath) . '"',
+        ]);
+    })->name('photo');
 });

@@ -24,7 +24,7 @@
                       @csrf
                     <div class="form-group">
                       <label for="img">Photo</label>
-                      <img id="imgPreview" src="{{ \Illuminate\Support\Facades\Storage::url(auth()->user()->photo) }}" loading="lazy" alt="photo" width="100%" >
+                      <img id="imgPreview" src="{{ route('photo', ['filename' => auth()->user()->photo]) }}" loading="lazy" alt="photo" width="100%" >
                       @error('img')
                       <div class="invalid-feedback">
                         {{ $message }}

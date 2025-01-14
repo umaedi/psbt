@@ -6,13 +6,28 @@
         <section class="section">
           <div class="section-header">
             <h1>Dashboard</h1>
+            <div class="section-header-breadcrumb">
+                <div class="font-weight-bold" id="date"></div>
+            </div>
           </div>
           <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-6 col-12">
-                <div class="alert alert-primary">PERMOHONAN PENERBITAN IZIN BELAJAR</div>
+                <div class="alert alert-primary" role="alert">
+                    <h4 class="alert-heading">Tab!</h4>
+                    <p>PERMOHONAN PENERBITAN IZIN BELAJAR</p>
+                    {{-- <hr> --}}
+                    {{-- <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p> --}}
+                  </div>
+                {{-- <div class="alert alert-primary">PERMOHONAN PENERBITAN IZIN BELAJAR</div> --}}
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-12">
-                <div class="alert alert-info">PERMOHONAN ALIH TUGAS ATAU MUTASI</div>
+                <div class="alert alert-info" role="alert">
+                    <h4 class="alert-heading">Tab!</h4>
+                    <p>PERMOHONAN ALIH TUGAS ATAU MUTASI</p>
+                    {{-- <hr> --}}
+                    {{-- <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p> --}}
+                  </div>
+                {{-- <div class="alert alert-info">PERMOHONAN ALIH TUGAS ATAU MUTASI</div> --}}
             </div>
           </div>
           <div class="row mb-3">
@@ -212,5 +227,22 @@
           $('#dataTableMutasi').html(`<button class="btn btn-warning btn-lg btn-block">${err.responseJSON.message}</button>`)
         });
     }
+
+    function updateDateTime() {
+        const now = new Date();
+        const options = {
+            weekday: 'long',
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: false
+        };
+        document.getElementById('date').textContent = now.toLocaleDateString('id-ID', options);
+    }
+    setInterval(updateDateTime, 1000); // Perbarui setiap detik
+    window.onload = updateDateTime;   // Jalankan saat halaman dimuat
 </script>
 @endpush

@@ -104,7 +104,10 @@
                <div class="invalid-feedback">{{ $message }}</div>
                @enderror
              </div>
-             <button id="btn_submit" type="submit" class="btn btn-primary mb-3">DAFTAR</button>
+             <div class="mt-3">
+              @include('layouts._loading')
+               <button id="btnSubmit" type="submit" class="btn btn-primary">DAFTAR</button>
+             </div>
           </div>
        </form>
       </div>

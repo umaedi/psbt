@@ -70,7 +70,8 @@
                         <div class="invalid-feedback">{{ $message }}</div>
                       @enderror
                     </div>
-                    <button type="submit" class="btn btn-primary">PERBAHARUI LAMPIRAN</button>
+                    @include('layouts._loading')
+                    <button id="btnSubmit" type="submit" class="btn btn-primary">PERBAHARUI LAMPIRAN</button>
                 </form>
             </div>
             </div>

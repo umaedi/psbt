@@ -18,4 +18,10 @@
     @yield('content')
   </div>
 </body>
+<script type="text/javascript">
+  document.getElementById('btnSubmit').addEventListener('click', function() {
+    document.getElementById('btnLoading').classList.remove('d-none');
+    document.getElementById('btnSubmit').classList.add('d-none');
+   });
+</script>
 </html>
