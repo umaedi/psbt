@@ -3,15 +3,15 @@
 <body class="bg-light">
    <img src="{{ asset('img') }}/hero/banner.png" loading="lazy" class="img-fluid" alt="Responsive image">
    <main role="main" class="container">
-    <div class="d-flex align-items-center p-3 mt-3 text-white-50 bg-primary rounded box-shadow">
+    {{-- <div class="d-flex align-items-center p-3 mt-3 text-white-50 bg-primary rounded box-shadow">
        <div class="lh-100">
-         <h5 class="mb-0 text-white lh-100">Permohonan Surat Bebas Temuan</h5>
+         <h5 class="mb-0 text-white lh-100">Permohonan Surat Tidak Pernah Dihukum Disiplin</h5>
        </div>
-     </div>
+     </div> --}}
      <div class="row">
        <div class="col-md-8">
          <div class="my-3 p-3 bg-white rounded box-shadow">
-           <h6 class="border-bottom border-gray pb-2 mb-3">Persyaratan Penerbitan Izin Belajar</h6>
+           <h6 class="border-bottom border-gray pb-2 mb-3">Persyaratan surat tidak sedang menjalani hukuman disiplin</h6>
            <ul class="list-group list-group-flush">
              <li class="list-group-item">1. Surat Pengantar Dari OPD</li>
              <li class="list-group-item">2. SK Pangkat Atau Jabatan Terakhir</li>
@@ -20,7 +20,7 @@
            </ul>
          </div>
          <div class="my-3 p-3 bg-white rounded box-shadow">
-           <h6 class="border-bottom border-gray pb-2 mb-3">Persyaratan Penerbitan Alih Tugas Atau Mutasi</h6>
+           <h6 class="border-bottom border-gray pb-2 mb-3">Persyaratan penerbitan alih tugas atau mutasi</h6>
            <ul class="list-group list-group-flush">
              <li class="list-group-item">1. SK Mutasi Atau Surat Persetujuan Bupati</li>
              <li class="list-group-item">2. Pengantar Dari Kepala OPD</li>
@@ -47,7 +47,7 @@
        <div class="my-3 p-3 bg-white rounded box-shadow">
            <h6>Kontak Kami</h6>
            <ul class="list-group list-group-flush">
-            <li class="list-group-item" >Handri : <span class="font-weight-bold"><a style="text-decoration: none" href="https://api.whatsapp.com/send?phone=628127902834" target="_blank">08127902834</a></span></li>
+            <li class="list-group-item" >Hendri : <span class="font-weight-bold"><a style="text-decoration: none" href="https://api.whatsapp.com/send?phone=628127902834" target="_blank">08127902834</a></span></li>
              <li class="list-group-item">Email: <a style="text-decoration: none" href="mailto:"inspektorattuba@gmail.com>inspektorattuba@gmail.com</a></span></li>
            </ul>
        </div>

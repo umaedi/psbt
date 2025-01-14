@@ -1,0 +1,4 @@
+address: "0.0.0.0:8080"
+php_workers: 4
+static_files:
+  /: "public/"
