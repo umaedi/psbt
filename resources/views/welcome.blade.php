@@ -8,9 +8,9 @@
          <h5 class="mb-0 text-white lh-100">Permohonan Surat Tidak Pernah Dihukum Disiplin</h5>
        </div>
      </div> --}}
-     <div class="row">
+     <div class="row mt-3">
        <div class="col-md-8">
-         <div class="my-3 p-3 bg-white rounded box-shadow">
+         <div class="my-3 p-3 bg-white rounded box-shadow" style="border-top: 3px solid #01193d">
            <h6 class="border-bottom border-gray pb-2 mb-3">Persyaratan surat tidak sedang menjalani hukuman disiplin</h6>
            <ul class="list-group list-group-flush">
              <li class="list-group-item">1. Surat Pengantar Dari OPD</li>
@@ -32,7 +32,7 @@
        </div>
  
      <div class="col-md-4">
-       <div class="my-3 p-3 bg-white rounded box-shadow">
+       <div class="my-3 p-3 bg-white rounded box-shadow" style="border-top: 3px solid #01193d">
            <h6>Alur Permohonan</h6>
            <ul class="list-group list-group-flush">
              <li class="list-group-item">1. Pemohon melakukan pendaftaran</li>
