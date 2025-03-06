@@ -70,10 +70,10 @@
           <div class="col-md-8 mb-3">
             <div class="card">
               <div class="card-header">
-                <h4>PENERBITAN TIDAK PERNAH DIHUKUM DISIPLIN</h4>
+                {{-- <h4>PENERBITAN TIDAK PERNAH DIHUKUM DISIPLIN</h4> --}}
             </div>
             <div class="card-body">
-                <h6>Persyaratan Penerbitan Izin Belajar</h6>
+                <h6>Persyaratan tidak pernah dihukum disiplin untuk penerbitan izin belajar</h6>
                 <table class="table">
                     <tbody>
                       <tr>
@@ -99,7 +99,7 @@
             </div>
             <hr>
             <div class="card-body">
-                <h6>Persyaratan Alih Tugas atau Mutasi</h6>
+                <h6>Persyaratan bebas temuan untuk alih tugas atau mutasi</h6>
                 <table class="table">
                     <tbody>
                       <tr>
