@@ -14,7 +14,7 @@
             <div class="col-lg-6 col-md-6 col-sm-6 col-12">
                 <div class="alert alert-primary" role="alert">
                     <h4 class="alert-heading">Tab!</h4>
-                    <p>PERMOHONAN PENERBITAN IZIN BELAJAR</p>
+                    <p>PERMOHOANN SURAT TIDAK PERNAH DIJATUHI HUKUM DISIPLIN</p>
                     {{-- <hr> --}}
                     {{-- <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p> --}}
                   </div>
