@@ -156,7 +156,8 @@
             <div class="col-lg-6 col-md-12 col-12 col-sm-12">
               <div class="card">
                 <div class="card-header">
-                  <h4>Permohonan Penerbitan Izin Belajar Perlu Diproses</h4>
+                  {{-- <h4>Permohonan Penerbitan Izin Belajar Perlu Diproses</h4> --}}
+                  <h4>Permohonan Surat Tidak Pernah Dijatuhi Hukuman Disiplin</h4>
                 </div>
                 <div class="card-body table-responsive" id="dataTableIzin">
                   <button class="btn btn-primary btn-lg btn-block" type="button" disabled>
