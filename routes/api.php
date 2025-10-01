@@ -21,3 +21,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/status/user', [Api\TestController::class, 'index']);
+
+//route untuk permohonan izin belajar
+Route::prefix('/izin-belajar')->group(function() {
+    Route::controller(API\IzinBelajarController::class)->group(function() {
+        Route::get('/{user_id}', 'index');
+    });
+});

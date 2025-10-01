@@ -23,7 +23,7 @@
             <div class="col-lg-6 col-md-6 col-sm-6 col-12">
                 <div class="alert alert-info" role="alert">
                     <h4 class="alert-heading">Tab!</h4>
-                    <p>PERMOHONAN ALIH TUGAS ATAU MUTASI</p>
+                    <p>PERMOHONAN SURAT BEBAS TEMUAN</p>
                     {{-- <hr> --}}
                     {{-- <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p> --}}
                   </div>
@@ -170,7 +170,7 @@
             <div class="col-lg-6 col-md-12 col-12 col-sm-12">
               <div class="card">
                 <div class="card-header">
-                    <h4>Permohonan Alih Tugas atau Mutasi Perlu Diproses</h4>
+                    <h4>Permohonan Surat Bebas Temuan</h4>
                 </div>
                 <div class="card-body table-responsive" id="dataTableMutasi">
                   <button class="btn btn-primary btn-lg btn-block" type="button" disabled>
