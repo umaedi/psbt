@@ -99,7 +99,7 @@
             </div>
             <hr>
             <div class="card-body">
-                <h6>Persyaratan bebas temuan untuk alih tugas atau mutasi</h6>
+                <h6>Persyaratan permohonan surat bebas temuan</h6>
                 <table class="table">
                     <tbody>
                       <tr>
